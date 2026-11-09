@@ -1,88 +1,51 @@
 # Mi camino en Ciencia de Datos
 
-Repositorio personal para organizar mi aprendizaje y construir una base sólida antes y durante la carrera de Ciencia de Datos en la Facultad de Ciencias de la UNAM.
+Repositorio educativo abierto para estudiar los contenidos de la Licenciatura en Ciencia de Datos de la UNAM y practicar los fundamentos mediante ejercicios, código y proyectos.
 
-## Objetivo
+## Documento académico de referencia
 
-Aprender paso a paso, desde cero, los fundamentos matemáticos, la programación y la estadística necesarios para analizar datos, desarrollar modelos y crear proyectos reproducibles.
+**Plan de Estudios de la Licenciatura en Ciencia de Datos, Sistema Escolarizado**, aprobado por el H. Consejo Universitario el 27 de marzo de 2019. La entidad académica responsable que indica el documento es el Instituto de Investigaciones en Matemáticas y en Sistemas (IIMAS).
 
-## Ruta de aprendizaje
+La licenciatura tiene una duración de ocho semestres y está organizada en tres etapas:
 
-La guía se organiza con base en el **Plan de Estudios de la Licenciatura en Ciencia de Datos (UNAM, sistema escolarizado, aprobado en 2019)**. Distingue las tres etapas del programa:
+1. **Etapa básica (primero a cuarto semestre):** corresponde a una carrera de origen. El documento presenta nueve trayectorias distintas; las asignaturas y créditos dependen de la carrera y entidad.
+2. **Etapa intermedia (quinto a séptimo semestre):** desarrolla competencias propias de Ciencia de Datos y contempla asignaturas de Matemáticas, Computación, área Socioeconómico-Administrativa y Ciencias-Sociales.
+3. **Etapa de profundización (octavo semestre):** permite profundizar en campos profesionales y de aplicación mediante asignaturas obligatorias y optativas.
 
-1. **Etapa básica (1.º a 4.º):** corresponde a la carrera de origen de cada estudiante. Las asignaturas cambian según la carrera y la entidad académica.
-2. **Etapa intermedia (5.º a 7.º):** incluye las materias propias de Ciencia de Datos en Matemáticas, Computación y áreas socioeconómicas y sociales.
-3. **Etapa de profundización (8.º):** combina asignaturas obligatorias con optativas para explorar campos de aplicación y profundización.
+## Guía web
 
-La guía de estudio añade ejercicios y proyectos para practicar los temas; estos materiales complementarios no son asignaturas oficiales ni sustituyen el programa académico.
+- [Página principal del proyecto](https://realrata.github.io/mi-camino-en-ciencia-de-datos/)
+- [Plan de estudios desglosado por etapas, carreras de origen y semestres](https://realrata.github.io/mi-camino-en-ciencia-de-datos/plan-estudios.html)
 
-## Estructura prevista
+La guía web transcribe las carreras de origen, las asignaturas comunes de Ciencia de Datos y el catálogo de optativas que aparecen en el documento proporcionado. También señala las diferencias internas de conteo y distribución que aparecen entre el resumen y las tablas del propio plan, sin resolverlas mediante información externa.
+
+## Materiales didácticos
+
+Los ejercicios, explicaciones, prácticas, evaluaciones y proyectos que se incorporen al repositorio son materiales complementarios de aprendizaje. No son asignaturas oficiales, no sustituyen los programas de cada materia ni modifican el plan de estudios de la UNAM.
+
+## Estructura del repositorio
 
 ```text
 .
-├── matematicas/
-├── programacion/
-├── estadistica/
-├── bases-de-datos/
-├── ciencia-de-datos/
-├── inteligencia-artificial/
-├── proyectos/
-├── recursos/
-└── seguimiento/
+├── index.html
+├── plan-estudios.html
+├── styles.css
+├── script.js
+└── programacion/
+    └── python/
+        ├── README.md
+        ├── 01_variables.py
+        ├── 02_condicionales.py
+        ├── 03_ciclos.py
+        └── 04_funciones.py
 ```
 
-## Principios de trabajo
+## Uso público
 
-- Avanzar desde lo básico y explicar cada concepto.
-- Escribir código claro y probarlo con ejemplos pequeños.
-- Documentar los errores, sus causas y sus soluciones.
-- No publicar contraseñas, claves API ni datos personales.
-- Registrar los avances y mantener los proyectos reproducibles.
+Cualquier persona puede consultar los materiales sin tener una cuenta de GitHub. Para ejecutar los ejercicios de Python en una computadora, descarga el repositorio con **Code → Download ZIP**, descomprime la carpeta y ábrela en un editor de código compatible con Python.
 
-## Primer objetivo
+El avance marcado en la página web se guarda localmente en el navegador y dispositivo de cada visitante; no se comparte entre personas ni dispositivos.
 
-Completar los fundamentos de Python: variables, tipos de datos, operaciones, condicionales, ciclos y funciones.
+## Alcance y precisión
 
----
-
-*Este repositorio es un cuaderno de aprendizaje en construcción.*
-
-## Guía para otras personas
-
-Este repositorio también está pensado para cualquier persona que quiera aprender. No necesitas ser parte de la UNAM ni tener experiencia previa.
-
-### Cómo empezar
-
-1. Abre la página del proyecto: https://realrata.github.io/mi-camino-en-ciencia-de-datos/
-2. Lee la sección **Guía de uso** y revisa la ruta de aprendizaje.
-3. Empieza por las lecciones de Python y sigue el orden recomendado.
-4. Para practicar en tu computadora, instala Python y Visual Studio Code. Después descarga el repositorio desde el botón **Code → Download ZIP** en GitHub y descomprime la carpeta.
-5. Abre la carpeta descomprimida en VS Code. Abre una terminal y ejecuta un ejercicio, por ejemplo:
-   ```powershell
-   python programacion/python/01_variables.py
-   ```
-   En Windows también puedes probar `py programacion/python/01_variables.py`.
-
-### ¿Cómo se guarda el progreso?
-
-Las casillas de la página guardan el avance en el almacenamiento local del navegador. El progreso no se comparte entre personas, navegadores ni dispositivos. Cada estudiante lleva su propio seguimiento.
-
-### ¿Necesito una cuenta?
-
-No. Puedes consultar y estudiar los materiales públicos sin iniciar sesión en GitHub. Solo necesitas una cuenta si quieres participar directamente en el repositorio, por ejemplo, proponiendo cambios.
-
-### Recomendaciones
-
-- Sigue el orden de las lecciones, pero avanza a tu ritmo.
-- Ejecuta y modifica los ejemplos; no te limites a leerlos.
-- Si encuentras un error, revisa primero que Python esté instalado y que estés ejecutando el archivo desde la carpeta correcta.
-- Nunca publiques contraseñas, claves API ni información personal.
-
-
-## Plan de estudios de referencia
-
-Consulta la [guía organizada por semestre](plan-estudios.html) o visita la [página web del proyecto](https://realrata.github.io/mi-camino-en-ciencia-de-datos/).
-
-El plan contempla distintas carreras de origen para los primeros cuatro semestres. Por ello, cada estudiante debe verificar la tira curricular que le corresponde. Las materias de quinto a octavo semestre se presentan en la guía como estructura general; las denominaciones y la oferta pueden variar según la tabla de carrera de origen y la programación académica.
-
-**Documento base:** Plan de Estudios de la Licenciatura en Ciencia de Datos (Sistema Escolarizado), aprobado por el H. Consejo Universitario el 27 de marzo de 2019. La guía es un recurso de estudio independiente y no sustituye la información oficial de la UNAM.
+El documento de 2019 es la fuente de referencia de esta guía. La información de la carrera de origen debe leerse según la trayectoria correspondiente. La oferta de grupos y asignaturas puede estar sujeta a la programación académica de la UNAM. Esta plataforma es un recurso educativo independiente.
