@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Guía de estudio organizada con base en el plan de estudios de la Licenciatura en Ciencia de Datos de la UNAM, aprobado en 2019.">
+  <title>Plan de estudios | Mi camino en Ciencia de Datos</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .plan-hero{max-width:1160px;margin:auto;padding:65px 0 35px}.plan-hero h1{font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-2px;margin:12px 0}.plan-hero h1 span{color:var(--green)}.plan-hero p{max-width:820px;color:var(--muted);line-height:1.8}.plan-wrap{max-width:1160px;margin:auto;padding:15px 0 75px}.stage{margin:24px 0 35px;padding:25px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.stage-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:15px}.stage h2{margin:0;font-size:23px}.stage-head span{font:10px 'DM Mono',monospace;color:var(--green);letter-spacing:1px}.stage p{color:var(--muted);font-size:13px}.semester-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.semester{background:#0d1828;border:1px solid #2a3b52;border-radius:10px;padding:18px}.semester h3{margin:0 0 12px;font-size:16px;color:var(--green)}.semester ul{margin:0;padding-left:18px;color:#c5d2e4;font-size:12px;line-height:1.9}.subject-note{font-size:11px;color:var(--muted);margin-top:14px}.opt-list{columns:2;column-gap:35px;padding-left:18px;color:#c5d2e4;font-size:12px;line-height:1.9}.source-note{border-left:3px solid var(--green);padding:13px 17px;background:#17251f;color:#c9d7c7;font-size:12px;line-height:1.8;margin-top:20px}.plan-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    @media(max-width:1200px){.plan-hero,.plan-wrap{margin-left:5.5%;margin-right:5.5%}}@media(max-width:650px){.semester-grid{grid-template-columns:1fr}.stage{padding:17px}.opt-list{columns:1}.stage-head{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">CD</span><span>Mi camino <strong>en Ciencia de Datos</strong></span></a>
+    <nav class="nav" style="display:flex"><a href="index.html">Inicio</a><a href="#semestres">Semestres</a><a href="#optativas">Optativas</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="plan-hero">
+      <span class="eyebrow">GUÍA ACADÉMICA · UNAM · IIMAS</span>
+      <h1>Aprende siguiendo el<br><span>plan de estudios oficial.</span></h1>
+      <p>Esta página organiza la ruta de aprendizaje con base en el Plan de Estudios de la Licenciatura en Ciencia de Datos (sistema escolarizado), aprobado el 27 de marzo de 2019. El objetivo es convertir las asignaturas del programa en una guía de preparación, práctica y proyectos para estudiantes y personas interesadas.</p>
+      <div class="plan-actions"><a class="button button-primary" href="#semestres">Explorar los semestres →</a><a class="button button-quiet" href="index.html">Volver al inicio</a></div>
+    </section>
+    <div class="plan-wrap">
+      <section class="stage">
+        <div class="stage-head"><h2>Etapa básica</h2><span>PRIMER AL CUARTO SEMESTRE</span></div>
+        <p>El plan establece que esta etapa corresponde a la carrera de origen cursada por cada estudiante. El documento contempla distintas vías de ingreso, por lo que las materias de estos cuatro semestres no son idénticas para todas las personas.</p>
+        <p>En esta etapa se construyen bases matemáticas, pensamiento lógico y herramientas de programación. Revisa la tira de materias que corresponda a tu carrera de origen y entidad académica.</p>
+        <div class="tip-box"><span>📘</span><p><strong>Importante:</strong> esta guía no sustituye la tira curricular ni la asesoría escolar de tu entidad. Antes de elegir materias, confirma cuál es tu carrera de origen.</p></div>
+      </section>
+      <section class="stage" id="semestres">
+        <div class="stage-head"><h2>Etapa intermedia</h2><span>QUINTO AL SÉPTIMO SEMESTRE</span></div>
+        <p>En esta etapa se cursan las asignaturas propias de Ciencia de Datos. La siguiente lista resume las materias que aparecen en la estructura curricular del documento.</p>
+        <div class="semester-grid">
+          <article class="semester"><h3>Quinto semestre</h3><ul><li>Bases de Datos Estructuradas</li><li>Computación Concurrente</li><li>Matemáticas Discretas</li><li>Métodos Matemáticos Computacionales para Ciencia de Datos</li><li>Paradigmas y Programación para Ciencia de Datos</li><li>Probabilidad Aplicada</li></ul></article>
+          <article class="semester"><h3>Sexto semestre</h3><ul><li>Bases de Datos no Estructuradas</li><li>Calidad y Pre-Procesamiento de Datos</li><li>Datos Masivos I</li><li>Métodos Estadísticos</li><li>Reconocimiento de Patrones</li><li>Introducción a las Finanzas y a la Empresa</li><li>Género y cultura de la igualdad (requisito sin créditos)</li></ul></article>
+          <article class="semester"><h3>Séptimo semestre</h3><ul><li>Análisis Multivariado y Modelos Lineales</li><li>Aprendizaje de Máquinas</li><li>Datos Masivos II</li><li>Minería de Datos</li><li>Procesamiento de Lenguaje Natural</li><li>Una asignatura optativa</li></ul></article>
+        </div>
+      </section>
+      <section class="stage">
+        <div class="stage-head"><h2>Etapa de profundización</h2><span>OCTAVO SEMESTRE</span></div>
+        <p>El octavo semestre combina asignaturas obligatorias con optativas para profundizar en un área de interés.</p>
+        <div class="semester-grid">
+          <article class="semester"><h3>Asignaturas obligatorias</h3><ul><li>Estadística Computacional (en una tabla del documento aparece como Computación Estadística)</li><li>Ética y Ciencia de Datos</li><li>Visualización de la información</li></ul></article>
+          <article class="semester"><h3>Optativas</h3><ul><li>Se eligen tres optativas en octavo semestre, además de la optativa indicada en séptimo.</li><li>La selección depende de los intereses y de la oferta académica vigente.</li></ul></article>
+        </div>
+      </section>
+      <section class="stage" id="optativas">
+        <div class="stage-head"><h2>Ejemplos de asignaturas optativas</h2><span>ÁREAS DE PROFUNDIZACIÓN</span></div>
+        <p>El plan presenta opciones de distintos campos. La disponibilidad puede depender de la entidad, semestre y oferta vigente.</p>
+        <ul class="opt-list">
+          <li>Análisis de Señales Biomédicas</li><li>Aprendizaje Profundo</li><li>Aprendizaje por Refuerzo</li><li>Bioinformática</li><li>Ciencia Social Computacional</li><li>Ciencia de Datos en Biología</li><li>Introducción a la Investigación Científica</li><li>Minería de Textos</li><li>Procesamiento Digital de Audio</li><li>Seguridad de la Información</li><li>Series de Tiempo</li><li>Temas Selectos de Estadística</li><li>Temas Selectos de Procesamiento de Lenguaje Natural</li><li>Temas Selectos de Sistemas de Información</li><li>Temas Selectos de Visión Computacional</li><li>Temas Selectos de Visualización</li>
+        </ul>
+      </section>
+      <section class="stage">
+        <div class="stage-head"><h2>Cómo utilizaremos este plan en la guía</h2><span>MÉTODO DE ESTUDIO</span></div>
+        <div class="semester-grid">
+          <article class="semester"><h3>1. Preparación</h3><p>Antes de cada asignatura, repasaremos los conceptos previos necesarios y construiremos ejemplos sencillos.</p></article>
+          <article class="semester"><h3>2. Práctica</h3><p>Prepararemos ejercicios guiados, actividades y pequeños retos relacionados con el nombre y propósito de cada materia.</p></article>
+          <article class="semester"><h3>3. Aplicación</h3><p>Cuando el tema lo permita, conectaremos varias materias mediante proyectos de análisis y tratamiento de datos.</p></article>
+          <article class="semester"><h3>4. Evaluación</h3><p>Agregaremos repasos, preguntas y proyectos para que cada persona pueda revisar lo que domina y lo que necesita reforzar.</p></article>
+        </div>
+        <div class="source-note"><strong>Nota sobre el documento:</strong> el plan describe la estructura general y muestra tablas por carrera de origen. También presenta diferencias de denominación y de conteo entre su resumen inicial y las tablas detalladas. Por eso esta página conserva la organización por semestres y señala las variantes visibles, pero no sustituye la información oficial vigente de la UNAM.</div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">CD</span><span>Mi camino <strong>en Ciencia de Datos</strong></span></a><p>Guía de aprendizaje basada en el plan de estudios UNAM 2019.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Repositorio en GitHub ↗</a></footer>
+</body>
+</html>
