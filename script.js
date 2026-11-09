@@ -5,6 +5,10 @@
   const progressFill = document.getElementById("progressFill");
   const progressPercent = document.getElementById("progressPercent");
   const progressText = document.getElementById("progressText");
+  const xpValue = document.getElementById("xpValue");
+  const xpFill = document.getElementById("xpFill");
+  const levelValue = document.getElementById("levelValue");
+  const playerRank = document.getElementById("playerRank");
   const searchInput = document.getElementById("lessonSearch");
   const lessonCount = document.getElementById("lessonCount");
   const emptyState = document.getElementById("emptyState");
@@ -42,6 +46,12 @@
     progressFill.style.width = percent + "%";
     progressPercent.textContent = percent + "%";
     progressText.textContent = done + " de " + total + " lecciones completadas";
+    const xp = done * 100;
+    const level = Math.floor(xp / 200) + 1;
+    xpValue.textContent = xp + " XP";
+    xpFill.style.width = ((xp % 200) / 200 * 100) + "%";
+    levelValue.textContent = String(level).padStart(2, "0");
+    playerRank.textContent = level >= 3 ? "RANGO 03 · ANALISTA" : level >= 2 ? "RANGO 02 · APRENDIZ" : "RANGO 01 · NOVATO";
   }
 
   function filterLessons() {
