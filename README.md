@@ -19,6 +19,14 @@ La licenciatura tiene una duración de ocho semestres y está organizada en tres
 
 La guía web transcribe las carreras de origen, las asignaturas comunes de Ciencia de Datos y el catálogo de optativas que aparecen en el documento proporcionado. También señala las diferencias internas de conteo y distribución que aparecen entre el resumen y las tablas del propio plan, sin resolverlas mediante información externa.
 
+## Nuevas formas de aprender
+
+La plataforma incluye una guía de aprendizaje activo con seis métodos: misiones por problemas, laboratorios de datos, proyectos integradores, retos de programación, aprendizaje enseñando y portafolio de evidencias. También incluye un ciclo de estudio en cinco pasos, criterios de evaluación y un proyecto práctico de análisis de mercados y tianguis.
+
+- [Abrir nuevas formas de aprender](https://realrata.github.io/mi-camino-en-ciencia-de-datos/formas-de-aprender.html)
+
+Estos métodos son propuestas didácticas complementarias; no sustituyen ni modifican las asignaturas oficiales.
+
 ## Materiales didácticos
 
 Los ejercicios, explicaciones, prácticas, evaluaciones y proyectos que se incorporen al repositorio son materiales complementarios de aprendizaje. No son asignaturas oficiales, no sustituyen los programas de cada materia ni modifican el plan de estudios de la UNAM.
