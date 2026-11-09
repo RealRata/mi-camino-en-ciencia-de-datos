@@ -5,3 +5,48 @@
 @media(max-width:760px){.topbar{height:66px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:65px;left:0;right:0;padding:18px 6%;background:#101b2c;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:16px}.nav.open{display:flex}.nav .nav-github{text-align:center}.hero{grid-template-columns:1fr;padding:65px 0 55px;gap:20px}.hero h1{font-size:46px}.hero-art{height:280px}.orbit-one{width:320px;height:200px}.orbit-two{width:260px;height:260px}.data-card{width:min(350px,92%)}.stats-strip{gap:15px;flex-wrap:wrap;justify-content:flex-start}.stats-strip div{width:45%}.section-heading{display:block}.section-heading>p{margin-top:12px}.roadmap-grid{grid-template-columns:repeat(2,1fr)}.progress-section{grid-template-columns:1fr;padding:27px 22px;gap:25px}.footer{flex-wrap:wrap}.footer p{order:3;width:100%;margin:0}}
 @media(max-width:480px){.hero h1{font-size:39px;letter-spacing:-2px}.hero-copy>p{font-size:14px}.hero-actions{gap:8px}.button{font-size:11px;padding:11px 12px}.roadmap-grid{grid-template-columns:1fr}.road-card{min-height:190px}.lesson{grid-template-columns:20px 28px 1fr;gap:10px;padding:13px}.lesson-link{grid-column:3;justify-self:start}.lesson-info p{font-size:10px}.search-box{width:75%}.progress-bottom{font-size:9px}.footer .brand{font-size:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+
+/* DATA QUEST — interfaz de tablero de videojuego */
+:root{--bg:#080d19;--panel:#101a2c;--panel2:#17243a;--line:#2b3d5a;--green:#b8f34a;--cyan:#55e6ed;--purple:#ad9cff}
+body{background:radial-gradient(ellipse at 50% -20%,#23365a 0%,#0b1324 43%,#080d19 78%);background-attachment:fixed}
+.topbar{background:#080e1cf2;border-bottom:1px solid #314566}
+.brand{font-family:'DM Mono',monospace;letter-spacing:1px}.brand-mark{border-radius:9px;background:linear-gradient(145deg,#c5ff5c,#65d9ad);box-shadow:0 0 22px #a3e63538}
+.nav a{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.nav .nav-github{border-color:#52678b;background:#14213a}
+.hero{padding-top:75px;padding-bottom:48px;min-height:490px}
+.hero h1{font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:-2.8px;text-shadow:0 5px 28px #0008}
+.hero h1 span{color:var(--cyan);text-shadow:0 0 28px #55e6ed55}
+.eyebrow{color:var(--cyan)}
+.live-dot{background:var(--cyan);box-shadow:0 0 12px #55e6ed}
+.button{border-radius:7px;text-transform:uppercase;font:700 11px 'DM Mono',monospace;letter-spacing:.5px}
+.button-primary{background:linear-gradient(120deg,#c8ff63,#80e6a2);box-shadow:0 5px 22px #a3e63524}
+.data-card{background:linear-gradient(145deg,#172844,#0c1629);border:1px solid #526b91;box-shadow:0 25px 90px #000b,0 0 30px #55e6ed12;border-radius:10px}
+.floating-chip{font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.5px;background:#172944;border-color:#58708f}
+.player-hud{max-width:1160px;margin:0 auto 70px;padding:18px 22px;display:grid;grid-template-columns:auto 1fr 1.1fr auto;align-items:center;gap:18px;background:linear-gradient(100deg,#172741,#101a2d);border:1px solid #405778;border-radius:12px;box-shadow:0 14px 40px #0005}
+.player-avatar{width:52px;height:52px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(145deg,#c9ff62,#55e6ed);color:#0c1725;font-size:28px;font-weight:900;box-shadow:0 0 25px #55e6ed26}
+.player-identity,.hud-xp,.hud-level{display:flex;flex-direction:column;gap:2px}.hud-label{font:10px 'DM Mono',monospace;color:#7f9abb;letter-spacing:1.2px}.player-identity strong{font-size:15px}.player-identity small{font:9px 'DM Mono',monospace;color:var(--green);letter-spacing:.8px}
+.hud-xp strong{font:19px 'DM Mono',monospace;color:var(--cyan)}.xp-track{height:6px;max-width:240px;background:#263955;border-radius:20px;overflow:hidden;margin-top:5px}.xp-track span{display:block;width:0;height:100%;background:linear-gradient(90deg,#55e6ed,#b8f34a);transition:width .3s}
+.hud-level{align-items:center;border-left:1px solid #3a4d6a;padding-left:25px}.hud-level strong{font:32px 'DM Mono',monospace;color:var(--green)}
+.stats-strip{border-color:#334866;background:#0e192b99;border-radius:10px;padding:18px 22px}
+.stats-strip strong{color:var(--cyan)}
+.section-heading h2,.progress-copy h2{font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:-.8px}
+.roadmap-grid{gap:16px}
+.road-card{background:linear-gradient(145deg,#172741,#101a2b);border-color:#344968;border-radius:10px;box-shadow:inset 0 1px #ffffff08;transition:transform .2s,border-color .2s,box-shadow .2s}
+.road-card:hover{transform:translateY(-5px);border-color:#55e6ed;box-shadow:0 12px 28px #0005,0 0 20px #55e6ed13}
+.active-road{border-color:#9bc94b;background:linear-gradient(145deg,#253b36,#111d2d)}
+.road-icon{background:#243956;border:1px solid #3a5579;color:var(--cyan);font-family:'DM Mono',monospace}
+.road-status,.road-card>a{color:var(--cyan)}
+.lesson{background:linear-gradient(100deg,#17263e,#101a2c);border-color:#344968;border-radius:9px}
+.lesson:hover{border-color:var(--cyan);box-shadow:0 8px 24px #0004}
+.lesson-number{color:var(--cyan);font-size:14px}
+.lesson-link{color:var(--green);font-family:'DM Mono',monospace;text-transform:uppercase;font-size:10px}
+.tags span{background:#263b59;color:#b7c9e2}
+.search-box{background:#101b2e;border-color:#3a4f70}
+.progress-section{background:linear-gradient(110deg,#172d38,#14213a);border-color:#3a6470;border-radius:12px;box-shadow:0 15px 40px #0005}
+.progress-panel{background:#0b1527;border-color:#3a5570}
+.progress-fill{background:linear-gradient(90deg,#55e6ed,#b8f34a);box-shadow:0 0 12px #55e6ed55}
+.tip-box{background:#15283a;border-color:#385c66}.tip-box strong{color:#c9f7a0}
+.footer{border-color:#2e4260}
+@media(max-width:1200px){.player-hud{margin-left:5.5%;margin-right:5.5%}}
+@media(max-width:760px){.player-hud{grid-template-columns:auto 1fr auto;gap:12px;padding:14px}.hud-xp{grid-column:2/4;grid-row:2}.hud-level{grid-column:3;grid-row:1;padding-left:14px}.player-avatar{width:44px;height:44px}.xp-track{max-width:none}.hero{padding-top:55px}}
