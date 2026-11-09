@@ -46,3 +46,34 @@ Completar los fundamentos de Python: variables, tipos de datos, operaciones, con
 ---
 
 *Este repositorio es un cuaderno de aprendizaje en construcción.*
+
+## Guía para otras personas
+
+Este repositorio también está pensado para cualquier persona que quiera aprender. No necesitas ser parte de la UNAM ni tener experiencia previa.
+
+### Cómo empezar
+
+1. Abre la página del proyecto: https://realrata.github.io/mi-camino-en-ciencia-de-datos/
+2. Lee la sección **Guía de uso** y revisa la ruta de aprendizaje.
+3. Empieza por las lecciones de Python y sigue el orden recomendado.
+4. Para practicar en tu computadora, instala Python y Visual Studio Code. Después descarga el repositorio desde el botón **Code → Download ZIP** en GitHub y descomprime la carpeta.
+5. Abre la carpeta descomprimida en VS Code. Abre una terminal y ejecuta un ejercicio, por ejemplo:
+   ```powershell
+   python programacion/python/01_variables.py
+   ```
+   En Windows también puedes probar `py programacion/python/01_variables.py`.
+
+### ¿Cómo se guarda el progreso?
+
+Las casillas de la página guardan el avance en el almacenamiento local del navegador. El progreso no se comparte entre personas, navegadores ni dispositivos. Cada estudiante lleva su propio seguimiento.
+
+### ¿Necesito una cuenta?
+
+No. Puedes consultar y estudiar los materiales públicos sin iniciar sesión en GitHub. Solo necesitas una cuenta si quieres participar directamente en el repositorio, por ejemplo, proponiendo cambios.
+
+### Recomendaciones
+
+- Sigue el orden de las lecciones, pero avanza a tu ritmo.
+- Ejecuta y modifica los ejemplos; no te limites a leerlos.
+- Si encuentras un error, revisa primero que Python esté instalado y que estés ejecutando el archivo desde la carpeta correcta.
+- Nunca publiques contraseñas, claves API ni información personal.
