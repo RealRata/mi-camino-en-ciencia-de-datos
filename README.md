@@ -8,13 +8,13 @@ Aprender paso a paso, desde cero, los fundamentos matemáticos, la programación
 
 ## Ruta de aprendizaje
 
-1. **Fundamentos de programación:** Python, variables, tipos de datos, condicionales, ciclos, funciones y estructuras de datos.
-2. **Matemáticas:** álgebra, funciones, cálculo y álgebra lineal.
-3. **Estadística y probabilidad:** estadística descriptiva, distribuciones, inferencia y probabilidad.
-4. **Herramientas para datos:** NumPy, pandas, visualización y SQL.
-5. **Ciencia de datos:** limpieza, exploración, análisis y comunicación de resultados.
-6. **Aprendizaje automático e IA:** modelos supervisados y no supervisados, evaluación y buenas prácticas.
-7. **Proyectos:** ejercicios y proyectos documentados con datos, código y conclusiones.
+La guía se organiza con base en el **Plan de Estudios de la Licenciatura en Ciencia de Datos (UNAM, sistema escolarizado, aprobado en 2019)**. Distingue las tres etapas del programa:
+
+1. **Etapa básica (1.º a 4.º):** corresponde a la carrera de origen de cada estudiante. Las asignaturas cambian según la carrera y la entidad académica.
+2. **Etapa intermedia (5.º a 7.º):** incluye las materias propias de Ciencia de Datos en Matemáticas, Computación y áreas socioeconómicas y sociales.
+3. **Etapa de profundización (8.º):** combina asignaturas obligatorias con optativas para explorar campos de aplicación y profundización.
+
+La guía de estudio añade ejercicios y proyectos para practicar los temas; estos materiales complementarios no son asignaturas oficiales ni sustituyen el programa académico.
 
 ## Estructura prevista
 
@@ -77,3 +77,12 @@ No. Puedes consultar y estudiar los materiales públicos sin iniciar sesión en 
 - Ejecuta y modifica los ejemplos; no te limites a leerlos.
 - Si encuentras un error, revisa primero que Python esté instalado y que estés ejecutando el archivo desde la carpeta correcta.
 - Nunca publiques contraseñas, claves API ni información personal.
+
+
+## Plan de estudios de referencia
+
+Consulta la [guía organizada por semestre](plan-estudios.html) o visita la [página web del proyecto](https://realrata.github.io/mi-camino-en-ciencia-de-datos/).
+
+El plan contempla distintas carreras de origen para los primeros cuatro semestres. Por ello, cada estudiante debe verificar la tira curricular que le corresponde. Las materias de quinto a octavo semestre se presentan en la guía como estructura general; las denominaciones y la oferta pueden variar según la tabla de carrera de origen y la programación académica.
+
+**Documento base:** Plan de Estudios de la Licenciatura en Ciencia de Datos (Sistema Escolarizado), aprobado por el H. Consejo Universitario el 27 de marzo de 2019. La guía es un recurso de estudio independiente y no sustituye la información oficial de la UNAM.
