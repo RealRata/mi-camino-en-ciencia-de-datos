@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#101713">
 <meta name="description" content="Centro de estudio de Ciencia de Datos: ruta académica UNAM, prácticas de Python, estadística, SQL, análisis de datos y proyectos con información pública mexicana.">
 <title>Ciencia de Datos desde Cero | Aprende, practica y crea proyectos</title>
-<link rel="stylesheet" href="styles.css?v=calculadora-mejorada-20261111"><script src="script.js?v=calculadora-mejorada-20261111" defer></script>
+<link rel="stylesheet" href="styles.css?v=calculadora-mejorada-20261111"><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script><script src="script.js?v=calculadora-excel-20261111" defer></script>
 </head>
 <body>
 <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -53,7 +53,7 @@
       <label for="dataValues">Tus datos numéricos</label>
       <textarea id="dataValues" rows="6" spellcheck="false" placeholder="Ejemplo: 12, 15, 18, 18, 20, 22, 25"></textarea>
       <p class="calculator-help">Separa los números con comas, espacios, punto y coma o saltos de línea. Usa punto para los decimales (ej. 3.5).</p>
-      <div class="calculator-actions"><button type="button" class="button button-primary" id="calculateData">Calcular resultados</button><button type="button" class="button button-quiet" id="loadSampleData">Probar ejemplo</button><button type="button" class="button button-quiet" id="copyDataResults">Copiar resultados</button><button type="button" class="button button-quiet" id="clearData">Limpiar</button></div>
+      <div class="calculator-actions"><button type="button" class="button button-primary" id="calculateData">Calcular resultados</button><button type="button" class="button button-quiet" id="loadSampleData">Probar ejemplo</button><button type="button" class="button button-quiet" id="copyDataResults">Copiar resultados</button><button type="button" class="button button-primary" id="exportExcel">Exportar a Excel</button><button type="button" class="button button-quiet" id="clearData">Limpiar</button></div>
       <p class="calculator-error" id="calculatorError" role="alert" hidden></p>
     </div>
     <div class="data-calculator-results" id="calculatorResults" aria-live="polite">
