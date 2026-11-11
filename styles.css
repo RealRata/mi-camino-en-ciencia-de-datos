@@ -562,3 +562,38 @@ a { text-decoration-color: var(--accent); }
 /* Botón de exportación Excel */
 #exportExcel{background:#79c6a8;color:#101713;border-color:#a0e4c1;font-weight:900}
 #exportExcel:hover{background:#a0e4c1}
+
+
+/* Panel de descarga: botón Excel visible y separado */
+.calculator-export-panel{
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  width:100%;
+  margin-top:16px;
+  padding:18px;
+  border:1px solid #79c6a8;
+  border-radius:12px;
+  background:#192b22;
+}
+.calculator-export-panel>div{display:flex;flex:1 1 220px;flex-direction:column;gap:6px}
+.calculator-export-panel strong{color:#edf3ef;font-size:14px}
+.calculator-export-panel span{color:#b0beb5;font-size:12px;line-height:1.55}
+#exportExcel{
+  display:inline-flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  min-height:48px;
+  padding:13px 19px!important;
+  border:2px solid #b8f0d2!important;
+  border-radius:10px!important;
+  background:#79c6a8!important;
+  color:#101713!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  cursor:pointer;
+}
+#exportExcel:hover{background:#a0e4c1!important;transform:translateY(-1px)}
+@media(max-width:600px){.calculator-export-panel{align-items:stretch}.calculator-export-panel>div,#exportExcel{width:100%}}
