@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "camino-ciencia-datos-python-v1";
+  const STORAGE_KEY = "data-quest-practicas-v2";
   const checks = Array.from(document.querySelectorAll("[data-lesson]"));
   const progressFill = document.getElementById("progressFill");
   const progressPercent = document.getElementById("progressPercent");
@@ -29,7 +29,7 @@
 
     if (progressFill) progressFill.style.width = percent + "%";
     if (progressPercent) progressPercent.textContent = percent + "%";
-    if (progressText) progressText.textContent = done + " de " + total + " lecciones completadas";
+    if (progressText) progressText.textContent = done + " de " + total + " prácticas completadas";
 
     checks.forEach((check) => {
       const card = check.closest(".lesson");
@@ -64,7 +64,7 @@
     });
 
     if (lessonCount) {
-      lessonCount.textContent = visible + (visible === 1 ? " lección" : " lecciones");
+      lessonCount.textContent = visible + (visible === 1 ? " práctica" : " prácticas");
     }
     if (emptyState) emptyState.hidden = visible !== 0;
   }
