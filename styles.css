@@ -256,3 +256,45 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 @media (max-width: 760px) {
   .nav { background: #141d18; }
 }
+
+
+/* Unificación de paleta oscura Data Quest en TODAS las páginas */
+:root {
+  color-scheme: dark;
+  --green: var(--accent);
+  --cyan: var(--accent);
+  --panel: var(--surface);
+  --bg: #101713;
+  --surface: #19231e;
+  --surface-soft: #243129;
+  --text: #edf3ef;
+  --muted: #b0beb5;
+  --line: #35443b;
+  --accent: #79c6a8;
+  --accent-dark: #5eaa8c;
+  --accent-soft: #263e33;
+}
+body { background: var(--bg) !important; color: var(--text) !important; }
+.plan-hero h1 span, .guide-hero h1 em { color: var(--accent) !important; }
+.plan-section, .guide-block { background: var(--surface) !important; border-color: var(--line) !important; }
+.semester-card, .origin-card, .path-card, .step, .method {
+  background: var(--surface-soft) !important;
+  border-color: var(--line) !important;
+}
+.semester-card h3, .origin-card h3, .origin-content h4,
+.origin-card summary span, .meta-line, .guide-kicker, .step-tag,
+.path-card .n, .path-card a, .step b, .method small, .term b {
+  color: var(--accent) !important;
+}
+.semester-card ul, .origin-card ul, .opt-list,
+.example p, .example li { color: var(--muted) !important; }
+.origin-card summary, .plan-section h2, .guide-block h2,
+.semester-card h3, .origin-card h3, .path-card h3, .step, .method h3,
+.example h3, .term { color: var(--text) !important; }
+.note, .callout, .example {
+  background: var(--accent-soft) !important;
+  border-color: var(--line) !important;
+  color: #c4d8cb !important;
+}
+.checklist input { accent-color: var(--accent) !important; }
+a { text-decoration-color: var(--accent); }
