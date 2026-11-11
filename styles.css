@@ -195,3 +195,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .student-routine li span{color:var(--muted);font-size:10px;line-height:1.6}
 @media(max-width:900px){.tips-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.student-routine{grid-template-columns:1fr}}
 @media(max-width:480px){.tips-grid,.student-routine ol{grid-template-columns:1fr}.student-routine{padding:18px}}
+
+/* Ruta lineal de aprendizaje */
+.journey-section{padding-top:20px}
+.journey-intro{display:flex;gap:14px;align-items:flex-start;padding:15px 18px;margin-bottom:18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.journey-intro strong{flex:0 0 auto;color:var(--accent);font-size:12px}
+.journey-intro span{color:var(--muted);font-size:11px}
+.journey-list{position:relative;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.journey-step{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:start;gap:16px;padding:19px 20px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.journey-number{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700}
+.journey-step small{color:var(--accent);font-size:9px;font-weight:700;letter-spacing:.09em}
+.journey-step h3{margin:4px 0 5px;font-size:15px}
+.journey-step p{max-width:700px;margin:0;color:var(--muted);font-size:11px;line-height:1.75}
+.journey-outcome{display:block;margin-top:8px;color:#435d53;font-size:10px;font-weight:600}
+.journey-step>a{align-self:center;color:var(--accent);font-size:10px;font-weight:700;white-space:nowrap}
+.journey-step>a:hover{text-decoration:underline}
+.journey-finish{margin-top:14px;padding:14px 17px;border-left:3px solid var(--accent);background:var(--accent-soft);color:#435c54;font-size:11px;line-height:1.7}
+@media(max-width:600px){.journey-intro{display:block}.journey-intro span{display:block;margin-top:5px}.journey-step{grid-template-columns:36px minmax(0,1fr);gap:11px;padding:15px 13px}.journey-number{width:32px;height:32px}.journey-step>a{grid-column:2;justify-self:start;margin-top:4px}}
