@@ -26,7 +26,7 @@
 <a class="brand" href="#inicio" aria-label="Ciencia de Datos desde Cero, inicio"><span class="brand-mark">CD</span><span>DATOS DESDE <strong>CERO</strong></span></a>
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <nav class="nav" id="mainNav" aria-label="Navegación principal">
-<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
+<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#organizador"><svg class="ui-icon"><use href="#i-chart"/></svg>Organiza tu tiempo</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
 </nav>
 </header>
 <main id="inicio">
@@ -59,6 +59,33 @@
 <li class="journey-step"><span class="journey-number">08</span><div><small>AL FINAL · INTEGRACIÓN</small><h3>Construye y comunica un proyecto</h3><p>Elige una pregunta, documenta la fuente, limpia los datos, analiza, visualiza y presenta conclusiones con sus limitaciones.</p><span class="journey-outcome">Meta: un proyecto reproducible que puedas explicar y añadir a tu portafolio.</span></div><a href="#proyecto">Ver proyecto ↓</a></li>
 </ol>
 <div class="journey-finish"><strong>Regla para avanzar:</strong> no marques una etapa como aprendida solo por leerla. Debes poder resolver un ejercicio sin copiar y explicar qué hiciste.</div>
+</section>
+
+
+<section class="section planner-section" id="organizador">
+  <div class="section-heading"><div><span class="eyebrow">ORGANIZA TU SEMANA</span><h2><svg class="heading-icon"><use href="#i-chart"/></svg>Tu tiempo, con un plan</h2></div><p>Convierte tus metas en sesiones pequeñas y realistas. Añade qué vas a estudiar, el día y cuánto tiempo le dedicarás; marca cada sesión al terminar.</p></div>
+  <div class="planner-layout">
+    <form class="planner-form" id="studyPlannerForm">
+      <h3>Agregar sesión de estudio</h3>
+      <label for="studyTask">¿Qué vas a estudiar o practicar?</label>
+      <input id="studyTask" name="task" type="text" maxlength="90" placeholder="Ej. Resolver ejercicios de Python" required>
+      <div class="planner-fields">
+        <div><label for="studyDay">Día</label><select id="studyDay" name="day" required><option value="Lunes">Lunes</option><option value="Martes">Martes</option><option value="Miércoles">Miércoles</option><option value="Jueves">Jueves</option><option value="Viernes">Viernes</option><option value="Sábado">Sábado</option><option value="Domingo">Domingo</option></select></div>
+        <div><label for="studyMinutes">Duración</label><select id="studyMinutes" name="minutes"><option value="25">25 minutos</option><option value="50" selected>50 minutos</option><option value="75">1 h 15 min</option><option value="100">1 h 40 min</option><option value="120">2 horas</option></select></div>
+      </div>
+      <button class="button button-primary planner-add" type="submit">+ Añadir a mi semana</button>
+      <p class="planner-hint">Consejo: empieza con sesiones de 25 o 50 minutos y deja pausas entre ellas. Es mejor un plan sostenible que uno imposible de cumplir.</p>
+    </form>
+    <div class="planner-overview">
+      <div class="planner-stats">
+        <article><span>TIEMPO PLANEADO</span><strong id="plannedTime">0 h</strong></article>
+        <article><span>COMPLETADO</span><strong id="completedTime">0 min</strong></article>
+        <article><span>SESIONES PENDIENTES</span><strong id="pendingCount">0</strong></article>
+      </div>
+      <div class="planner-progress"><div><strong>Tu semana</strong><span id="plannerProgressText">Aún no hay sesiones</span></div><div class="progress-track"><div class="progress-fill" id="plannerProgressFill"></div></div></div>
+      <div class="planner-list" id="plannerList" aria-live="polite"><p class="planner-empty">Todavía no tienes sesiones. Agrega la primera para empezar a organizarte.</p></div>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="ruta">
