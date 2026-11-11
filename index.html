@@ -26,7 +26,7 @@
 <a class="brand" href="#inicio" aria-label="Ciencia de Datos desde Cero, inicio"><span class="brand-mark">CD</span><span>DATOS DESDE <strong>CERO</strong></span></a>
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <nav class="nav" id="mainNav" aria-label="Navegación principal">
-<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#organizador"><svg class="ui-icon"><use href="#i-chart"/></svg>Organiza tu tiempo</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
+<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#organizador"><svg class="ui-icon"><use href="#i-chart"/></svg>Organiza tu tiempo</a><a href="#calculadora"><svg class="ui-icon"><use href="#i-database"/></svg>Calculadora</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
 </nav>
 </header>
 <main id="inicio">
@@ -45,6 +45,23 @@
 </section>
 
  
+
+<section class="section data-calculator-section" id="calculadora">
+  <div class="section-heading"><div><span class="eyebrow">HERRAMIENTA RÁPIDA</span><h2><svg class="heading-icon"><use href="#i-database"/></svg>Calculadora de datos</h2></div><p>Pega una lista de números y obtén medidas estadísticas básicas al instante. No necesitas instalar nada: los cálculos se realizan en tu navegador.</p></div>
+  <div class="data-calculator">
+    <div class="data-calculator-input">
+      <label for="dataValues">Tus datos numéricos</label>
+      <textarea id="dataValues" rows="6" spellcheck="false" placeholder="Ejemplo: 12, 15, 18, 18, 20, 22, 25"></textarea>
+      <p class="calculator-help">Separa los números con comas, espacios, punto y coma o saltos de línea. Usa punto para los decimales (ej. 3.5).</p>
+      <div class="calculator-actions"><button type="button" class="button button-primary" id="calculateData">Calcular resultados</button><button type="button" class="button button-quiet" id="loadSampleData">Probar ejemplo</button><button type="button" class="button button-quiet" id="clearData">Limpiar</button></div>
+      <p class="calculator-error" id="calculatorError" role="alert" hidden></p>
+    </div>
+    <div class="data-calculator-results" id="calculatorResults" aria-live="polite">
+      <div class="calculator-empty">Tus resultados aparecerán aquí cuando ingreses datos.</div>
+    </div>
+  </div>
+  <p class="calculator-footnote">Varianza y desviación estándar se muestran para población y muestra. Los cuartiles usan la mediana de cada mitad; si hay una cantidad impar, la mediana central se excluye de ambas mitades.</p>
+</section>
 <section class="section journey-section" id="camino">
 <div class="section-heading"><div><span class="eyebrow">TU RECORRIDO PASO A PASO</span><h2><svg class="heading-icon"><use href="#i-compass"/></svg>Un camino, en orden</h2></div><p>No necesitas aprender todo al mismo tiempo. Sigue esta secuencia: cada etapa prepara la siguiente. Avanza cuando puedas resolver y explicar lo que practicaste.</p></div>
 <div class="journey-intro"><strong>Cómo usar esta ruta</strong><span>Empieza en el paso 1. Estudia el concepto, realiza la práctica y después continúa al siguiente. Si un tema se dificulta, repítelo antes de avanzar.</span></div>
@@ -253,6 +270,7 @@
 </section>
 </main>
 
+<a class="calculator-quick-access" href="#calculadora" aria-label="Abrir calculadora de datos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 6h8M8 11h2m4 0h2M8 15h2m4 0h2M8 18.5h2m4 0h2"/></svg><span>Calculadora</span></a>
 <aside class="dq-chat" id="dqChat" aria-label="Asistente de Ciencia de Datos">
   <button class="dq-chat-launcher" id="dqChatToggle" type="button" aria-expanded="false" aria-controls="dqChatPanel">
     <span class="dq-chat-launcher-icon" aria-hidden="true">✳</span><span>Pregúntale a la IA</span><span class="dq-chat-launcher-state" aria-hidden="true"></span>
