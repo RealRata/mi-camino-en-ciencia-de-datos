@@ -201,55 +201,64 @@
   }
 
   if (exportExcelButton) exportExcelButton.addEventListener("click", () => {
-    if (!dataValuesInput || !calculatorResults) return;
+    if (!dataValuesInput || !calculatorResults || !calculatorError) return;
+    calculatorError.hidden = true;
     const raw = dataValuesInput.value.trim();
-    if (!raw) {
-      if (calculatorError) {
-        calculatorError.textContent = "Primero introduce tus datos y calcula los resultados.";
-        calculatorError.hidden = false;
-      }
-      return;
-    }
-    const values = raw.split(/[\\s,;]+/).filter(Boolean).map(Number);
-    if (!values.length || values.some(value => !Number.isFinite(value)) || values.length > 100000) {
-      if (calculatorError) {
-        calculatorError.textContent = "Revisa los datos antes de exportar: deben ser números válidos y no superar 100,000 valores.";
-        calculatorError.hidden = false;
-      }
-      return;
-    }
-    if (!window.XLSX) {
-      if (calculatorError) {
-        calculatorError.textContent = "No se pudo cargar el generador de Excel. Revisa tu conexión a internet e inténtalo de nuevo.";
-        calculatorError.hidden = false;
-      }
+    const tokens = raw.split(/[\s,;]+/).filter(Boolean);
+    const values = tokens.map(Number);
+    if (!raw || !values.length || values.some(value => !Number.isFinite(value)) || values.length > 100000) {
+      calculatorError.textContent = !raw
+        ? "Primero introduce tus datos para generar el archivo."
+        : "Revisa los datos: deben ser números válidos y no superar 100,000 valores.";
+      calculatorError.hidden = false;
       return;
     }
     if (!calculatorResults.querySelector(".stat-result")) calculateData();
-    if (!calculatorResults.querySelector(".stat-result")) return;
-    const workbook = XLSX.utils.book_new();
-    const dataSheet = [["N.º", "Valor"]];
-    values.forEach((value, index) => dataSheet.push([index + 1, value]));
-    const summarySheet = [["Indicador", "Resultado", "Descripción"]];
-    [...calculatorResults.querySelectorAll(".stat-result")].forEach(card => {
+    const cards = [...calculatorResults.querySelectorAll(".stat-result")];
+    if (!cards.length) return;
+    const summary = [["Indicador", "Resultado", "Descripción"]];
+    cards.forEach(card => {
       const parts = card.querySelectorAll("span, strong, small");
-      summarySheet.push([parts[0].textContent, parts[1].textContent, parts[2].textContent]);
+      summary.push([parts[0].textContent, parts[1].textContent, parts[2].textContent]);
     });
-    const sortedSheet = [["Posición", "Valor ordenado"]];
-    [...values].sort((a, b) => a - b).forEach((value, index) => sortedSheet.push([index + 1, value]));
-    const wsData = XLSX.utils.aoa_to_sheet(dataSheet);
-    const wsSummary = XLSX.utils.aoa_to_sheet(summarySheet);
-    const wsSorted = XLSX.utils.aoa_to_sheet(sortedSheet);
-    wsData["!cols"] = [{ wch: 10 }, { wch: 18 }];
-    wsSummary["!cols"] = [{ wch: 32 }, { wch: 24 }, { wch: 42 }];
-    wsSorted["!cols"] = [{ wch: 14 }, { wch: 20 }];
-    wsData["!autofilter"] = { ref: "A1:B" + dataSheet.length };
-    wsSorted["!autofilter"] = { ref: "A1:B" + sortedSheet.length };
-    XLSX.utils.book_append_sheet(workbook, wsData, "Datos originales");
-    XLSX.utils.book_append_sheet(workbook, wsSummary, "Resumen estadístico");
-    XLSX.utils.book_append_sheet(workbook, wsSorted, "Datos ordenados");
+    const original = [["N.º", "Valor"], ...values.map((value, index) => [index + 1, value])];
+    const ordered = [["Posición", "Valor ordenado"], ...[...values].sort((a, b) => a - b).map((value, index) => [index + 1, value])];
     const stamp = new Date().toISOString().slice(0, 10);
-    XLSX.writeFile(workbook, "analisis_de_datos_" + stamp + ".xlsx");
+    if (window.XLSX && XLSX.utils && XLSX.writeFile) {
+      const workbook = XLSX.utils.book_new();
+      const sheets = [
+        ["Datos originales", original, [{ wch: 10 }, { wch: 18 }]],
+        ["Resumen estadístico", summary, [{ wch: 32 }, { wch: 24 }, { wch: 42 }]],
+        ["Datos ordenados", ordered, [{ wch: 14 }, { wch: 20 }]]
+      ];
+      sheets.forEach(([name, rows, widths]) => {
+        const sheet = XLSX.utils.aoa_to_sheet(rows);
+        sheet["!cols"] = widths;
+        if (name !== "Resumen estadístico") sheet["!autofilter"] = { ref: "A1:B" + rows.length };
+        XLSX.utils.book_append_sheet(workbook, sheet, name);
+      });
+      XLSX.writeFile(workbook, "analisis_de_datos_" + stamp + ".xlsx");
+      return;
+    }
+    // Respaldo compatible con Excel si la biblioteca XLSX no carga.
+    const csvRows = [
+      ["DATOS ORIGINALES"], ...original, [],
+      ["RESUMEN ESTADÍSTICO"], ...summary, [],
+      ["DATOS ORDENADOS"], ...ordered
+    ];
+    const csv = "\\uFEFF" + csvRows.map(row => row.map(value => {
+      const cell = String(value ?? "").replace(/"/g, '""');
+      return '"' + cell + '"';
+    }).join(",")).join("\\r\\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "analisis_de_datos_" + stamp + ".csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
   });
 
   const copyDataResultsButton = document.getElementById("copyDataResults");
