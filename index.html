@@ -3,97 +3,94 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101827">
-  <meta name="description" content="Ruta de aprendizaje para estudiar Ciencia de Datos desde cero: Python, matemáticas, estadística e inteligencia artificial.">
-  <title>Data Quest | Academia de Ciencia de Datos</title>
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Aprende Ciencia de Datos desde cero con una ruta práctica de Python y una guía basada en el plan de estudios de la UNAM.">
+  <title>Data Quest | Aprende Ciencia de Datos</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Inicio">
+    <a class="brand" href="#inicio" aria-label="Data Quest, inicio">
       <span class="brand-mark">DQ</span>
       <span>DATA <strong>QUEST</strong></span>
     </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <nav class="nav" id="mainNav">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="nav" id="mainNav" aria-label="Navegación principal">
       <a href="#guia">Guía de uso</a>
       <a href="plan-estudios.html">Plan UNAM</a>
       <a href="formas-de-aprender.html">Cómo aprender</a>
-      <a href="#ruta">Mi ruta</a>
+      <a href="#ruta">Ruta académica</a>
       <a href="#python">Python</a>
-      <a href="#progreso">Progreso</a>
-      <a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Ver GitHub ↗</a>
+      <a href="#progreso">Mi avance</a>
+      <a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Repositorio ↗</a>
     </nav>
   </header>
 
   <main id="inicio">
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow"><span class="live-dot"></span> CENTRO DE MISIONES · UNAM</span>
-        <h1>Tu aventura<br>en <span>Ciencia de Datos.</span></h1>
-        <p>Completa misiones, gana experiencia y desbloquea conocimientos. Una aventura de aprendizaje basada en el Plan de Estudios de la Licenciatura en Ciencia de Datos de la UNAM.</p>
+        <span class="eyebrow"><span class="live-dot"></span> RUTA DE APRENDIZAJE · UNAM</span>
+        <h1>Aprende<br><span>Ciencia de Datos.</span></h1>
+        <p>Un espacio para aprender paso a paso, practicar programación y comprender cómo se construye el conocimiento a partir de los datos. Avanza a tu ritmo y utiliza los recursos desde cualquier lugar.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#python">Jugar / continuar <span>→</span></a>
-          <a class="button button-quiet" href="formas-de-aprender.html">Nuevas formas de aprender ↗</a>
-          <a class="button button-quiet" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Explorar repositorio ↗</a>
+          <a class="button button-primary" href="#python">Comenzar con Python <span>→</span></a>
+          <a class="button button-quiet" href="plan-estudios.html">Consultar plan de estudios</a>
         </div>
-        <div class="hero-note"><span>✦</span> Cada ejercicio completado te da +100 XP.</div>
+        <div class="hero-note"><span>✦</span> Aprende haciendo: estudia, practica y construye proyectos.</div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
         <div class="data-card">
-          <div class="data-card-top"><span class="window-dots">● ● ●</span><span>learning.py</span></div>
-          <div class="code-line"><i>01</i><span class="code-purple">import</span> <span class="code-blue">python</span></div>
-          <div class="code-line"><i>02</i><span class="code-green">datos</span> = [12, 18, 25, 31]</div>
-          <div class="code-line"><i>03</i><span class="code-purple">def</span> <span class="code-yellow">analizar</span>(datos):</div>
-          <div class="code-line indent"><i>04</i><span class="code-purple">return</span> <span class="code-blue">sum</span>(datos) / <span class="code-blue">len</span>(datos)</div>
-          <div class="code-line"><i>05</i><span class="code-muted"># Un paso a la vez</span></div>
-          <div class="terminal"><span>▶</span> analizar(datos)<strong>21.5</strong></div>
+          <div class="data-card-top"><span class="window-dots">● ● ●</span><span>analisis_de_datos.py</span></div>
+          <div class="code-line"><i>01</i><span class="code-purple">datos</span> = [12, 18, 25, 31]</div>
+          <div class="code-line"><i>02</i><span class="code-purple">def</span> <span class="code-blue">calcular_promedio</span>(datos):</div>
+          <div class="code-line indent"><i>03</i><span class="code-green">return</span> sum(datos) / len(datos)</div>
+          <div class="code-line"><i>04</i><span class="code-muted"># Comprender los datos</span></div>
+          <div class="terminal"><span>›</span> calcular_promedio(datos)<strong>21.5</strong></div>
         </div>
-        <div class="floating-chip chip-python">🐍 Python</div>
-        <div class="floating-chip chip-data">◈ Datos + ideas</div>
+        <div class="floating-chip chip-python">Python · programación</div>
+        <div class="floating-chip chip-data">Datos · análisis · ideas</div>
       </div>
     </section>
 
-    <section class="stats-strip" aria-label="Resumen del aprendizaje">
-      <div><strong>01</strong><span>Tu punto de partida</span></div>
-      <div><strong>∞</strong><span>Oportunidades para aprender</span></div>
-      <div><strong>100%</strong><span>Aprendizaje práctico</span></div>
+    <section class="stats-strip" aria-label="Características de la plataforma">
+      <div><strong>01</strong><span>Empieza desde cero</span></div>
+      <div><strong>∞</strong><span>Aprende a tu ritmo</span></div>
+      <div><strong>100%</strong><span>Enfoque práctico</span></div>
     </section>
-
 
     <section class="section" id="guia">
       <div class="section-heading">
-        <div><span class="eyebrow">TUTORIAL INICIAL</span><h2>Cómo jugar</h2></div>
-        <p>Este espacio es público y cualquier persona puede utilizarlo para aprender Ciencia de Datos desde cero, a su propio ritmo.</p>
+        <div><span class="eyebrow">PRIMEROS PASOS</span><h2>Cómo utilizar la plataforma</h2></div>
+        <p>El contenido está organizado para que cualquier persona pueda comenzar, encontrar los materiales y registrar su avance.</p>
       </div>
       <div class="roadmap-grid">
-        <article class="road-card"><div class="road-icon">01</div><span class="road-status">PASO 1</span><h3>Explora la ruta</h3><p>Revisa los temas en orden. Comienza por Python si todavía no tienes experiencia programando.</p></article>
-        <article class="road-card"><div class="road-icon">02</div><span class="road-status">PASO 2</span><h3>Practica cada lección</h3><p>Abre el código, léelo, ejecútalo en Python y modifica los ejemplos para comprobar lo que aprendiste.</p></article>
-        <article class="road-card"><div class="road-icon">03</div><span class="road-status">PASO 3</span><h3>Registra tu avance</h3><p>Marca las lecciones terminadas. El progreso se guarda únicamente en el navegador y dispositivo que estés usando.</p></article>
-        <article class="road-card"><div class="road-icon">↗</div><span class="road-status">OPCIONAL</span><h3>Usa el repositorio</h3><p>Consulta los archivos y descarga el proyecto desde GitHub para practicar en tu computadora.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Abrir repositorio →</a></article>
+        <article class="road-card"><div class="road-icon">01</div><span class="road-status">PASO 1</span><h3>Explora la ruta</h3><p>Conoce las etapas de aprendizaje y revisa los temas en el orden propuesto. No necesitas experiencia previa.</p></article>
+        <article class="road-card"><div class="road-icon">02</div><span class="road-status">PASO 2</span><h3>Estudia cada lección</h3><p>Lee las explicaciones, revisa los ejemplos y consulta los recursos disponibles para cada tema.</p></article>
+        <article class="road-card"><div class="road-icon">03</div><span class="road-status">PASO 3</span><h3>Practica y registra</h3><p>Ejecuta los ejercicios y marca las lecciones terminadas. Tu avance se guarda en este navegador.</p></article>
+        <article class="road-card"><div class="road-icon">↗</div><span class="road-status">RECURSOS</span><h3>Consulta GitHub</h3><p>Accede al código fuente, descarga los ejercicios y revisa los archivos del proyecto.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Abrir repositorio →</a></article>
       </div>
-      <div class="tip-box"><span>📌</span><p><strong>Para empezar:</strong> no necesitas una cuenta de GitHub para consultar esta página. Para ejecutar los ejercicios en tu computadora sí necesitas instalar Python. Si compartes este sitio, cada persona tendrá su propio progreso guardado en su navegador.</p></div>
+      <div class="tip-box"><span>📌</span><p><strong>Antes de comenzar:</strong> puedes consultar libremente esta plataforma. Para ejecutar los ejercicios en tu computadora necesitarás instalar Python. El progreso se almacena localmente en el navegador y dispositivo que utilices.</p></div>
     </section>
 
     <section class="section" id="ruta">
       <div class="section-heading">
-        <div><span class="eyebrow">MAPA DE CAMPAÑA · UNAM</span><h2>Explora los mundos</h2></div>
-        <p>La estructura académica se divide en etapa básica, intermedia y de profundización. Consulta las asignaturas y sus carreras de origen en la guía completa.</p>
+        <div><span class="eyebrow">ORGANIZACIÓN ACADÉMICA</span><h2>Ruta de Ciencia de Datos</h2></div>
+        <p>La guía toma como referencia el plan de estudios de la Licenciatura en Ciencia de Datos de la UNAM. Revisa las etapas y las asignaturas en el documento de apoyo.</p>
       </div>
       <div class="roadmap-grid">
-        <article class="road-card active-road"><div class="road-icon">01</div><span class="road-status">1.º A 4.º SEMESTRE</span><h3>Etapa básica</h3><p>Se cursa en una de las nueve carreras de origen descritas en el plan. Las asignaturas dependen de la trayectoria elegida.</p><a href="plan-estudios.html#origen">Ver carreras de origen →</a></article>
-        <article class="road-card"><div class="road-icon">02</div><span class="road-status">5.º A 7.º SEMESTRE</span><h3>Etapa intermedia</h3><p>Asignaturas propias de Ciencia de Datos en Matemáticas, Computación y otras áreas de conocimiento.</p><a href="plan-estudios.html#materias">Ver asignaturas →</a></article>
-        <article class="road-card"><div class="road-icon">03</div><span class="road-status">8.º SEMESTRE</span><h3>Etapa de profundización</h3><p>Asignaturas obligatorias y optativas para profundizar en campos profesionales y de aplicación.</p><a href="plan-estudios.html#optativas">Ver optativas →</a></article>
-        <article class="road-card"><div class="road-icon">↗</div><span class="road-status">DOCUMENTO BASE</span><h3>Plan completo</h3><p>Consulta las nueve carreras de origen, las materias por semestre y las opciones optativas.</p><a href="plan-estudios.html">Abrir guía del plan →</a></article>
+        <article class="road-card active-road"><div class="road-icon">01</div><span class="road-status">1.º A 4.º SEMESTRE</span><h3>Etapa básica</h3><p>Formación inicial cursada en una de las carreras de origen contempladas en el plan de estudios.</p><a href="plan-estudios.html#origen">Consultar carreras de origen →</a></article>
+        <article class="road-card"><div class="road-icon">02</div><span class="road-status">5.º A 7.º SEMESTRE</span><h3>Etapa intermedia</h3><p>Formación en áreas fundamentales de Matemáticas, Computación y Ciencia de Datos.</p><a href="plan-estudios.html#materias">Consultar asignaturas →</a></article>
+        <article class="road-card"><div class="road-icon">03</div><span class="road-status">8.º SEMESTRE</span><h3>Profundización</h3><p>Materias para profundizar en campos profesionales y áreas de aplicación.</p><a href="plan-estudios.html#optativas">Consultar optativas →</a></article>
+        <article class="road-card"><div class="road-icon">↗</div><span class="road-status">DOCUMENTO DE REFERENCIA</span><h3>Plan completo</h3><p>Consulta la estructura académica, las materias por semestre y las opciones optativas.</p><a href="plan-estudios.html">Ver plan de estudios →</a></article>
       </div>
     </section>
 
     <section class="section python-section" id="python">
       <div class="section-heading">
-        <div><span class="eyebrow">MUNDO 01 · PROGRAMACIÓN</span><h2>Misiones de Python</h2></div>
-        <p>Abre cada lección en el repositorio, ejecuta el código y marca tu avance.</p>
+        <div><span class="eyebrow">PROGRAMACIÓN · NIVEL INICIAL</span><h2>Aprende Python desde cero</h2></div>
+        <p>Comienza con los fundamentos de programación. Abre cada ejercicio, ejecuta el código y experimenta con los ejemplos.</p>
       </div>
       <div class="lesson-toolbar">
         <label class="search-box"><span>⌕</span><input id="lessonSearch" type="search" placeholder="Buscar una lección..." aria-label="Buscar una lección"></label>
@@ -103,34 +100,34 @@
         <article class="lesson" data-search="variables tipos datos operaciones aritmeticas">
           <label class="lesson-check"><input type="checkbox" data-lesson="1" aria-label="Marcar variables como completada"><span></span></label>
           <div class="lesson-number">01</div><div class="lesson-info"><h3>Variables y tipos de datos</h3><p>Guarda información, reconoce tipos y realiza operaciones básicas.</p><div class="tags"><span>Principiante</span><span>10–15 min</span></div></div>
-          <a class="lesson-link" href="programacion/python/01_variables.py" target="_blank" rel="noopener">Abrir código ↗</a>
+          <a class="lesson-link" href="programacion/python/01_variables.py" target="_blank" rel="noopener">Abrir ejercicio ↗</a>
         </article>
         <article class="lesson" data-search="condicionales if else elif decisiones">
           <label class="lesson-check"><input type="checkbox" data-lesson="2" aria-label="Marcar condicionales como completada"><span></span></label>
           <div class="lesson-number">02</div><div class="lesson-info"><h3>Condicionales</h3><p>Haz que tus programas tomen decisiones con if, elif y else.</p><div class="tags"><span>Principiante</span><span>15–20 min</span></div></div>
-          <a class="lesson-link" href="programacion/python/02_condicionales.py" target="_blank" rel="noopener">Abrir código ↗</a>
+          <a class="lesson-link" href="programacion/python/02_condicionales.py" target="_blank" rel="noopener">Abrir ejercicio ↗</a>
         </article>
         <article class="lesson" data-search="ciclos for while listas repeticion">
           <label class="lesson-check"><input type="checkbox" data-lesson="3" aria-label="Marcar ciclos como completada"><span></span></label>
           <div class="lesson-number">03</div><div class="lesson-info"><h3>Ciclos y repeticiones</h3><p>Automatiza tareas con for, while y listas.</p><div class="tags"><span>Principiante</span><span>15–20 min</span></div></div>
-          <a class="lesson-link" href="programacion/python/03_ciclos.py" target="_blank" rel="noopener">Abrir código ↗</a>
+          <a class="lesson-link" href="programacion/python/03_ciclos.py" target="_blank" rel="noopener">Abrir ejercicio ↗</a>
         </article>
         <article class="lesson" data-search="funciones parametros return argumentos">
           <label class="lesson-check"><input type="checkbox" data-lesson="4" aria-label="Marcar funciones como completada"><span></span></label>
           <div class="lesson-number">04</div><div class="lesson-info"><h3>Funciones</h3><p>Organiza tu código en bloques reutilizables y fáciles de probar.</p><div class="tags"><span>Principiante</span><span>15–20 min</span></div></div>
-          <a class="lesson-link" href="programacion/python/04_funciones.py" target="_blank" rel="noopener">Abrir código ↗</a>
+          <a class="lesson-link" href="programacion/python/04_funciones.py" target="_blank" rel="noopener">Abrir ejercicio ↗</a>
         </article>
       </div>
       <p class="empty-state" id="emptyState" hidden>No encontramos lecciones con esa búsqueda.</p>
-      <div class="tip-box"><span>💡</span><p><strong>Consejo:</strong> no solo leas el código. Escríbelo, ejecútalo, cambia algunos valores y observa qué sucede.</p></div>
+      <div class="tip-box"><span>💡</span><p><strong>Una forma efectiva de practicar:</strong> escribe el código, ejecútalo, cambia algunos valores y observa cómo se modifica el resultado.</p></div>
     </section>
 
     <section class="progress-section" id="progreso">
-      <div class="progress-copy"><span class="eyebrow">ESTADÍSTICAS DEL JUGADOR</span><h2>Tu progreso de campaña.</h2><p>Marca las lecciones que hayas terminado. Tu avance se guarda en este navegador.</p><a href="#python">Continuar aprendiendo →</a></div>
-      <div class="progress-panel"><div class="progress-top"><span>Progreso de Python</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-bottom"><span id="progressText">0 de 4 lecciones completadas</span><span>¡Sigue así!</span></div></div>
+      <div class="progress-copy"><span class="eyebrow">SEGUIMIENTO PERSONAL</span><h2>Tu avance de aprendizaje</h2><p>Marca las lecciones que hayas terminado. La barra se actualizará automáticamente y tu avance quedará guardado en este navegador.</p><a href="#python">Continuar con las lecciones →</a></div>
+      <div class="progress-panel"><div class="progress-top"><span>Lecciones de Python completadas</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-bottom"><span id="progressText">0 de 4 lecciones completadas</span><span>Paso a paso</span></div></div>
     </section>
   </main>
 
-  <footer class="footer"><a class="brand" href="#inicio"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><p>Hecho para aprender, practicar y construir.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Repositorio en GitHub ↗</a></footer>
+  <footer class="footer"><a class="brand" href="#inicio"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><p>Un espacio abierto para aprender, practicar y construir.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Repositorio en GitHub ↗</a></footer>
 </body>
 </html>
