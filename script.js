@@ -97,6 +97,120 @@
     });
   }
 
+
+  // Organizador semanal: las sesiones se guardan solo en este navegador.
+  const PLANNER_KEY = "ciencia-datos-plan-semanal-v1";
+  const plannerForm = document.getElementById("studyPlannerForm");
+  const plannerList = document.getElementById("plannerList");
+  const plannedTime = document.getElementById("plannedTime");
+  const completedTime = document.getElementById("completedTime");
+  const pendingCount = document.getElementById("pendingCount");
+  const plannerProgressFill = document.getElementById("plannerProgressFill");
+  const plannerProgressText = document.getElementById("plannerProgressText");
+  const plannerDays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  let studySessions = [];
+
+  function savePlanner() {
+    try { localStorage.setItem(PLANNER_KEY, JSON.stringify(studySessions)); }
+    catch (error) { console.warn("No fue posible guardar el plan semanal.", error); }
+  }
+
+  function renderPlanner() {
+    if (!plannerList) return;
+    const total = studySessions.reduce((sum, item) => sum + item.minutes, 0);
+    const done = studySessions.filter(item => item.done).reduce((sum, item) => sum + item.minutes, 0);
+    const completedCount = studySessions.filter(item => item.done).length;
+    const pending = studySessions.length - completedCount;
+    if (plannedTime) plannedTime.textContent = (total / 60).toLocaleString("es-MX", { maximumFractionDigits: 1 }) + " h";
+    if (completedTime) completedTime.textContent = done + " min";
+    if (pendingCount) pendingCount.textContent = String(pending);
+    const percent = total ? Math.round(done / total * 100) : 0;
+    if (plannerProgressFill) plannerProgressFill.style.width = percent + "%";
+    if (plannerProgressText) plannerProgressText.textContent = studySessions.length ? percent + "% del tiempo planeado completado" : "Aún no hay sesiones";
+    plannerList.replaceChildren();
+    if (!studySessions.length) {
+      const empty = document.createElement("p");
+      empty.className = "planner-empty";
+      empty.textContent = "Todavía no tienes sesiones. Agrega la primera para empezar a organizarte.";
+      plannerList.appendChild(empty);
+      return;
+    }
+    plannerDays.forEach(day => {
+      const sessions = studySessions.filter(item => item.day === day);
+      if (!sessions.length) return;
+      const group = document.createElement("section");
+      group.className = "planner-day";
+      const heading = document.createElement("h4");
+      heading.textContent = day;
+      group.appendChild(heading);
+      sessions.forEach(item => {
+        const row = document.createElement("article");
+        row.className = "planner-session" + (item.done ? " is-done" : "");
+        const label = document.createElement("label");
+        label.className = "planner-session-label";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = item.done;
+        checkbox.setAttribute("aria-label", "Marcar como completada: " + item.task);
+        checkbox.addEventListener("change", () => {
+          item.done = checkbox.checked;
+          savePlanner();
+          renderPlanner();
+        });
+        const title = document.createElement("span");
+        title.textContent = item.task;
+        label.append(checkbox, title);
+        const duration = document.createElement("span");
+        duration.className = "planner-duration";
+        duration.textContent = item.minutes >= 60 ? (item.minutes / 60).toLocaleString("es-MX", { maximumFractionDigits: 1 }) + " h" : item.minutes + " min";
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "planner-remove";
+        remove.textContent = "Quitar";
+        remove.setAttribute("aria-label", "Quitar sesión: " + item.task);
+        remove.addEventListener("click", () => {
+          studySessions = studySessions.filter(session => session.id !== item.id);
+          savePlanner();
+          renderPlanner();
+        });
+        row.append(label, duration, remove);
+        group.appendChild(row);
+      });
+      plannerList.appendChild(group);
+    });
+  }
+
+  if (plannerForm) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(PLANNER_KEY) || "[]");
+      if (Array.isArray(saved)) studySessions = saved.filter(item =>
+        item && typeof item.id === "string" && typeof item.task === "string" &&
+        plannerDays.includes(item.day) && Number.isFinite(item.minutes) &&
+        item.minutes > 0 && typeof item.done === "boolean"
+      );
+    } catch (error) {
+      console.warn("No fue posible recuperar el plan semanal.", error);
+    }
+    plannerForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const taskInput = document.getElementById("studyTask");
+      const dayInput = document.getElementById("studyDay");
+      const minutesInput = document.getElementById("studyMinutes");
+      const task = taskInput.value.trim();
+      const minutes = Number(minutesInput.value);
+      if (!task || !plannerDays.includes(dayInput.value) || ![25, 50, 75, 100, 120].includes(minutes)) return;
+      studySessions.push({
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+        task, day: dayInput.value, minutes, done: false
+      });
+      savePlanner();
+      renderPlanner();
+      plannerForm.reset();
+      taskInput.focus();
+    });
+    renderPlanner();
+  }
+
   // Asistente IA Data Quest: el endpoint se configura tras desplegar worker/worker.js.
   const CHAT_API_URL = window.DATA_QUEST_CHAT_API || "";
   const chatPanel = document.getElementById("dqChatPanel");
