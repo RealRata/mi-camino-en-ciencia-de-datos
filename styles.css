@@ -492,3 +492,19 @@ a { text-decoration-color: var(--accent); }
   .calculator-quick-access svg{width:20px!important;height:20px!important}
   .dq-chat-launcher-icon{width:25px!important;height:25px!important;font-size:17px!important}
 }
+
+
+/* Calculadora fija en el lateral izquierdo; chat permanece a la derecha */
+.calculator-quick-access{
+  left:22px!important;
+  right:auto!important;
+  bottom:22px!important;
+  z-index:10000!important;
+}
+@media(max-width:600px){
+  .calculator-quick-access{
+    left:10px!important;
+    right:auto!important;
+    bottom:12px!important;
+  }
+}
