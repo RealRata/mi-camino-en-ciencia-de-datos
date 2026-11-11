@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101713">
 <meta name="description" content="Guía de estudio basada en el Plan de Estudios de la Licenciatura en Ciencia de Datos de la UNAM, sistema escolarizado, aprobado en 2019.">
-<title>Plan de estudios UNAM | Mi camino en Ciencia de Datos</title><link rel="stylesheet" href="styles.css?v=plan-contrast-fix-20261111">
+<title>Plan de estudios UNAM | Mi camino en Ciencia de Datos</title><link rel="stylesheet" href="styles.css?v=plan-dark-self-contained-20261111">
 <style>
 .plan-hero{max-width:1160px;margin:auto;padding:58px 0 30px}.plan-hero h1{font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-2px;margin:12px 0}.plan-hero h1 span{color:var(--green)}.plan-hero p{max-width:850px;color:var(--muted);line-height:1.8}.plan-wrap{max-width:1160px;margin:auto;padding:10px 0 75px}.plan-section{margin:20px 0 28px;padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.plan-section h2{font-size:23px;margin:0 0 10px}.plan-section>p{font-size:13px;color:var(--muted);line-height:1.8}.plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.semester-card,.origin-card{background:#0d1828;border:1px solid #2a3b52;border-radius:10px;padding:17px}.semester-card h3,.origin-card h3{font-size:15px;color:var(--green);margin:0 0 10px}.semester-card ul,.origin-card ul{margin:0;padding-left:18px;color:#c5d2e4;font-size:12px;line-height:1.85}.origin-card{margin:12px 0}.origin-card summary{cursor:pointer;font-size:14px;font-weight:700;color:#edf3ff}.origin-card summary span{color:var(--green);font:10px 'DM Mono',monospace;margin-left:8px}.origin-content{padding-top:15px}.origin-content h4{font-size:12px;color:var(--green);margin:12px 0 5px}.origin-semesters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.note{border-left:3px solid var(--green);padding:13px 16px;background:#17251f;color:#c9d7c7;font-size:12px;line-height:1.8;margin-top:18px}.opt-list{columns:2;column-gap:30px;padding-left:18px;color:#c5d2e4;font-size:12px;line-height:1.9}.meta-line{font:10px 'DM Mono',monospace;color:var(--green);letter-spacing:1px}.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 @media(max-width:1200px){.plan-hero,.plan-wrap{margin-left:5.5%;margin-right:5.5%}}@media(max-width:680px){.plan-grid,.origin-semesters{grid-template-columns:1fr}.plan-section{padding:17px}.opt-list{columns:1}.plan-hero{padding-top:38px}}
@@ -31,6 +31,33 @@
 .origin-card summary { color: var(--text) !important; }
 .origin-card[open] { background: var(--surface) !important; }
 .plan-section a { color: var(--accent) !important; }
+
+
+/* Tema oscuro autosuficiente: evita depender de variables o caché del CSS externo */
+html, body { background:#101713 !important; color:#edf3ef !important; color-scheme:dark !important; }
+body { min-height:100vh; }
+.topbar { background:rgba(20,29,24,.97) !important; border-color:#35443b !important; }
+.topbar, .topbar a, .brand, .nav { color:#edf3ef !important; }
+.brand strong, .nav a:hover { color:#79c6a8 !important; }
+.nav .nav-github { background:#19231e !important; color:#edf3ef !important; border-color:#35443b !important; }
+.plan-hero h1, .plan-section h2, .plan-section h3, .plan-section h4,
+.plan-section strong, .origin-card summary { color:#edf3ef !important; }
+.plan-hero p, .plan-section p, .plan-section li, .origin-content,
+.semester-card ul, .origin-card ul, .opt-list { color:#b0beb5 !important; }
+.plan-section { background:#19231e !important; color:#edf3ef !important; border:1px solid #35443b !important; }
+.semester-card, .origin-card, .origin-semesters > div {
+  background:#243129 !important; color:#edf3ef !important; border:1px solid #35443b !important;
+}
+.semester-card h3, .origin-card h3, .origin-content h4,
+.origin-card summary span, .meta-line { color:#79c6a8 !important; }
+.note { background:#263e33 !important; color:#edf3ef !important; border-left:3px solid #79c6a8 !important; }
+.plan-section a { color:#79c6a8 !important; }
+.button, .button-quiet, .button-primary { color:#edf3ef !important; }
+.button-primary { background:#176b5b !important; border-color:#176b5b !important; }
+.button-quiet { background:#19231e !important; border-color:#35443b !important; }
+.footer { background:#19231e !important; color:#b0beb5 !important; border-color:#35443b !important; }
+.footer a { color:#edf3ef !important; }
+@media(max-width:760px) { .nav { background:#141d18 !important; } }
 
 </style></head>
 <body>
