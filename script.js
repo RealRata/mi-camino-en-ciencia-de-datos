@@ -108,6 +108,14 @@
   const calculatorResults = document.getElementById("calculatorResults");
   const calculatorError = document.getElementById("calculatorError");
 
+  const CALCULATOR_LEVEL_KEY = "datos-desde-cero-calculator-level-v1";
+  let calculatorLevel = 1;
+  let lastAnalysis = null;
+  try {
+    const savedLevel = Number(localStorage.getItem(CALCULATOR_LEVEL_KEY));
+    if (Number.isInteger(savedLevel) && savedLevel >= 1 && savedLevel <= 4) calculatorLevel = savedLevel;
+  } catch (error) { console.warn("No fue posible recuperar el nivel de la calculadora.", error); }
+
   function medianOf(sortedValues) {
     const middle = Math.floor(sortedValues.length / 2);
     return sortedValues.length % 2
@@ -198,7 +206,149 @@
     const sortedCard = renderStatistic("Datos ordenados", sorted.map(formatStatistic).join("   ·   "), "De menor a mayor");
     sortedCard.classList.add("stat-result-wide");
     calculatorResults.appendChild(sortedCard);
+    lastAnalysis = { values: [...values], sorted, count, min, max, q1, q3 };
+    renderUnlockedFeatures();
   }
+
+  function makeFrequencyBins(analysis) {
+    const k = Math.max(1, Math.min(20, Math.ceil(1 + 3.322 * Math.log10(analysis.count))));
+    const width = analysis.max === analysis.min ? 1 : (analysis.max - analysis.min) / k;
+    const bins = Array.from({ length: k }, (_, index) => ({
+      start: analysis.min + index * width,
+      end: index === k - 1 ? analysis.max : analysis.min + (index + 1) * width,
+      count: 0
+    }));
+    analysis.values.forEach(value => {
+      const index = analysis.max === analysis.min ? 0 : Math.min(k - 1, Math.floor((value - analysis.min) / width));
+      bins[index].count++;
+    });
+    return bins;
+  }
+
+  function renderFrequencyTable(analysis) {
+    const target = document.getElementById("frequencyTable");
+    if (!target) return;
+    const bins = makeFrequencyBins(analysis);
+    const table = document.createElement("table");
+    table.className = "learning-frequency-table";
+    const headers = ["Intervalo", "Frecuencia", "Relativa", "Acumulada"];
+    const thead = document.createElement("thead");
+    const headRow = document.createElement("tr");
+    headers.forEach(label => { const th = document.createElement("th"); th.textContent = label; headRow.appendChild(th); });
+    thead.appendChild(headRow);
+    const tbody = document.createElement("tbody");
+    let cumulative = 0;
+    bins.forEach((bin, index) => {
+      cumulative += bin.count;
+      const row = document.createElement("tr");
+      const endLabel = index === bins.length - 1 ? "]" : ")";
+      const cells = [
+        "[" + formatStatistic(bin.start) + ", " + formatStatistic(bin.end) + endLabel,
+        String(bin.count),
+        formatStatistic(bin.count / analysis.count * 100) + "%",
+        String(cumulative)
+      ];
+      cells.forEach(value => { const td = document.createElement("td"); td.textContent = value; row.appendChild(td); });
+      tbody.appendChild(row);
+    });
+    table.append(thead, tbody);
+    target.replaceChildren(table);
+  }
+
+  function renderHistogram(analysis) {
+    const target = document.getElementById("dataHistogram");
+    if (!target) return;
+    const bins = makeFrequencyBins(analysis);
+    const maxFrequency = Math.max(1, ...bins.map(bin => bin.count));
+    const chart = document.createElement("div");
+    chart.className = "learning-histogram";
+    bins.forEach((bin, index) => {
+      const item = document.createElement("div");
+      item.className = "histogram-bin";
+      const count = document.createElement("strong");
+      count.textContent = String(bin.count);
+      const track = document.createElement("div");
+      track.className = "histogram-track";
+      const bar = document.createElement("span");
+      bar.style.width = (bin.count / maxFrequency * 100) + "%";
+      track.appendChild(bar);
+      const label = document.createElement("small");
+      label.textContent = formatStatistic(bin.start) + (index === bins.length - 1 ? "–" + formatStatistic(bin.end) : "");
+      item.append(count, track, label);
+      chart.appendChild(item);
+    });
+    target.replaceChildren(chart);
+  }
+
+  function renderOutliers(analysis) {
+    const target = document.getElementById("outlierResults");
+    if (!target) return;
+    if (analysis.q1 === null || analysis.q3 === null) {
+      target.textContent = "Se necesitan al menos dos datos para calcular los cuartiles.";
+      return;
+    }
+    const iqr = analysis.q3 - analysis.q1;
+    const lower = analysis.q1 - 1.5 * iqr;
+    const upper = analysis.q3 + 1.5 * iqr;
+    const outliers = analysis.sorted.filter(value => value < lower || value > upper);
+    const summary = document.createElement("p");
+    summary.textContent = "Límites de referencia: " + formatStatistic(lower) + " a " + formatStatistic(upper) + ". Rango intercuartílico: " + formatStatistic(iqr) + ".";
+    const result = document.createElement("strong");
+    result.className = "outlier-count";
+    result.textContent = outliers.length + (outliers.length === 1 ? " posible valor atípico" : " posibles valores atípicos");
+    const values = document.createElement("p");
+    values.textContent = outliers.length ? "Valores para revisar: " + outliers.map(formatStatistic).join(", ") : "No se detectaron valores fuera de los límites con este criterio.";
+    const note = document.createElement("small");
+    note.textContent = "La detección es una alerta para investigar; no significa que debas borrar esos registros.";
+    target.replaceChildren(summary, result, values, note);
+  }
+
+  function renderUnlockedFeatures() {
+    const frequency = document.querySelector('[data-feature-output="frequency"]');
+    const histogram = document.querySelector('[data-feature-output="histogram"]');
+    const outliers = document.querySelector('[data-feature-output="outliers"]');
+    if (frequency) frequency.hidden = calculatorLevel < 2;
+    if (histogram) histogram.hidden = calculatorLevel < 3;
+    if (outliers) outliers.hidden = calculatorLevel < 4;
+    if (!lastAnalysis) return;
+    if (calculatorLevel >= 2) renderFrequencyTable(lastAnalysis);
+    if (calculatorLevel >= 3) renderHistogram(lastAnalysis);
+    if (calculatorLevel >= 4) renderOutliers(lastAnalysis);
+  }
+
+  function renderCalculatorProgress() {
+    const titles = ["Estadística descriptiva", "Distribución y frecuencias", "Visualización de datos", "Detección de valores atípicos"];
+    const level = document.getElementById("calculatorLevel");
+    const label = document.getElementById("calculatorLevelText");
+    const fill = document.getElementById("calculatorLearningFill");
+    const cards = [...document.querySelectorAll("[data-stage-card]")];
+    const buttons = [...document.querySelectorAll("[data-complete-stage]")];
+    if (level) level.textContent = "Nivel " + calculatorLevel + " de 4";
+    if (label) label.textContent = calculatorLevel === 4 && localStorage.getItem(CALCULATOR_LEVEL_KEY) === "4" ? "Ruta completada" : titles[calculatorLevel - 1];
+    if (fill) fill.style.width = ((calculatorLevel - 1) / 3 * 100) + "%";
+    cards.forEach(card => { card.hidden = Number(card.dataset.stageCard) > calculatorLevel; });
+    buttons.forEach(button => {
+      const stage = Number(button.dataset.completeStage);
+      button.hidden = stage !== calculatorLevel;
+      if (stage === 4 && calculatorLevel === 4 && localStorage.getItem(CALCULATOR_LEVEL_KEY) === "4") button.textContent = "Ruta completada ✓";
+    });
+    renderUnlockedFeatures();
+  }
+
+  document.querySelectorAll("[data-complete-stage]").forEach(button => {
+    button.addEventListener("click", () => {
+      const stage = Number(button.dataset.completeStage);
+      if (stage !== calculatorLevel) return;
+      if (calculatorLevel < 4) calculatorLevel++;
+      try { localStorage.setItem(CALCULATOR_LEVEL_KEY, String(calculatorLevel)); }
+      catch (error) { console.warn("No fue posible guardar el nivel de la calculadora.", error); }
+      renderCalculatorProgress();
+      const next = document.querySelector('[data-stage-card="' + calculatorLevel + '"]');
+      if (next) next.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
+
+  renderCalculatorProgress();
 
   if (exportExcelButton) exportExcelButton.addEventListener("click", () => {
     if (!dataValuesInput || !calculatorResults || !calculatorError) return;
