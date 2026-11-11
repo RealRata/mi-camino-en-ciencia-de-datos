@@ -212,3 +212,47 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .journey-step>a:hover{text-decoration:underline}
 .journey-finish{margin-top:14px;padding:14px 17px;border-left:3px solid var(--accent);background:var(--accent-soft);color:#435c54;font-size:11px;line-height:1.7}
 @media(max-width:600px){.journey-intro{display:block}.journey-intro span{display:block;margin-top:5px}.journey-step{grid-template-columns:36px minmax(0,1fr);gap:11px;padding:15px 13px}.journey-number{width:32px;height:32px}.journey-step>a{grid-column:2;justify-self:start;margin-top:4px}}
+
+
+/* Paleta invertida: fondo oscuro y superficies claras respecto al tema anterior */
+:root {
+  color-scheme: dark;
+  --bg: #101713;
+  --surface: #19231e;
+  --surface-soft: #243129;
+  --text: #edf3ef;
+  --muted: #b0beb5;
+  --line: #35443b;
+  --accent: #79c6a8;
+  --accent-dark: #5eaa8c;
+  --accent-soft: #263e33;
+  --shadow: 0 12px 35px rgba(0,0,0,.22);
+}
+.topbar { background: rgba(20,29,24,.94); }
+.nav .nav-github, .menu-toggle { color: var(--text); }
+.orbit { border-color: #35483d; }
+.data-card, .road-card, .lesson, .progress-section,
+.today-panel, .curriculum-card, .skill-card, .tool-card,
+.project-panel, .tip-card, .student-routine, .journey-intro,
+.journey-step, .stats-strip, .footer { background: var(--surface); }
+.code-line { color: #d5e0d9; }
+.code-line i, .code-muted { color: #9aa99f; }
+.terminal, .progress-panel { background: #202d25; color: #bdc9c1; }
+.floating-chip { color: #d2ded6; }
+.active-road, .lesson.completed { background: #1d2b23; }
+.tip-box { border-color: #3b5949; background: #21372b; }
+.tip-box p, .notice, .journey-finish { color: #c4d8cb; }
+.tip-box strong { color: #e1f1e7; }
+.notice, .journey-finish { background: var(--accent-soft); }
+.tags span { color: #c0cec5; }
+.lesson.completed .lesson-info h3 { color: #91a198; }
+.progress-track { background: #35443b; }
+.nav { color: var(--muted); }
+.nav .nav-github { border-color: var(--line); }
+.nav a:hover, .footer a:hover { color: var(--accent); }
+.search-box input { color: var(--text); }
+.search-box input::placeholder, .lesson-count { color: #9eada3; }
+.footer { border-top-color: var(--line); }
+@media (max-width: 760px) {
+  .nav { background: #141d18; }
+}
