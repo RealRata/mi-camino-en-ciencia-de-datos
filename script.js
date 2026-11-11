@@ -98,6 +98,120 @@
   }
 
 
+
+  // Calculadora estadística rápida: procesa números localmente en el navegador.
+  const dataValuesInput = document.getElementById("dataValues");
+  const calculateDataButton = document.getElementById("calculateData");
+  const loadSampleDataButton = document.getElementById("loadSampleData");
+  const clearDataButton = document.getElementById("clearData");
+  const calculatorResults = document.getElementById("calculatorResults");
+  const calculatorError = document.getElementById("calculatorError");
+
+  function medianOf(sortedValues) {
+    const middle = Math.floor(sortedValues.length / 2);
+    return sortedValues.length % 2
+      ? sortedValues[middle]
+      : (sortedValues[middle - 1] + sortedValues[middle]) / 2;
+  }
+
+  function formatStatistic(value) {
+    if (!Number.isFinite(value)) return "No disponible";
+    return new Intl.NumberFormat("es-MX", { maximumFractionDigits: 6 }).format(value);
+  }
+
+  function renderStatistic(label, value, description) {
+    const card = document.createElement("article");
+    card.className = "stat-result";
+    const title = document.createElement("span");
+    title.textContent = label;
+    const result = document.createElement("strong");
+    result.textContent = value;
+    const detail = document.createElement("small");
+    detail.textContent = description || "";
+    card.append(title, result, detail);
+    return card;
+  }
+
+  function calculateData() {
+    if (!dataValuesInput || !calculatorResults || !calculatorError) return;
+    calculatorError.hidden = true;
+    const raw = dataValuesInput.value.trim();
+    if (!raw) {
+      calculatorError.textContent = "Escribe o pega al menos un número para calcular.";
+      calculatorError.hidden = false;
+      return;
+    }
+    const tokens = raw.split(/[\\s,;]+/).filter(Boolean);
+    const values = tokens.map(token => Number(token));
+    if (!values.length || values.some(value => !Number.isFinite(value))) {
+      calculatorError.textContent = "Hay un valor no válido. Usa únicamente números y punto para los decimales; separa los datos con comas, espacios o saltos de línea.";
+      calculatorError.hidden = false;
+      return;
+    }
+    if (values.length > 100000) {
+      calculatorError.textContent = "Para mantener la herramienta ágil, introduce como máximo 100,000 valores.";
+      calculatorError.hidden = false;
+      return;
+    }
+    const sorted = [...values].sort((a, b) => a - b);
+    const count = values.length;
+    const sum = values.reduce((total, value) => total + value, 0);
+    const mean = sum / count;
+    const median = medianOf(sorted);
+    const frequencies = new Map();
+    values.forEach(value => frequencies.set(value, (frequencies.get(value) || 0) + 1));
+    const highestFrequency = Math.max(...frequencies.values());
+    const modes = highestFrequency > 1
+      ? [...frequencies].filter(([, frequency]) => frequency === highestFrequency).map(([value]) => value).sort((a, b) => a - b)
+      : [];
+    const min = sorted[0];
+    const max = sorted[count - 1];
+    const range = max - min;
+    const squaredDifferences = values.reduce((total, value) => total + (value - mean) ** 2, 0);
+    const populationVariance = squaredDifferences / count;
+    const sampleVariance = count > 1 ? squaredDifferences / (count - 1) : null;
+    const lowerHalf = sorted.slice(0, Math.floor(count / 2));
+    const upperHalf = sorted.slice(Math.ceil(count / 2));
+    const q1 = lowerHalf.length ? medianOf(lowerHalf) : null;
+    const q3 = upperHalf.length ? medianOf(upperHalf) : null;
+    const results = [
+      renderStatistic("Cantidad de datos", formatStatistic(count), "Valores ingresados"),
+      renderStatistic("Suma", formatStatistic(sum), "Total de todos los valores"),
+      renderStatistic("Media", formatStatistic(mean), "Promedio aritmético"),
+      renderStatistic("Mediana", formatStatistic(median), "Valor central ordenado"),
+      renderStatistic("Moda", modes.length ? modes.map(formatStatistic).join(", ") : "Sin moda", modes.length ? "Valor(es) más frecuente(s)" : "Ningún valor se repite"),
+      renderStatistic("Mínimo", formatStatistic(min), "Valor más pequeño"),
+      renderStatistic("Máximo", formatStatistic(max), "Valor más grande"),
+      renderStatistic("Rango", formatStatistic(range), "Máximo menos mínimo"),
+      renderStatistic("Q1", q1 === null ? "No disponible" : formatStatistic(q1), "Primer cuartil"),
+      renderStatistic("Q3", q3 === null ? "No disponible" : formatStatistic(q3), "Tercer cuartil"),
+      renderStatistic("Varianza poblacional", formatStatistic(populationVariance), "Divide entre N"),
+      renderStatistic("Desv. estándar poblacional", formatStatistic(Math.sqrt(populationVariance)), "Raíz de la varianza poblacional"),
+      renderStatistic("Varianza muestral", sampleVariance === null ? "No disponible" : formatStatistic(sampleVariance), "Divide entre n − 1"),
+      renderStatistic("Desv. estándar muestral", sampleVariance === null ? "No disponible" : formatStatistic(Math.sqrt(sampleVariance)), "Requiere al menos 2 datos")
+    ];
+    calculatorResults.replaceChildren(...results);
+  }
+
+  if (calculateDataButton) calculateDataButton.addEventListener("click", calculateData);
+  if (dataValuesInput) dataValuesInput.addEventListener("keydown", event => {
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") calculateData();
+  });
+  if (loadSampleDataButton && dataValuesInput) loadSampleDataButton.addEventListener("click", () => {
+    dataValuesInput.value = "12, 15, 18, 18, 20, 22, 25";
+    calculateData();
+  });
+  if (clearDataButton && dataValuesInput && calculatorResults) clearDataButton.addEventListener("click", () => {
+    dataValuesInput.value = "";
+    calculatorResults.replaceChildren();
+    const empty = document.createElement("div");
+    empty.className = "calculator-empty";
+    empty.textContent = "Tus resultados aparecerán aquí cuando ingreses datos.";
+    calculatorResults.appendChild(empty);
+    if (calculatorError) calculatorError.hidden = true;
+    dataValuesInput.focus();
+  });
+
   // Organizador semanal: las sesiones se guardan solo en este navegador.
   const PLANNER_KEY = "ciencia-datos-plan-semanal-v1";
   const plannerForm = document.getElementById("studyPlannerForm");
