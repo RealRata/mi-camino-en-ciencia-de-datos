@@ -557,3 +557,8 @@ a { text-decoration-color: var(--accent); }
   .data-calculator-results{grid-template-columns:1fr 1fr!important;gap:10px!important}
   .stat-result-wide{grid-column:1/-1}
 }
+
+
+/* Botón de exportación Excel */
+#exportExcel{background:#79c6a8;color:#101713;border-color:#a0e4c1;font-weight:900}
+#exportExcel:hover{background:#a0e4c1}
