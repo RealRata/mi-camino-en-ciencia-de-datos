@@ -225,5 +225,34 @@
 <div class="progress-panel"><div class="progress-top"><span>Prácticas completadas</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-bottom"><span id="progressText">0 de 8 prácticas completadas</span><span>Tu ritmo</span></div></div>
 </section>
 </main>
+
+<aside class="dq-chat" id="dqChat" aria-label="Asistente de Ciencia de Datos">
+  <button class="dq-chat-launcher" id="dqChatToggle" type="button" aria-expanded="false" aria-controls="dqChatPanel">
+    <span class="dq-chat-launcher-icon" aria-hidden="true">✳</span><span>Pregúntale a la IA</span><span class="dq-chat-launcher-state" aria-hidden="true"></span>
+  </button>
+  <section class="dq-chat-panel" id="dqChatPanel" aria-labelledby="dqChatTitle" hidden>
+    <header class="dq-chat-header">
+      <div class="dq-chat-avatar" aria-hidden="true">DQ</div>
+      <div class="dq-chat-heading"><strong id="dqChatTitle">Asistente Data Quest</strong><span><i></i> Orientación en Ciencia de Datos</span></div>
+      <button class="dq-chat-close" id="dqChatClose" type="button" aria-label="Cerrar chat">×</button>
+    </header>
+    <div class="dq-chat-context">Especializado en la carrera, el plan UNAM y las herramientas de estudio.</div>
+    <div class="dq-chat-messages" id="dqChatMessages" role="log" aria-live="polite" aria-relevant="additions">
+      <article class="dq-message dq-assistant"><span class="dq-message-label">DATA QUEST</span><p>¡Hola! Soy tu asistente de estudio. Puedes preguntarme sobre materias, matemáticas, Python, bases de datos, proyectos, vida académica y cómo organizar tu aprendizaje.</p></article>
+      <div class="dq-chat-suggestions" id="dqChatSuggestions">
+        <button type="button" data-prompt="¿Qué debo aprender primero para empezar Ciencia de Datos?">¿Por dónde empiezo?</button>
+        <button type="button" data-prompt="Explícame cómo se organiza el plan de estudios de Ciencia de Datos de la UNAM.">Explícame el plan UNAM</button>
+        <button type="button" data-prompt="¿Qué matemáticas necesito dominar para Ciencia de Datos?">Matemáticas necesarias</button>
+      </div>
+    </div>
+    <form class="dq-chat-form" id="dqChatForm">
+      <label class="sr-only" for="dqChatInput">Escribe tu pregunta</label>
+      <textarea id="dqChatInput" rows="1" maxlength="2000" placeholder="Escribe tu pregunta..." required></textarea>
+      <button id="dqChatSend" type="submit" aria-label="Enviar pregunta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8zM7 12h14"/></svg></button>
+    </form>
+    <p class="dq-chat-footnote" id="dqChatStatus">La IA puede equivocarse. Verifica fechas, grupos y trámites en fuentes oficiales.</p>
+  </section>
+</aside>
+
 <footer class="footer"><a class="brand" href="#inicio"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><p>Estudia con método. Practica con datos. Documenta tus resultados.</p><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Repositorio ↗</a></footer>
 </body></html>
