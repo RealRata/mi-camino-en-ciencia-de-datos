@@ -8,11 +8,25 @@
 <link rel="stylesheet" href="styles.css?v=professors-campus-20261111"><script src="script.js" defer></script>
 </head>
 <body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 5.5v14A2.5 2.5 0 0 1 6.5 17H20M8 7h8"/></symbol>
+<symbol id="i-graduation" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3.5 3 8.5 3 12 0v-5M22 9v6"/></symbol>
+<symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4m-5-6a7 7 0 1 1 6 0c-.8.6-1 1.2-1 3h-4c0-1.8-.2-2.4-1-3z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M8 15l4-4 3 2 5-7"/><path d="M16 6h4v4"/></symbol>
+<symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.8a5.3 5.3 0 0 0-1.4-3.7 4.9 4.9 0 0 0-.1-3.7S17.5 1 15 3a13.5 13.5 0 0 0-7 0C5.5 1 4.3 1.3 4.3 1.3a4.9 4.9 0 0 0-.1 3.7A5.3 5.3 0 0 0 2.8 8.7c0 5.3 3.1 6.5 6.1 6.8A3.4 3.4 0 0 0 8 18.1V22"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 0-7 2 4 4 0 0 0-1 7 4 4 0 0 0 4 6h4zm0 0a4 4 0 0 1 7 2 4 4 0 0 1 1 7 4 4 0 0 1-4 6h-4M8 8v2m8-2v2M8 15h2m4 0h2M12 4v16"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+</svg>
 <header class="topbar">
 <a class="brand" href="#inicio" aria-label="Data Quest, inicio"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a>
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <nav class="nav" id="mainNav" aria-label="Navegación principal">
-<a href="#camino">Mi camino</a><a href="#ruta">Plan académico</a><a href="#vida-academica">Vida académica</a><a href="#tips">Consejos</a><a href="#avance">Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">GitHub ↗</a>
+<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
 </nav>
 </header>
 <main id="inicio">
@@ -32,7 +46,7 @@
 
  
 <section class="section journey-section" id="camino">
-<div class="section-heading"><div><span class="eyebrow">TU RECORRIDO PASO A PASO</span><h2>Un camino, en orden</h2></div><p>No necesitas aprender todo al mismo tiempo. Sigue esta secuencia: cada etapa prepara la siguiente. Avanza cuando puedas resolver y explicar lo que practicaste.</p></div>
+<div class="section-heading"><div><span class="eyebrow">TU RECORRIDO PASO A PASO</span><h2><svg class="heading-icon"><use href="#i-compass"/></svg>Un camino, en orden</h2></div><p>No necesitas aprender todo al mismo tiempo. Sigue esta secuencia: cada etapa prepara la siguiente. Avanza cuando puedas resolver y explicar lo que practicaste.</p></div>
 <div class="journey-intro"><strong>Cómo usar esta ruta</strong><span>Empieza en el paso 1. Estudia el concepto, realiza la práctica y después continúa al siguiente. Si un tema se dificulta, repítelo antes de avanzar.</span></div>
 <ol class="journey-list">
 <li class="journey-step"><span class="journey-number">01</span><div><small>PRIMERO · FUNDAMENTOS</small><h3>Aprende a programar con Python</h3><p>Variables, tipos de datos, condicionales, ciclos y funciones. Aprende a pensar en instrucciones y resolver problemas pequeños.</p><span class="journey-outcome">Al terminar: puedes escribir programas sencillos por tu cuenta.</span></div><a href="#practicas">Comenzar Python ↓</a></li>
@@ -48,7 +62,7 @@
 </section>
 
 <section class="section" id="ruta">
-<div class="section-heading"><div><span class="eyebrow">ORIENTACIÓN ACADÉMICA</span><h2>Ubícate en la carrera</h2></div><p>El plan de referencia de la UNAM organiza la formación en una etapa básica, una intermedia y una de profundización. La etapa básica depende de la carrera de origen.</p></div>
+<div class="section-heading"><div><span class="eyebrow">ORIENTACIÓN ACADÉMICA</span><h2><svg class="heading-icon"><use href="#i-graduation"/></svg>Ubícate en la carrera</h2></div><p>El plan de referencia de la UNAM organiza la formación en una etapa básica, una intermedia y una de profundización. La etapa básica depende de la carrera de origen.</p></div>
 <div class="curriculum-grid">
 <article class="curriculum-card"><span class="curriculum-number">01 · PRIMERO A CUARTO</span><h3>Etapa básica</h3><p>Formación cursada en la carrera de origen. El plan contempla trayectorias distintas; revisa la que corresponda a tu caso.</p><a href="plan-estudios.html#origen">Ver carreras de origen →</a></article>
 <article class="curriculum-card"><span class="curriculum-number">02 · QUINTO A SÉPTIMO</span><h3>Etapa intermedia</h3><p>Asignaturas de Matemáticas, Computación, área Socioeconómico-Administrativa y Ciencias-Sociales.</p><a href="plan-estudios.html#materias">Ver asignaturas →</a></article>
@@ -58,7 +72,7 @@
 </section>
 
 <section class="section" id="materias">
-<div class="section-heading"><div><span class="eyebrow">MAPA DE CONOCIMIENTOS</span><h2>Qué necesitas dominar</h2></div><p>Estas áreas conectan las asignaturas del plan con habilidades que utilizarás en proyectos de Ciencia de Datos.</p></div>
+<div class="section-heading"><div><span class="eyebrow">MAPA DE CONOCIMIENTOS</span><h2><svg class="heading-icon"><use href="#i-brain"/></svg>Qué necesitas dominar</h2></div><p>Estas áreas conectan las asignaturas del plan con habilidades que utilizarás en proyectos de Ciencia de Datos.</p></div>
 <div class="skills-grid">
 <article class="skill-card"><span>01</span><h3>Matemáticas y probabilidad</h3><p>Álgebra, matemáticas discretas, cálculo, probabilidad aplicada y métodos matemáticos.</p><small>BASE PARA: modelar y razonar sobre incertidumbre</small></article>
 <article class="skill-card"><span>02</span><h3>Programación y algoritmos</h3><p>Python, estructuras de datos, funciones, algoritmos, complejidad y buenas prácticas.</p><small>BASE PARA: automatizar y resolver problemas</small></article>
@@ -73,7 +87,7 @@
 
 
 <section class="section" id="vida-academica">
-<div class="section-heading"><div><span class="eyebrow">DECISIONES Y VIDA UNIVERSITARIA</span><h2>Opciones que puedes aprovechar</h2></div><p>Una guía práctica para elegir grupos, explorar materias, complementar tu formación y encontrar espacios de estudio. Confirma siempre la oferta, los cupos y las reglas vigentes con la coordinación de tu generación.</p></div>
+<div class="section-heading"><div><span class="eyebrow">DECISIONES Y VIDA UNIVERSITARIA</span><h2><svg class="heading-icon"><use href="#i-book"/></svg>Opciones que puedes aprovechar</h2></div><p>Una guía práctica para elegir grupos, explorar materias, complementar tu formación y encontrar espacios de estudio. Confirma siempre la oferta, los cupos y las reglas vigentes con la coordinación de tu generación.</p></div>
 <div class="student-options-grid">
 <article class="student-option">
 <span class="option-kicker">01 · INSCRIPCIÓN</span><h3>Cómo elegir grupo</h3>
@@ -151,7 +165,7 @@
 </section>
 
 <section class="section" id="tips">
-<div class="section-heading"><div><span class="eyebrow">EXPERIENCIA ESTUDIANTIL</span><h2>Consejos que sí ayudan en la carrera</h2></div><p>Hábitos y estrategias prácticas para avanzar con constancia. Son recomendaciones generales de estudio, no reglas oficiales ni sustitutos de la orientación de tus docentes.</p></div>
+<div class="section-heading"><div><span class="eyebrow">EXPERIENCIA ESTUDIANTIL</span><h2><svg class="heading-icon"><use href="#i-lightbulb"/></svg>Consejos que sí ayudan en la carrera</h2></div><p>Hábitos y estrategias prácticas para avanzar con constancia. Son recomendaciones generales de estudio, no reglas oficiales ni sustitutos de la orientación de tus docentes.</p></div>
 <div class="tips-grid">
 <article class="tip-card"><span class="tip-index">01</span><h3>No estudies solo para el examen</h3><p>Después de cada tema, resuelve un problema sin mirar la solución. Si puedes explicar por qué funciona tu procedimiento, ya estás construyendo comprensión.</p><small>PRUEBA ESTO: escribe una explicación breve con tus propias palabras.</small></article>
 <article class="tip-card"><span class="tip-index">02</span><h3>Matemáticas: entiende el paso</h3><p>No memorices fórmulas aisladas. Identifica qué representa cada variable, qué supuestos tiene la fórmula y cuándo se puede aplicar.</p><small>PRUEBA ESTO: inventa un ejemplo pequeño y verifica el resultado.</small></article>
@@ -170,7 +184,7 @@
 </section>
 
 <section class="section" id="practicas">
-<div class="section-heading"><div><span class="eyebrow">MESA DE TRABAJO</span><h2>Prácticas y materiales</h2></div><p>Busca por tema y marca una práctica cuando puedas resolverla. Los ejercicios Python disponibles están en este repositorio; los demás enlaces llevan a documentación oficial de referencia.</p></div>
+<div class="section-heading"><div><span class="eyebrow">MESA DE TRABAJO</span><h2><svg class="heading-icon"><use href="#i-code"/></svg>Prácticas y materiales</h2></div><p>Busca por tema y marca una práctica cuando puedas resolverla. Los ejercicios Python disponibles están en este repositorio; los demás enlaces llevan a documentación oficial de referencia.</p></div>
 <div class="lesson-toolbar"><label class="search-box"><span>⌕</span><input id="lessonSearch" type="search" placeholder="Buscar tema o habilidad..." aria-label="Buscar práctica"></label><span class="lesson-count" id="lessonCount">8 prácticas</span></div>
 <div class="lesson-list" id="lessonList">
 <article class="lesson" data-search="python variables tipos de datos operaciones"><label class="lesson-check"><input type="checkbox" data-lesson="python-variables" aria-label="Marcar variables como completada"><span></span></label><div class="lesson-number">01</div><div class="lesson-info"><h3>Python: variables y tipos de datos</h3><p>Asigna valores, reconoce tipos y realiza operaciones básicas.</p><div class="tags"><span>Programación</span><span>Inicial</span></div></div><a class="lesson-link" href="programacion/python/01_variables.py">Ejercicio ↗</a></article>
@@ -186,7 +200,7 @@
 </section>
 
 <section class="section" id="herramientas">
-<div class="section-heading"><div><span class="eyebrow">ENTORNO DE TRABAJO</span><h2>Herramientas que usarás</h2></div><p>Accesos directos a herramientas y documentación. Puedes comenzar con Google Colab sin instalar Python.</p></div>
+<div class="section-heading"><div><span class="eyebrow">ENTORNO DE TRABAJO</span><h2><svg class="heading-icon"><use href="#i-database"/></svg>Herramientas que usarás</h2></div><p>Accesos directos a herramientas y documentación. Puedes comenzar con Google Colab sin instalar Python.</p></div>
 <div class="tools-grid">
 <a class="tool-card" href="https://colab.research.google.com/" target="_blank" rel="noopener"><b>Colab</b><span>Ejecuta cuadernos de Python en el navegador.</span><small>ABRIR ENTORNO ↗</small></a>
 <a class="tool-card" href="https://code.visualstudio.com/" target="_blank" rel="noopener"><b>Visual Studio Code</b><span>Editor para escribir, organizar y depurar código.</span><small>DESCARGAR ↗</small></a>
@@ -198,7 +212,7 @@
 </section>
 
 <section class="section" id="proyecto">
-<div class="section-heading"><div><span class="eyebrow">PROYECTO INTEGRADOR</span><h2>Analiza mercados y tianguis</h2></div><p>Usa un problema de la Ciudad de México para conectar programación, limpieza, estadística y visualización.</p></div>
+<div class="section-heading"><div><span class="eyebrow">PROYECTO INTEGRADOR</span><h2><svg class="heading-icon"><use href="#i-pin"/></svg>Analiza mercados y tianguis</h2></div><p>Usa un problema de la Ciudad de México para conectar programación, limpieza, estadística y visualización.</p></div>
 <div class="project-panel">
 <div class="project-question"><span class="eyebrow">PREGUNTA DE INVESTIGACIÓN</span><h3>¿Cómo se distribuyen los mercados y tianguis registrados entre las alcaldías?</h3><p>Trabaja únicamente con registros de una fuente identificable. Antes de concluir, revisa su cobertura, fecha, definiciones y posibles duplicados.</p><div class="source-links"><a href="https://datos.cdmx.gob.mx/" target="_blank" rel="noopener">Datos Abiertos CDMX ↗</a><a href="https://www.inegi.org.mx/datosabiertos/" target="_blank" rel="noopener">INEGI · Datos abiertos ↗</a><a href="https://www.datos.gob.mx/" target="_blank" rel="noopener">Datos.gob.mx ↗</a></div></div>
 <div class="project-steps"><h3>Entregables del proyecto</h3><ol><li><b>Datos originales</b><span>Archivo descargado y fuente documentada.</span></li><li><b>Datos limpios</b><span>Reglas de limpieza y duplicados justificados.</span></li><li><b>Análisis reproducible</b><span>Código Python o SQL para obtener resultados.</span></li><li><b>Visualización</b><span>Tabla o gráfica con etiquetas y unidades.</span></li><li><b>Conclusiones</b><span>Hallazgos, limitaciones y preguntas nuevas.</span></li></ol></div>
@@ -207,7 +221,7 @@
 </section>
 
 <section class="progress-section" id="avance">
-<div class="progress-copy"><span class="eyebrow">SEGUIMIENTO DE ESTUDIO</span><h2>Registra tus prácticas</h2><p>Marca una actividad cuando puedas realizarla y explicar el resultado. El porcentaje se calcula con las ocho prácticas de esta página y se guarda en este navegador.</p><a href="#practicas">Volver a las prácticas →</a></div>
+<div class="progress-copy"><span class="eyebrow">SEGUIMIENTO DE ESTUDIO</span><h2><svg class="heading-icon"><use href="#i-check"/></svg>Registra tus prácticas</h2><p>Marca una actividad cuando puedas realizarla y explicar el resultado. El porcentaje se calcula con las ocho prácticas de esta página y se guarda en este navegador.</p><a href="#practicas">Volver a las prácticas →</a></div>
 <div class="progress-panel"><div class="progress-top"><span>Prácticas completadas</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="progress-bottom"><span id="progressText">0 de 8 prácticas completadas</span><span>Tu ritmo</span></div></div>
 </section>
 </main>
