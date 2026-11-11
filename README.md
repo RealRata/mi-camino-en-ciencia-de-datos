@@ -57,3 +57,17 @@ El avance marcado en la página web se guarda localmente en el navegador y dispo
 ## Alcance y precisión
 
 El documento de 2019 es la fuente de referencia de esta guía. La información de la carrera de origen debe leerse según la trayectoria correspondiente. La oferta de grupos y asignaturas puede estar sujeta a la programación académica de la UNAM. Esta plataforma es un recurso educativo independiente.
+
+
+## Asistente de IA (configuración pendiente de despliegue)
+
+La página incluye un chat lateral. Para activar respuestas reales, despliega el backend de Cloudflare Workers incluido en `worker/worker.js`. GitHub Pages solo publica archivos estáticos y no puede guardar de forma segura una clave API.
+
+1. Crea una cuenta en Cloudflare y configura Wrangler siguiendo la [guía oficial](https://developers.cloudflare.com/workers/wrangler/).
+2. Desde la raíz del repositorio, ejecuta `npx wrangler login`.
+3. Despliega el Worker con `npx wrangler deploy`.
+4. Guarda la clave de OpenAI como secreto del Worker, nunca en el repositorio: `npx wrangler secret put OPENAI_API_KEY`.
+5. Copia la dirección `*.workers.dev` que te entregue Cloudflare y añade `/api/chat`.
+6. En `script.js`, reemplaza la cadena vacía de `window.DATA_QUEST_CHAT_API || ""` por la dirección completa del endpoint, por ejemplo `https://TU-WORKER.workers.dev/api/chat`, y publica el cambio.
+
+El Worker usa la API de Responses de OpenAI y limita el historial enviado. La clave se mantiene en el servidor. Consulta [cómo proteger las claves API](https://developers.openai.com/api/docs/guides/api-keys) y la [documentación de Workers](https://developers.cloudflare.com/workers/).
