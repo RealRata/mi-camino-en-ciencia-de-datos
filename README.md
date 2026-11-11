@@ -1,4 +1,4 @@
-# Mi camino en Ciencia de Datos
+# Ciencia de Datos desde Cero
 
 Repositorio educativo abierto para estudiar los contenidos de la Licenciatura en Ciencia de Datos de la UNAM y practicar los fundamentos mediante ejercicios, código y proyectos.
 
