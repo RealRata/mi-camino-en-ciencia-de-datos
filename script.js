@@ -212,7 +212,7 @@
     const summary = cards.map(card => {
       const parts = card.querySelectorAll("span, strong, small");
       return parts[0].textContent + ": " + parts[1].textContent + (parts[2].textContent ? " (" + parts[2].textContent + ")" : "");
-    }).join("\\n");
+    }).join("\n");
     try {
       await navigator.clipboard.writeText(summary);
       copyDataResultsButton.textContent = "Copiado";
