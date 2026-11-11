@@ -188,10 +188,42 @@
       renderStatistic("Varianza poblacional", formatStatistic(populationVariance), "Divide entre N"),
       renderStatistic("Desv. estándar poblacional", formatStatistic(Math.sqrt(populationVariance)), "Raíz de la varianza poblacional"),
       renderStatistic("Varianza muestral", sampleVariance === null ? "No disponible" : formatStatistic(sampleVariance), "Divide entre n − 1"),
-      renderStatistic("Desv. estándar muestral", sampleVariance === null ? "No disponible" : formatStatistic(Math.sqrt(sampleVariance)), "Requiere al menos 2 datos")
+      renderStatistic("Desv. estándar muestral", sampleVariance === null ? "No disponible" : formatStatistic(Math.sqrt(sampleVariance)), "Requiere al menos 2 datos"),
+      renderStatistic("Rango intercuartílico", q1 === null || q3 === null ? "No disponible" : formatStatistic(q3 - q1), "Q3 menos Q1"),
+      renderStatistic("Coeficiente de variación", mean === 0 ? "No disponible" : formatStatistic(Math.sqrt(populationVariance) / Math.abs(mean) * 100) + " %", "Dispersión relativa respecto a la media"),
+      renderStatistic("Suma de cuadrados", formatStatistic(values.reduce((total, value) => total + value * value, 0)), "Suma de cada valor elevado al cuadrado")
     ];
     calculatorResults.replaceChildren(...results);
+    const sortedCard = renderStatistic("Datos ordenados", sorted.map(formatStatistic).join("   ·   "), "De menor a mayor");
+    sortedCard.classList.add("stat-result-wide");
+    calculatorResults.appendChild(sortedCard);
   }
+
+  const copyDataResultsButton = document.getElementById("copyDataResults");
+  if (copyDataResultsButton && calculatorResults) copyDataResultsButton.addEventListener("click", async () => {
+    const cards = [...calculatorResults.querySelectorAll(".stat-result")];
+    if (!cards.length) {
+      if (calculatorError) {
+        calculatorError.textContent = "Primero calcula tus datos para poder copiar los resultados.";
+        calculatorError.hidden = false;
+      }
+      return;
+    }
+    const summary = cards.map(card => {
+      const parts = card.querySelectorAll("span, strong, small");
+      return parts[0].textContent + ": " + parts[1].textContent + (parts[2].textContent ? " (" + parts[2].textContent + ")" : "");
+    }).join("\\n");
+    try {
+      await navigator.clipboard.writeText(summary);
+      copyDataResultsButton.textContent = "Copiado";
+      window.setTimeout(() => { copyDataResultsButton.textContent = "Copiar resultados"; }, 1800);
+    } catch (error) {
+      if (calculatorError) {
+        calculatorError.textContent = "No se pudo copiar automáticamente. Selecciona los resultados y cópialos manualmente.";
+        calculatorError.hidden = false;
+      }
+    }
+  });
 
   if (calculateDataButton) calculateDataButton.addEventListener("click", calculateData);
   if (dataValuesInput) dataValuesInput.addEventListener("keydown", event => {
