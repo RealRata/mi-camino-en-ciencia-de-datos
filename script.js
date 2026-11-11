@@ -141,7 +141,7 @@
       calculatorError.hidden = false;
       return;
     }
-    const tokens = raw.split(/[\\s,;]+/).filter(Boolean);
+    const tokens = raw.split(/[\s,;]+/).filter(Boolean);
     const values = tokens.map(token => Number(token));
     if (!values.length || values.some(value => !Number.isFinite(value))) {
       calculatorError.textContent = "Hay un valor no válido. Usa únicamente números y punto para los decimales; separa los datos con comas, espacios o saltos de línea.";
