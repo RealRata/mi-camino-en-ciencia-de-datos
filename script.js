@@ -113,6 +113,8 @@
   let calculatorRouteDone = false;
   let lastAnalysis = null;
   let importedRows = null;
+  let importedMatrix = null;
+  let importedColumnStats = null;
   let excludeOutliersActive = false;
   try {
     const savedLevel = Number(localStorage.getItem(CALCULATOR_LEVEL_KEY));
@@ -314,7 +316,7 @@
     const report=document.createElement("div");report.className="quality-metrics";
     [["Registros no vacíos",nonempty.length],["Campos vacíos detectados",blank],["Entradas no numéricas",invalid.length],["Registros duplicados",duplicates]].forEach(([label,value])=>{const item=document.createElement("p");item.textContent=label+": "+value;report.appendChild(item);});
     if(invalid.length){const detail=document.createElement("p");detail.textContent="Entradas a revisar: "+invalid.slice(0,12).join(", ")+(invalid.length>12?"…":"");report.appendChild(detail);}
-    if(importedRows!==null){const note=document.createElement("p");note.textContent="Archivo importado: "+importedRows+" filas de datos leídas de la primera columna numérica.";report.appendChild(note);}
+    if(importedColumnStats){const note=document.createElement("p");note.textContent="Archivo importado: "+importedRows+" filas · columna: "+importedColumnStats.name+" · vacíos: "+importedColumnStats.blank+" · no numéricos: "+importedColumnStats.invalid+".";report.appendChild(note);}
     qualityTarget.replaceChildren(report);
   }
   if(qualityButton)qualityButton.addEventListener("click",inspectQuality);
@@ -324,24 +326,44 @@
     tokens.forEach(token=>{const number=Number(token);const key=Number.isFinite(number)?String(number):"invalid:"+token;if(!seen.has(key)){seen.add(key);unique.push(token);}});
     const removed=tokens.length-unique.length;dataValuesInput.value=unique.join(", ");inspectQuality();if(removed&&calculatorError){calculatorError.textContent="Se eliminaron "+removed+" registros duplicados. Revisa y vuelve a calcular.";calculatorError.hidden=false;}calculateData();
   });
-  const dataFileInput=document.getElementById("dataFile");
+  const dataFileInput=document.getElementById("dataFile"),importColumnSelect=document.getElementById("importColumn");
+  function importSelectedColumn() {
+    if(!importedMatrix||!importColumnSelect||!dataValuesInput)return;
+    const column=Number(importColumnSelect.value),header=importedMatrix[0]||[];
+    const cells=importedMatrix.slice(1).map(row=>row[column]===undefined?"":String(row[column]).trim());
+    const blank=cells.filter(value=>value==="").length,invalid=cells.filter(value=>value!==""&&!Number.isFinite(Number(value))).length;
+    const numeric=cells.filter(value=>value!==""&&Number.isFinite(Number(value))).map(Number);
+    if(!numeric.length){if(calculatorError){calculatorError.textContent="La columna seleccionada no contiene valores numéricos.";calculatorError.hidden=false;}return;}
+    importedRows=cells.length;importedColumnStats={name:String(header[column]||("Columna "+(column+1))),blank,invalid};
+    dataValuesInput.value=numeric.join(", ");excludeOutliersActive=false;calculateData();inspectQuality();
+    if(calculatorError){calculatorError.textContent="Se importaron "+numeric.length+" valores numéricos de la columna «"+importedColumnStats.name+"».";calculatorError.hidden=false;}
+  }
+  if(importColumnSelect)importColumnSelect.addEventListener("change",importSelectedColumn);
   if(dataFileInput)dataFileInput.addEventListener("change",async()=>{
     const file=dataFileInput.files&&dataFileInput.files[0];if(!file)return;
     try{
       let rows=[];
-      if(/\\.xlsx?$/i.test(file.name)){
+      if(/\.xlsx?$/i.test(file.name)){
         if(!window.XLSX)throw new Error("No se pudo cargar el lector Excel. Guarda el archivo como CSV e inténtalo de nuevo.");
         const buffer=await file.arrayBuffer(),workbook=XLSX.read(buffer,{type:"array"}),sheet=workbook.Sheets[workbook.SheetNames[0]];
         rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:""});
       }else{
         const text=await file.text();rows=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(Boolean).map(line=>line.split(","));
       }
-      importedRows=Math.max(0,rows.length-1);
-      const candidates=rows.slice(1).map(row=>row.find(cell=>String(cell??"").trim()!=="")).filter(v=>v!==undefined);
-      const numeric=candidates.map(v=>Number(String(v).trim())).filter(Number.isFinite);
-      if(!numeric.length)throw new Error("No encontré una columna numérica en la primera hoja. Usa un archivo con encabezado y una columna numérica.");
-      dataValuesInput.value=numeric.join(", ");excludeOutliersActive=false;calculateData();inspectQuality();
-      if(calculatorError){calculatorError.textContent="Se importaron "+numeric.length+" valores numéricos de "+file.name+". Para archivos con varias variables, selecciona la columna que quieras analizar en una hoja separada.";calculatorError.hidden=false;}
+      if(rows.length<2)throw new Error("El archivo necesita una fila de encabezados y al menos un registro.");
+      importedMatrix=rows;const header=rows[0],numericColumns=[];
+      header.forEach((name,index)=>{
+        const cells=rows.slice(1).map(row=>String(row[index]??"").trim()).filter(value=>value!=="");
+        const valid=cells.filter(value=>Number.isFinite(Number(value))).length;
+        if(valid>0)numericColumns.push({index,name:String(name||("Columna "+(index+1))),valid});
+      });
+      if(!numericColumns.length)throw new Error("No encontré columnas numéricas en la primera hoja del archivo.");
+      if(importColumnSelect){
+        importColumnSelect.replaceChildren();
+        numericColumns.forEach(column=>{const option=document.createElement("option");option.value=String(column.index);option.textContent=column.name+" ("+column.valid+" valores numéricos)";importColumnSelect.appendChild(option);});
+        importColumnSelect.disabled=false;
+      }
+      importSelectedColumn();
     }catch(error){if(calculatorError){calculatorError.textContent=error.message||"No fue posible leer el archivo.";calculatorError.hidden=false;}}
   });
 
