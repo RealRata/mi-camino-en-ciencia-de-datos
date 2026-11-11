@@ -179,3 +179,19 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 @media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}.work-hero{gap:25px}.tools-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){.work-hero{grid-template-columns:1fr;padding:48px 0}.curriculum-grid,.project-panel{grid-template-columns:1fr}.today-panel{max-width:none}}
 @media(max-width:480px){.skills-grid,.tools-grid{grid-template-columns:1fr}.skill-card{min-height:0}.work-hero h1{font-size:39px}.project-panel{padding:18px}}
+
+/* Consejos estudiantiles: diseño sobrio, consistente con la interfaz minimalista */
+.tips-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tip-card{padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.tip-index{color:var(--accent);font-size:10px;font-weight:700;letter-spacing:.1em}
+.tip-card h3{margin:9px 0 7px;font-size:14px;letter-spacing:-.02em}
+.tip-card p{margin:0 0 13px;color:var(--muted);font-size:11px;line-height:1.8}
+.tip-card small{display:block;padding-top:10px;border-top:1px solid var(--line);color:var(--accent);font-size:9px;font-weight:700;line-height:1.6}
+.student-routine{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;margin-top:14px;padding:22px 24px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.student-routine h3{margin:8px 0 0;font-size:17px;letter-spacing:-.03em}
+.student-routine ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;list-style:none;padding:0;margin:0}
+.student-routine li{display:flex;gap:10px;align-items:flex-start}
+.student-routine li b{flex:0 0 auto;color:var(--accent);font-size:11px}
+.student-routine li span{color:var(--muted);font-size:10px;line-height:1.6}
+@media(max-width:900px){.tips-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.student-routine{grid-template-columns:1fr}}
+@media(max-width:480px){.tips-grid,.student-routine ol{grid-template-columns:1fr}.student-routine{padding:18px}}
