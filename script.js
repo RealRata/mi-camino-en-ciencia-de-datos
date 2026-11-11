@@ -137,7 +137,7 @@
     card.append(title, result, detail); return card;
   }
   function parseNumericInput(text) {
-    return text.trim().split(/[\\s,;]+/).filter(Boolean).map(token => Number(token));
+    return text.trim().split(/[\s,;]+/).filter(Boolean).map(token => Number(token));
   }
   function calculateData() {
     if (!dataValuesInput || !calculatorResults || !calculatorError) return;
@@ -307,7 +307,7 @@
   const qualityButton=document.getElementById("inspectDataQuality"),qualityTarget=document.getElementById("dataQualityReport");
   function inspectQuality() {
     if(!qualityTarget||!dataValuesInput)return;
-    const raw=dataValuesInput.value,parts=raw.split(/[,;\\n\\r]+/).map(v=>v.trim()),nonempty=parts.filter(Boolean),blank=parts.filter(v=>!v).length;
+    const raw=dataValuesInput.value,parts=raw.split(/[,;\n\r]+/).map(v=>v.trim()),nonempty=parts.filter(Boolean),blank=parts.filter(v=>!v).length;
     const numeric=nonempty.filter(v=>Number.isFinite(Number(v))),invalid=nonempty.filter(v=>!Number.isFinite(Number(v)));
     const counts=new Map();numeric.forEach(v=>counts.set(v,(counts.get(v)||0)+1));
     const duplicates=[...counts].filter(([,n])=>n>1).reduce((sum,[,n])=>sum+n-1,0);
@@ -320,7 +320,7 @@
   if(qualityButton)qualityButton.addEventListener("click",inspectQuality);
   const removeDuplicatesButton=document.getElementById("removeDuplicates");
   if(removeDuplicatesButton)removeDuplicatesButton.addEventListener("click",()=>{
-    if(!dataValuesInput)return;const tokens=dataValuesInput.value.trim().split(/[\\s,;]+/).filter(Boolean),seen=new Set(),unique=[];
+    if(!dataValuesInput)return;const tokens=dataValuesInput.value.trim().split(/[\s,;]+/).filter(Boolean),seen=new Set(),unique=[];
     tokens.forEach(token=>{const number=Number(token);const key=Number.isFinite(number)?String(number):"invalid:"+token;if(!seen.has(key)){seen.add(key);unique.push(token);}});
     const removed=tokens.length-unique.length;dataValuesInput.value=unique.join(", ");inspectQuality();if(removed&&calculatorError){calculatorError.textContent="Se eliminaron "+removed+" registros duplicados. Revisa y vuelve a calcular.";calculatorError.hidden=false;}calculateData();
   });
@@ -334,7 +334,7 @@
         const buffer=await file.arrayBuffer(),workbook=XLSX.read(buffer,{type:"array"}),sheet=workbook.Sheets[workbook.SheetNames[0]];
         rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:""});
       }else{
-        const text=await file.text();rows=text.replace(/^\\uFEFF/,"").split(/\\r?\\n/).filter(Boolean).map(line=>line.split(","));
+        const text=await file.text();rows=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(Boolean).map(line=>line.split(","));
       }
       importedRows=Math.max(0,rows.length-1);
       const candidates=rows.slice(1).map(row=>row.find(cell=>String(cell??"").trim()!=="")).filter(v=>v!==undefined);
@@ -413,10 +413,10 @@
       ["RESUMEN ESTADÍSTICO"], ...summary, [],
       ["DATOS ORDENADOS"], ...ordered
     ];
-    const csv = "\\uFEFF" + csvRows.map(row => row.map(value => {
+    const csv = "\uFEFF" + csvRows.map(row => row.map(value => {
       const cell = String(value ?? "").replace(/"/g, '""');
       return '"' + cell + '"';
-    }).join(",")).join("\\r\\n");
+    }).join(",")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -469,6 +469,11 @@
     empty.className = "calculator-empty";
     empty.textContent = "Tus resultados aparecerán aquí cuando ingreses datos.";
     calculatorResults.appendChild(empty);
+    lastAnalysis = null;
+    excludeOutliersActive = false;
+    const exclusionToggle = document.getElementById("excludeOutliers");
+    if (exclusionToggle) exclusionToggle.checked = false;
+    ["frequencyTable","dataHistogram","boxPlot","frequencyBars","frequencyPolygon","outlierResults"].forEach(id => { const node = document.getElementById(id); if (node) node.replaceChildren(); });
     if (calculatorError) calculatorError.hidden = true;
     dataValuesInput.focus();
   });
