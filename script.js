@@ -119,7 +119,7 @@
   try {
     const savedLevel = Number(localStorage.getItem(CALCULATOR_LEVEL_KEY));
     if (Number.isInteger(savedLevel) && savedLevel >= 1 && savedLevel <= 7) calculatorLevel = savedLevel;
-    calculatorRouteDone = localStorage.getItem("datos-desde-cero-calculator-done-v1") === "true";
+    calculatorRouteDone = savedLevel === 7 && localStorage.getItem("datos-desde-cero-calculator-done-v1") === "true";
   } catch (error) { console.warn("No fue posible recuperar el nivel de la calculadora.", error); }
 
   function medianOf(sortedValues) {
@@ -420,6 +420,14 @@
         ["Resumen estadístico", summary, [{ wch: 32 }, { wch: 24 }, { wch: 42 }]],
         ["Datos ordenados", ordered, [{ wch: 14 }, { wch: 20 }]]
       ];
+      if (lastAnalysis) {
+        const bins = makeFrequencyBins(lastAnalysis);
+        const frequencyRows = [["Intervalo", "Frecuencia absoluta", "Frecuencia relativa", "Frecuencia acumulada", "Porcentaje"]];
+        bins.forEach(bin => frequencyRows.push([
+          "[" + bin.start + ", " + bin.end + "]", bin.count, bin.relative, bin.cumulative, bin.relative * 100
+        ]));
+        sheets.push(["Frecuencias", frequencyRows, [{ wch: 28 }, { wch: 20 }, { wch: 22 }, { wch: 24 }, { wch: 16 }]]);
+      }
       sheets.forEach(([name, rows, widths]) => {
         const sheet = XLSX.utils.aoa_to_sheet(rows);
         sheet["!cols"] = widths;
