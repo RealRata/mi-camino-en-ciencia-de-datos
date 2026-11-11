@@ -374,3 +374,36 @@ a { text-decoration-color: var(--accent); }
 .dq-chat-form button svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .dq-chat-footnote{margin:0;padding:0 13px 11px;background:#19231e;color:#91a198;font-size:9px;line-height:1.5}
 @media(max-width:600px){.dq-chat{right:12px;bottom:12px}.dq-chat-panel{right:-4px;bottom:58px;width:calc(100vw - 24px);height:min(72vh,620px)}.dq-chat-launcher{padding:10px 13px}}
+
+
+/* Organizador semanal de estudio */
+.planner-layout{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.5fr);gap:18px;align-items:start}
+.planner-form,.planner-overview{padding:21px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-width:0}
+.planner-form h3{margin:0 0 16px;font-size:16px}
+.planner-form label{display:block;margin:11px 0 6px;color:var(--text);font-size:11px;font-weight:700}
+.planner-form input,.planner-form select{width:100%;min-height:42px;padding:10px 11px;border:1px solid var(--line);border-radius:7px;background:var(--surface-soft);color:var(--text);font:12px 'DM Sans',sans-serif}
+.planner-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.planner-add{width:100%;justify-content:center;margin-top:17px}
+.planner-hint{margin:13px 0 0;color:var(--muted);font-size:10px;line-height:1.7}
+.planner-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.planner-stats article{padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--surface-soft)}
+.planner-stats article span{display:block;color:var(--muted);font-size:8px;font-weight:800;letter-spacing:.07em}
+.planner-stats article strong{display:block;margin-top:6px;color:var(--text);font-size:20px}
+.planner-progress{margin:19px 0 14px}
+.planner-progress>div:first-child{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}
+.planner-progress strong{font-size:12px}.planner-progress span{color:var(--muted);font-size:10px}
+.planner-progress .progress-track{height:7px;overflow:hidden;border-radius:99px;background:var(--surface-soft)}
+.planner-progress .progress-fill{height:100%;width:0;border-radius:99px;background:var(--accent);transition:width .2s}
+.planner-list{display:grid;gap:12px}
+.planner-empty{padding:20px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:11px;text-align:center}
+.planner-day h4{margin:0 0 7px;color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.planner-session{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:10px 11px;border:1px solid var(--line);border-radius:7px;background:var(--surface-soft);margin:6px 0}
+.planner-session-label{display:flex;align-items:center;gap:9px;min-width:0;color:var(--text);font-size:11px;cursor:pointer}
+.planner-session-label input{flex:none;accent-color:var(--accent)}
+.planner-session-label span{overflow-wrap:anywhere}
+.planner-session.is-done .planner-session-label span{text-decoration:line-through;color:var(--muted)}
+.planner-duration{color:var(--muted);font-size:10px;white-space:nowrap}
+.planner-remove{border:0;background:transparent;color:var(--muted);font:10px 'DM Sans',sans-serif;cursor:pointer}
+.planner-remove:hover{color:var(--accent)}
+@media(max-width:760px){.planner-layout{grid-template-columns:1fr}.planner-stats article strong{font-size:17px}}
+@media(max-width:430px){.planner-stats{grid-template-columns:1fr 1fr}.planner-session{grid-template-columns:minmax(0,1fr) auto;gap:8px}.planner-remove{grid-column:1/-1;justify-self:end}}
