@@ -110,10 +110,12 @@
 
   const CALCULATOR_LEVEL_KEY = "datos-desde-cero-calculator-level-v1";
   let calculatorLevel = 1;
+  let calculatorRouteDone = false;
   let lastAnalysis = null;
   try {
     const savedLevel = Number(localStorage.getItem(CALCULATOR_LEVEL_KEY));
     if (Number.isInteger(savedLevel) && savedLevel >= 1 && savedLevel <= 4) calculatorLevel = savedLevel;
+    calculatorRouteDone = localStorage.getItem("datos-desde-cero-calculator-done-v1") === "true";
   } catch (error) { console.warn("No fue posible recuperar el nivel de la calculadora.", error); }
 
   function medianOf(sortedValues) {
@@ -324,13 +326,14 @@
     const cards = [...document.querySelectorAll("[data-stage-card]")];
     const buttons = [...document.querySelectorAll("[data-complete-stage]")];
     if (level) level.textContent = "Nivel " + calculatorLevel + " de 4";
-    if (label) label.textContent = calculatorLevel === 4 && localStorage.getItem(CALCULATOR_LEVEL_KEY) === "4" ? "Ruta completada" : titles[calculatorLevel - 1];
+    if (label) label.textContent = calculatorRouteDone ? "Ruta completada" : titles[calculatorLevel - 1];
     if (fill) fill.style.width = ((calculatorLevel - 1) / 3 * 100) + "%";
     cards.forEach(card => { card.hidden = Number(card.dataset.stageCard) > calculatorLevel; });
     buttons.forEach(button => {
       const stage = Number(button.dataset.completeStage);
       button.hidden = stage !== calculatorLevel;
-      if (stage === 4 && calculatorLevel === 4 && localStorage.getItem(CALCULATOR_LEVEL_KEY) === "4") button.textContent = "Ruta completada ✓";
+      button.disabled = stage === 4 && calculatorRouteDone;
+      if (stage === 4 && calculatorRouteDone) button.textContent = "Ruta completada ✓";
     });
     renderUnlockedFeatures();
   }
@@ -340,7 +343,11 @@
       const stage = Number(button.dataset.completeStage);
       if (stage !== calculatorLevel) return;
       if (calculatorLevel < 4) calculatorLevel++;
-      try { localStorage.setItem(CALCULATOR_LEVEL_KEY, String(calculatorLevel)); }
+      else calculatorRouteDone = true;
+      try {
+        localStorage.setItem(CALCULATOR_LEVEL_KEY, String(calculatorLevel));
+        if (calculatorRouteDone) localStorage.setItem("datos-desde-cero-calculator-done-v1", "true");
+      }
       catch (error) { console.warn("No fue posible guardar el nivel de la calculadora.", error); }
       renderCalculatorProgress();
       const next = document.querySelector('[data-stage-card="' + calculatorLevel + '"]');
