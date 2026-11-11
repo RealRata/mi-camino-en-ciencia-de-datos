@@ -67,40 +67,66 @@
   <p class="calculator-footnote">Varianza y desviación estándar se muestran para población y muestra. Los cuartiles usan la mediana de cada mitad; si hay una cantidad impar, la mediana central se excluye de ambas mitades.</p>
   <div class="calculator-learning" id="calculatorLearning">
     <div class="calculator-learning-heading">
-      <div><span class="eyebrow">APRENDE MIENTRAS AVANZAS</span><h3>Tu calculadora evoluciona contigo</h3><p>Domina una etapa para desbloquear la siguiente. Cada avance agrega una herramienta real y te explica cómo se utiliza en el trabajo.</p></div>
-      <div class="learning-level"><strong id="calculatorLevel">Nivel 1 de 4</strong><span id="calculatorLevelText">Estadística descriptiva</span></div>
+      <div><span class="eyebrow">LABORATORIO ESTADÍSTICO PROGRESIVO</span><h3>Aprende, desbloquea y aplica</h3><p>Avanza por siete etapas. Cada una incorpora herramientas funcionales, explica cómo trabajan y muestra ejemplos de aplicación profesional. Tu avance se guarda en este navegador.</p></div>
+      <div class="learning-level"><strong id="calculatorLevel">Nivel 1 de 7</strong><span id="calculatorLevelText">Estadística descriptiva</span></div>
     </div>
     <div class="learning-progress"><div id="calculatorLearningFill"></div></div>
     <div class="learning-stages">
       <article class="learning-stage" data-stage-card="1">
-        <span class="learning-stage-number">ETAPA 01 · DISPONIBLE</span><h4>Estadística descriptiva</h4>
-        <p><b>Qué se mejora:</b> medidas para resumir un conjunto de datos: media, mediana, moda, dispersión y cuartiles.</p>
-        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Para comprender el comportamiento general de una variable y detectar diferencias entre sus valores.</p><p><b>¿Cómo funciona?</b> Resume los datos con medidas de tendencia central y dispersión; por ejemplo, calcula el promedio y qué tanto se alejan los valores de él.</p><p><b>En el campo laboral:</b> un analista puede resumir ventas mensuales, tiempos de entrega o resultados de encuestas para elaborar un primer diagnóstico.</p></div>
-        <button class="button button-primary learning-complete" type="button" data-complete-stage="1">Ya entiendo esta etapa · Desbloquear frecuencias</button>
+        <span class="learning-stage-number">ETAPA 01 · FUNDAMENTOS</span><h4>Estadística descriptiva</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Resume una variable para conocer su centro, dispersión y valores extremos.</p><p><b>¿Cómo funciona?</b> Calcula media, mediana, moda, rango, varianza, desviación estándar y cuartiles a partir de los datos.</p><p><b>En el trabajo:</b> resume ventas, calificaciones, tiempos de entrega o resultados de encuestas para elaborar un diagnóstico inicial.</p></div>
+        <div class="learning-output"><h5>Interpreta tus resultados</h5><p>Media: el promedio. Mediana: el punto central, menos sensible a extremos. Desviación estándar: dispersión alrededor de la media. Compara media y mediana para detectar asimetría.</p><p><b>Fórmulas:</b> media = Σx/n · varianza poblacional = Σ(x−μ)²/N · desviación = √varianza.</p></div>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="1">Entiendo la base · Desbloquear frecuencias</button>
       </article>
       <article class="learning-stage" data-stage-card="2" hidden>
-        <span class="learning-stage-number">ETAPA 02 · NUEVA HERRAMIENTA</span><h4>Distribución y tabla de frecuencias</h4>
-        <p><b>Qué se mejoró:</b> la calculadora agrupa los datos en intervalos y cuenta cuántas observaciones caen en cada uno.</p>
-        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Para conocer dónde se concentran los datos, comparar proporciones y detectar patrones de frecuencia.</p><p><b>¿Cómo funciona?</b> Divide el rango en intervalos, cuenta los registros de cada intervalo y calcula frecuencia relativa y acumulada.</p><p><b>En el campo laboral:</b> permite analizar rangos de precios en un mercado, edades de clientes, tiempos de atención o distribución de calificaciones.</p></div>
-        <div class="learning-output" data-feature-output="frequency"><h5>Tu tabla de frecuencias</h5><div id="frequencyTable"><p>Calcula tus datos para generar la tabla.</p></div></div>
-        <button class="button button-primary learning-complete" type="button" data-complete-stage="2">Ya entiendo esta etapa · Desbloquear gráficas</button>
+        <span class="learning-stage-number">ETAPA 02 · DISTRIBUCIÓN</span><h4>Tabla de frecuencias configurable</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Muestra cuántas veces aparecen los valores y cómo se distribuyen por intervalos.</p><p><b>¿Cómo funciona?</b> Cuenta frecuencia absoluta (fi), divide entre N para la relativa (hi), acumula fi y convierte hi a porcentaje.</p><p><b>En el trabajo:</b> agrupa precios de productos, edades de clientes, duración de llamadas o calificaciones para identificar rangos frecuentes.</p></div>
+        <div class="learning-controls"><label for="frequencyBins">Número de intervalos</label><input id="frequencyBins" type="number" min="1" max="50" value="5"><button class="button button-quiet" id="updateFrequencyBins" type="button">Actualizar tabla</button></div>
+        <div class="learning-output"><h5>Tabla de frecuencias</h5><div id="frequencyTable"><p>Calcula tus datos para generar la tabla.</p></div></div>
+        <p class="learning-formula">hi = fi / N · Porcentaje = hi × 100 · Frecuencia acumulada = suma progresiva de fi.</p>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="2">Entiendo las frecuencias · Desbloquear gráficas</button>
       </article>
       <article class="learning-stage" data-stage-card="3" hidden>
-        <span class="learning-stage-number">ETAPA 03 · NUEVA HERRAMIENTA</span><h4>Visualización de distribuciones</h4>
-        <p><b>Qué se mejoró:</b> una representación visual tipo histograma construida con los datos que ingresaste.</p>
-        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Para reconocer concentraciones, asimetrías, dispersión y posibles grupos que una tabla puede ocultar.</p><p><b>¿Cómo funciona?</b> Usa los mismos intervalos de la tabla de frecuencias y representa cada frecuencia con una barra proporcional.</p><p><b>En el campo laboral:</b> ayuda a presentar hallazgos a equipos de negocio, operaciones, investigación o producto sin depender únicamente de cifras.</p></div>
-        <div class="learning-output" data-feature-output="histogram"><h5>Histograma de tus datos</h5><div id="dataHistogram"><p>Calcula tus datos para generar la gráfica.</p></div></div>
-        <button class="button button-primary learning-complete" type="button" data-complete-stage="3">Ya entiendo esta etapa · Desbloquear valores atípicos</button>
+        <span class="learning-stage-number">ETAPA 03 · COMUNICACIÓN VISUAL</span><h4>Cuatro gráficas automáticas</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirven?</b> Hacen visibles patrones, concentraciones, dispersión y diferencias que no siempre se perciben en una tabla.</p><p><b>¿Cómo funcionan?</b> Se construyen a partir de las frecuencias y los cuartiles calculados para tus datos. Las barras representan conteos; la caja resume cuartiles.</p><p><b>En el trabajo:</b> presenta resultados a equipos de negocio, operaciones o investigación. Elige la gráfica según la pregunta y no solo por estética.</p></div>
+        <div class="chart-grid">
+          <div class="learning-output"><h5>Histograma de frecuencias</h5><p>La altura muestra cuántos datos caen en cada intervalo.</p><div id="dataHistogram"></div></div>
+          <div class="learning-output"><h5>Diagrama de caja y bigotes</h5><p>Resume mediana, cuartiles, rango y posibles valores atípicos.</p><div id="boxPlot"></div></div>
+          <div class="learning-output"><h5>Gráfica de barras</h5><p>Compara frecuencias por intervalo.</p><div id="frequencyBars"></div></div>
+          <div class="learning-output"><h5>Polígono de frecuencias</h5><p>Une los puntos medios de los intervalos y sus frecuencias.</p><div id="frequencyPolygon"></div></div>
+        </div>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="3">Entiendo las gráficas · Desbloquear atípicos</button>
       </article>
       <article class="learning-stage" data-stage-card="4" hidden>
-        <span class="learning-stage-number">ETAPA 04 · NUEVA HERRAMIENTA</span><h4>Detección de valores atípicos</h4>
-        <p><b>Qué se mejoró:</b> identificación de observaciones que quedan fuera de los límites habituales mediante el rango intercuartílico.</p>
-        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Para investigar registros inusuales que pueden ser errores, eventos excepcionales o señales importantes.</p><p><b>¿Cómo funciona?</b> Calcula Q1 y Q3, obtiene el rango intercuartílico (Q3 − Q1) y marca los valores fuera de Q1 − 1.5×RIC y Q3 + 1.5×RIC.</p><p><b>En el campo laboral:</b> puede ayudar a revisar transacciones inusuales, importes extremos, sensores industriales o tiempos de entrega. Un valor atípico no se elimina automáticamente: primero se investiga.</p></div>
-        <div class="learning-output" data-feature-output="outliers"><h5>Revisión de valores atípicos</h5><div id="outlierResults"><p>Calcula tus datos para revisar valores inusuales.</p></div></div>
-        <button class="button button-primary learning-complete" type="button" data-complete-stage="4">Completar ruta de la calculadora</button>
+        <span class="learning-stage-number">ETAPA 04 · CALIDAD ESTADÍSTICA</span><h4>Detección y tratamiento de valores atípicos</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Señala observaciones inusuales que podrían ser errores, eventos extraordinarios o información valiosa.</p><p><b>¿Cómo funciona?</b> Calcula RIC = Q3−Q1. Marca valores menores que Q1−1.5×RIC o mayores que Q3+1.5×RIC.</p><p><b>En el trabajo:</b> revisa transacciones, importes, sensores o tiempos de entrega. Un atípico no es automáticamente un error: se investiga antes de excluirlo.</p></div>
+        <div class="learning-output"><h5>Resultado de detección</h5><div id="outlierResults"><p>Calcula tus datos para revisar valores inusuales.</p></div><label class="learning-check"><input id="excludeOutliers" type="checkbox"> Excluir los valores atípicos del análisis (solo para esta sesión)</label><button class="button button-quiet" id="applyOutlierChoice" type="button">Aplicar selección y recalcular</button></div>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="4">Entiendo los atípicos · Desbloquear limpieza</button>
+      </article>
+      <article class="learning-stage" data-stage-card="5" hidden>
+        <span class="learning-stage-number">ETAPA 05 · PREPARACIÓN DE DATOS</span><h4>Limpieza e importación de archivos</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Evita que registros repetidos, vacíos o inválidos distorsionen un análisis.</p><p><b>¿Cómo funciona?</b> Inspecciona los valores originales, identifica duplicados y campos vacíos; puedes importar CSV o Excel y retirar duplicados de la lista numérica.</p><p><b>En el trabajo:</b> prepara archivos de ventas, inventarios, encuestas o registros operativos antes de analizarlos. Conserva siempre una copia del original.</p></div>
+        <div class="learning-controls"><label for="dataFile">Importar archivo CSV o Excel</label><input id="dataFile" type="file" accept=".csv,.xlsx,.xls"><button class="button button-quiet" id="inspectDataQuality" type="button">Revisar calidad de mis datos</button><button class="button button-quiet" id="removeDuplicates" type="button">Eliminar duplicados</button></div>
+        <div class="learning-output"><h5>Informe de calidad</h5><div id="dataQualityReport"><p>Importa un archivo o revisa los datos pegados arriba.</p></div></div>
+        <p class="learning-formula">La herramienta conserva los datos originales hasta que elijas aplicar una limpieza. Los campos vacíos y no numéricos se reportan; no se convierten silenciosamente en cero.</p>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="5">Entiendo la limpieza · Desbloquear dos variables</button>
+      </article>
+      <article class="learning-stage" data-stage-card="6" hidden>
+        <span class="learning-stage-number">ETAPA 06 · RELACIÓN ENTRE VARIABLES</span><h4>Análisis de dos variables</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Estudia si dos variables cambian juntas y cuantifica una relación lineal.</p><p><b>¿Cómo funciona?</b> Calcula covarianza, correlación de Pearson, recta de regresión y R² a partir de pares X,Y en el mismo orden.</p><p><b>En el trabajo:</b> explora relación entre inversión y ventas, horas de estudio y calificación, o temperatura y consumo. Correlación no demuestra causalidad.</p></div>
+        <div class="learning-controls learning-pairs"><label for="variableX">Variable X (separa con comas o saltos de línea)<textarea id="variableX" rows="3" placeholder="Ej. 1, 2, 3, 4, 5"></textarea></label><label for="variableY">Variable Y (mismo número de pares)<textarea id="variableY" rows="3" placeholder="Ej. 2, 3, 5, 4, 6"></textarea></label><button class="button button-primary" id="analyzePairs" type="button">Analizar relación</button></div>
+        <div class="learning-output"><h5>Resultados de dos variables</h5><div id="bivariateResults"><p>Ingresa pares X,Y para comenzar.</p></div><div id="scatterPlot"></div></div>
+        <p class="learning-formula">Pearson r = cov(X,Y)/(sX·sY). Regresión: ŷ = a + bX. R² indica la proporción de variabilidad de Y explicada por el ajuste lineal en esta muestra.</p>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="6">Entiendo la relación · Finalizar laboratorio</button>
+      </article>
+      <article class="learning-stage" data-stage-card="7" hidden>
+        <span class="learning-stage-number">ETAPA 07 · MODO APRENDIZAJE</span><h4>Interpreta y aplica lo aprendido</h4>
+        <div class="learning-explain"><p><b>¿Para qué sirve?</b> Convierte los resultados en conocimiento que puedas explicar y defender.</p><p><b>¿Cómo funciona?</b> Consulta fórmulas, ejemplos guiados y criterios para elegir cada medida según el tipo de pregunta.</p><p><b>En el trabajo:</b> documenta métodos, justifica decisiones y comunica conclusiones con límites y supuestos claros.</p></div>
+        <div class="learning-output"><h5>Guía rápida de interpretación</h5><ul class="learning-guide"><li><b>Media:</b> promedio; útil cuando no dominan valores extremos.</li><li><b>Mediana:</b> centro robusto; útil para ingresos o precios sesgados.</li><li><b>Desviación estándar:</b> variabilidad en las mismas unidades de los datos.</li><li><b>Frecuencia:</b> cuántos registros caen en una categoría o intervalo.</li><li><b>Histograma:</b> forma de una distribución numérica.</li><li><b>Caja y bigotes:</b> mediana, cuartiles y posibles atípicos.</li><li><b>Pearson:</b> fuerza y dirección de relación lineal, no causalidad.</li><li><b>R²:</b> ajuste del modelo lineal a los datos observados.</li></ul><h5>Ejemplo paso a paso</h5><p>Datos: 2, 4, 4, 6. 1) Ordena: 2, 4, 4, 6. 2) Media = (2+4+4+6)/4 = 4. 3) Mediana = (4+4)/2 = 4. 4) Rango = 6−2 = 4. 5) Interpreta: el centro está en 4 y los valores abarcan cuatro unidades.</p><p><b>Aplicación:</b> si fueran tiempos de atención en minutos, comunicarías que el promedio y la mediana son 4 minutos, pero también revisarías dispersión y valores extremos antes de comparar sucursales.</p></div>
+        <button class="button button-primary learning-complete" type="button" data-complete-stage="7">Completar laboratorio estadístico ✓</button>
       </article>
     </div>
-    <p class="learning-save-note">Tu nivel se guarda en este navegador. Puedes seguir usando las herramientas ya desbloqueadas cuando quieras.</p>
+    <p class="learning-save-note">Tu progreso se guarda en este navegador. Las herramientas desbloqueadas permanecen disponibles. Importa archivos solo si confías en su origen; el procesamiento ocurre localmente.</p>
   </div>
 </section>
 <section class="section journey-section" id="camino">
