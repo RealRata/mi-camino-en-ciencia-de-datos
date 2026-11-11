@@ -258,7 +258,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 }
 
 
-/* Unificación de paleta oscura Data Quest en TODAS las páginas */
+/* Unificación de paleta oscura en todas las páginas */
 :root {
   color-scheme: dark;
   --green: var(--accent);
