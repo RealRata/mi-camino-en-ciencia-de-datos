@@ -104,6 +104,7 @@
   const calculateDataButton = document.getElementById("calculateData");
   const loadSampleDataButton = document.getElementById("loadSampleData");
   const clearDataButton = document.getElementById("clearData");
+  const exportExcelButton = document.getElementById("exportExcel");
   const calculatorResults = document.getElementById("calculatorResults");
   const calculatorError = document.getElementById("calculatorError");
 
@@ -198,6 +199,58 @@
     sortedCard.classList.add("stat-result-wide");
     calculatorResults.appendChild(sortedCard);
   }
+
+  if (exportExcelButton) exportExcelButton.addEventListener("click", () => {
+    if (!dataValuesInput || !calculatorResults) return;
+    const raw = dataValuesInput.value.trim();
+    if (!raw) {
+      if (calculatorError) {
+        calculatorError.textContent = "Primero introduce tus datos y calcula los resultados.";
+        calculatorError.hidden = false;
+      }
+      return;
+    }
+    const values = raw.split(/[\\s,;]+/).filter(Boolean).map(Number);
+    if (!values.length || values.some(value => !Number.isFinite(value)) || values.length > 100000) {
+      if (calculatorError) {
+        calculatorError.textContent = "Revisa los datos antes de exportar: deben ser números válidos y no superar 100,000 valores.";
+        calculatorError.hidden = false;
+      }
+      return;
+    }
+    if (!window.XLSX) {
+      if (calculatorError) {
+        calculatorError.textContent = "No se pudo cargar el generador de Excel. Revisa tu conexión a internet e inténtalo de nuevo.";
+        calculatorError.hidden = false;
+      }
+      return;
+    }
+    if (!calculatorResults.querySelector(".stat-result")) calculateData();
+    if (!calculatorResults.querySelector(".stat-result")) return;
+    const workbook = XLSX.utils.book_new();
+    const dataSheet = [["N.º", "Valor"]];
+    values.forEach((value, index) => dataSheet.push([index + 1, value]));
+    const summarySheet = [["Indicador", "Resultado", "Descripción"]];
+    [...calculatorResults.querySelectorAll(".stat-result")].forEach(card => {
+      const parts = card.querySelectorAll("span, strong, small");
+      summarySheet.push([parts[0].textContent, parts[1].textContent, parts[2].textContent]);
+    });
+    const sortedSheet = [["Posición", "Valor ordenado"]];
+    [...values].sort((a, b) => a - b).forEach((value, index) => sortedSheet.push([index + 1, value]));
+    const wsData = XLSX.utils.aoa_to_sheet(dataSheet);
+    const wsSummary = XLSX.utils.aoa_to_sheet(summarySheet);
+    const wsSorted = XLSX.utils.aoa_to_sheet(sortedSheet);
+    wsData["!cols"] = [{ wch: 10 }, { wch: 18 }];
+    wsSummary["!cols"] = [{ wch: 32 }, { wch: 24 }, { wch: 42 }];
+    wsSorted["!cols"] = [{ wch: 14 }, { wch: 20 }];
+    wsData["!autofilter"] = { ref: "A1:B" + dataSheet.length };
+    wsSorted["!autofilter"] = { ref: "A1:B" + sortedSheet.length };
+    XLSX.utils.book_append_sheet(workbook, wsData, "Datos originales");
+    XLSX.utils.book_append_sheet(workbook, wsSummary, "Resumen estadístico");
+    XLSX.utils.book_append_sheet(workbook, wsSorted, "Datos ordenados");
+    const stamp = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(workbook, "analisis_de_datos_" + stamp + ".xlsx");
+  });
 
   const copyDataResultsButton = document.getElementById("copyDataResults");
   if (copyDataResultsButton && calculatorResults) copyDataResultsButton.addEventListener("click", async () => {
