@@ -112,81 +112,60 @@
   let calculatorLevel = 1;
   let calculatorRouteDone = false;
   let lastAnalysis = null;
+  let importedRows = null;
+  let excludeOutliersActive = false;
   try {
     const savedLevel = Number(localStorage.getItem(CALCULATOR_LEVEL_KEY));
-    if (Number.isInteger(savedLevel) && savedLevel >= 1 && savedLevel <= 4) calculatorLevel = savedLevel;
+    if (Number.isInteger(savedLevel) && savedLevel >= 1 && savedLevel <= 7) calculatorLevel = savedLevel;
     calculatorRouteDone = localStorage.getItem("datos-desde-cero-calculator-done-v1") === "true";
   } catch (error) { console.warn("No fue posible recuperar el nivel de la calculadora.", error); }
 
   function medianOf(sortedValues) {
     const middle = Math.floor(sortedValues.length / 2);
-    return sortedValues.length % 2
-      ? sortedValues[middle]
-      : (sortedValues[middle - 1] + sortedValues[middle]) / 2;
+    return sortedValues.length % 2 ? sortedValues[middle] : (sortedValues[middle - 1] + sortedValues[middle]) / 2;
   }
-
   function formatStatistic(value) {
     if (!Number.isFinite(value)) return "No disponible";
     return new Intl.NumberFormat("es-MX", { maximumFractionDigits: 6 }).format(value);
   }
-
   function renderStatistic(label, value, description) {
     const card = document.createElement("article");
     card.className = "stat-result";
-    const title = document.createElement("span");
-    title.textContent = label;
-    const result = document.createElement("strong");
-    result.textContent = value;
-    const detail = document.createElement("small");
-    detail.textContent = description || "";
-    card.append(title, result, detail);
-    return card;
+    const title = document.createElement("span"); title.textContent = label;
+    const result = document.createElement("strong"); result.textContent = value;
+    const detail = document.createElement("small"); detail.textContent = description || "";
+    card.append(title, result, detail); return card;
   }
-
+  function parseNumericInput(text) {
+    return text.trim().split(/[\\s,;]+/).filter(Boolean).map(token => Number(token));
+  }
   function calculateData() {
     if (!dataValuesInput || !calculatorResults || !calculatorError) return;
     calculatorError.hidden = true;
     const raw = dataValuesInput.value.trim();
-    if (!raw) {
-      calculatorError.textContent = "Escribe o pega al menos un número para calcular.";
-      calculatorError.hidden = false;
-      return;
+    if (!raw) { calculatorError.textContent = "Escribe o pega al menos un número para calcular."; calculatorError.hidden = false; return; }
+    const originalValues = parseNumericInput(raw);
+    if (!originalValues.length || originalValues.some(value => !Number.isFinite(value))) {
+      calculatorError.textContent = "Hay un valor no válido. Usa números y punto para decimales; separa con comas, espacios o saltos de línea.";
+      calculatorError.hidden = false; return;
     }
-    const tokens = raw.split(/[\s,;]+/).filter(Boolean);
-    const values = tokens.map(token => Number(token));
-    if (!values.length || values.some(value => !Number.isFinite(value))) {
-      calculatorError.textContent = "Hay un valor no válido. Usa únicamente números y punto para los decimales; separa los datos con comas, espacios o saltos de línea.";
-      calculatorError.hidden = false;
-      return;
-    }
-    if (values.length > 100000) {
-      calculatorError.textContent = "Para mantener la herramienta ágil, introduce como máximo 100,000 valores.";
-      calculatorError.hidden = false;
-      return;
-    }
+    if (originalValues.length > 100000) { calculatorError.textContent = "Introduce como máximo 100,000 valores."; calculatorError.hidden = false; return; }
+    const outlierInfo = findOutliers(originalValues);
+    const values = excludeOutliersActive ? originalValues.filter(value => !outlierInfo.values.includes(value)) : originalValues.slice();
+    if (!values.length) { calculatorError.textContent = "La exclusión dejaría el conjunto vacío. Desactiva la opción o revisa los datos."; calculatorError.hidden = false; return; }
     const sorted = [...values].sort((a, b) => a - b);
-    const count = values.length;
-    const sum = values.reduce((total, value) => total + value, 0);
-    const mean = sum / count;
-    const median = medianOf(sorted);
-    const frequencies = new Map();
+    const count = values.length, sum = values.reduce((total, value) => total + value, 0), mean = sum / count;
+    const median = medianOf(sorted), frequencies = new Map();
     values.forEach(value => frequencies.set(value, (frequencies.get(value) || 0) + 1));
     const highestFrequency = Math.max(...frequencies.values());
-    const modes = highestFrequency > 1
-      ? [...frequencies].filter(([, frequency]) => frequency === highestFrequency).map(([value]) => value).sort((a, b) => a - b)
-      : [];
-    const min = sorted[0];
-    const max = sorted[count - 1];
-    const range = max - min;
+    const modes = highestFrequency > 1 ? [...frequencies].filter(([, f]) => f === highestFrequency).map(([v]) => v).sort((a,b)=>a-b) : [];
+    const min = sorted[0], max = sorted[count - 1], range = max - min;
     const squaredDifferences = values.reduce((total, value) => total + (value - mean) ** 2, 0);
-    const populationVariance = squaredDifferences / count;
-    const sampleVariance = count > 1 ? squaredDifferences / (count - 1) : null;
-    const lowerHalf = sorted.slice(0, Math.floor(count / 2));
-    const upperHalf = sorted.slice(Math.ceil(count / 2));
-    const q1 = lowerHalf.length ? medianOf(lowerHalf) : null;
-    const q3 = upperHalf.length ? medianOf(upperHalf) : null;
+    const populationVariance = squaredDifferences / count, sampleVariance = count > 1 ? squaredDifferences / (count - 1) : null;
+    const lowerHalf = sorted.slice(0, Math.floor(count / 2)), upperHalf = sorted.slice(Math.ceil(count / 2));
+    const q1 = lowerHalf.length ? medianOf(lowerHalf) : null, q3 = upperHalf.length ? medianOf(upperHalf) : null;
     const results = [
-      renderStatistic("Cantidad de datos", formatStatistic(count), "Valores ingresados"),
+      renderStatistic("Cantidad de datos", formatStatistic(count), excludeOutliersActive ? "Registros después de excluir atípicos" : "Valores analizados"),
       renderStatistic("Suma", formatStatistic(sum), "Total de todos los valores"),
       renderStatistic("Media", formatStatistic(mean), "Promedio aritmético"),
       renderStatistic("Mediana", formatStatistic(median), "Valor central ordenado"),
@@ -202,160 +181,191 @@
       renderStatistic("Desv. estándar muestral", sampleVariance === null ? "No disponible" : formatStatistic(Math.sqrt(sampleVariance)), "Requiere al menos 2 datos"),
       renderStatistic("Rango intercuartílico", q1 === null || q3 === null ? "No disponible" : formatStatistic(q3 - q1), "Q3 menos Q1"),
       renderStatistic("Coeficiente de variación", mean === 0 ? "No disponible" : formatStatistic(Math.sqrt(populationVariance) / Math.abs(mean) * 100) + " %", "Dispersión relativa respecto a la media"),
-      renderStatistic("Suma de cuadrados", formatStatistic(values.reduce((total, value) => total + value * value, 0)), "Suma de cada valor elevado al cuadrado")
+      renderStatistic("Suma de cuadrados", formatStatistic(values.reduce((total, value) => total + value * value, 0)), "Suma de cada valor al cuadrado")
     ];
     calculatorResults.replaceChildren(...results);
-    const sortedCard = renderStatistic("Datos ordenados", sorted.map(formatStatistic).join("   ·   "), "De menor a mayor");
-    sortedCard.classList.add("stat-result-wide");
-    calculatorResults.appendChild(sortedCard);
-    lastAnalysis = { values: [...values], sorted, count, min, max, q1, q3 };
+    const sortedCard = renderStatistic("Datos ordenados", sorted.map(formatStatistic).join(" · "), "De menor a mayor");
+    sortedCard.classList.add("stat-result-wide"); calculatorResults.appendChild(sortedCard);
+    lastAnalysis = { values, originalValues, sorted, count, min, max, q1, q3, mean, median, populationVariance, sampleVariance };
     renderUnlockedFeatures();
   }
-
+  function findOutliers(values) {
+    const sorted = [...values].sort((a,b)=>a-b);
+    if (sorted.length < 2) return { values: [], q1: null, q3: null, lower: null, upper: null, iqr: null };
+    const q1 = medianOf(sorted.slice(0, Math.floor(sorted.length / 2)));
+    const q3 = medianOf(sorted.slice(Math.ceil(sorted.length / 2)));
+    const iqr = q3 - q1, lower = q1 - 1.5 * iqr, upper = q3 + 1.5 * iqr;
+    return { values: sorted.filter(value => value < lower || value > upper), q1, q3, lower, upper, iqr };
+  }
   function makeFrequencyBins(analysis) {
-    const k = Math.max(1, Math.min(20, Math.ceil(1 + 3.322 * Math.log10(analysis.count))));
+    const input = document.getElementById("frequencyBins");
+    const requested = input ? Number(input.value) : 0;
+    const k = Number.isInteger(requested) && requested >= 1 && requested <= 50 ? requested : Math.max(1, Math.min(20, Math.ceil(1 + 3.322 * Math.log10(analysis.count))));
     const width = analysis.max === analysis.min ? 1 : (analysis.max - analysis.min) / k;
-    const bins = Array.from({ length: k }, (_, index) => ({
-      start: analysis.min + index * width,
-      end: index === k - 1 ? analysis.max : analysis.min + (index + 1) * width,
-      count: 0
-    }));
+    const bins = Array.from({length:k}, (_,i)=>({start:analysis.min+i*width,end:i===k-1?analysis.max:analysis.min+(i+1)*width,count:0}));
     analysis.values.forEach(value => {
-      const index = analysis.max === analysis.min ? 0 : Math.min(k - 1, Math.floor((value - analysis.min) / width));
+      const index = analysis.max === analysis.min ? 0 : Math.min(k-1,Math.floor((value-analysis.min)/width));
       bins[index].count++;
     });
+    let cumulative = 0;
+    bins.forEach(bin => { cumulative += bin.count; bin.cumulative = cumulative; bin.relative = bin.count / analysis.count; });
     return bins;
   }
-
+  function makeSvg(width, height, label) {
+    const ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns,"svg");
+    svg.setAttribute("viewBox","0 0 "+width+" "+height); svg.setAttribute("role","img"); svg.setAttribute("aria-label",label); svg.classList.add("learning-svg"); return svg;
+  }
+  function svgNode(svg, name, attrs, text) {
+    const node = document.createElementNS("http://www.w3.org/2000/svg",name);
+    Object.entries(attrs || {}).forEach(([key,value])=>node.setAttribute(key,String(value)));
+    if (text !== undefined) node.textContent = text;
+    svg.appendChild(node); return node;
+  }
   function renderFrequencyTable(analysis) {
-    const target = document.getElementById("frequencyTable");
-    if (!target) return;
-    const bins = makeFrequencyBins(analysis);
-    const table = document.createElement("table");
-    table.className = "learning-frequency-table";
-    const headers = ["Intervalo", "Frecuencia", "Relativa", "Acumulada"];
-    const thead = document.createElement("thead");
-    const headRow = document.createElement("tr");
-    headers.forEach(label => { const th = document.createElement("th"); th.textContent = label; headRow.appendChild(th); });
-    thead.appendChild(headRow);
-    const tbody = document.createElement("tbody");
-    let cumulative = 0;
-    bins.forEach((bin, index) => {
-      cumulative += bin.count;
-      const row = document.createElement("tr");
-      const endLabel = index === bins.length - 1 ? "]" : ")";
-      const cells = [
-        "[" + formatStatistic(bin.start) + ", " + formatStatistic(bin.end) + endLabel,
-        String(bin.count),
-        formatStatistic(bin.count / analysis.count * 100) + "%",
-        String(cumulative)
-      ];
-      cells.forEach(value => { const td = document.createElement("td"); td.textContent = value; row.appendChild(td); });
-      tbody.appendChild(row);
-    });
-    table.append(thead, tbody);
-    target.replaceChildren(table);
+    const target = document.getElementById("frequencyTable"); if (!target) return;
+    const bins = makeFrequencyBins(analysis), table = document.createElement("table"); table.className = "learning-frequency-table";
+    const thead = document.createElement("thead"), head = document.createElement("tr");
+    ["Intervalo","Frecuencia absoluta (fi)","Frecuencia relativa (hi)","Acumulada (Fi)","Porcentaje"].forEach(label=>{const th=document.createElement("th");th.textContent=label;head.appendChild(th);});
+    thead.appendChild(head); const tbody=document.createElement("tbody");
+    bins.forEach((bin,index)=>{const row=document.createElement("tr");const end=index===bins.length-1?"]":")";
+      ["["+formatStatistic(bin.start)+", "+formatStatistic(bin.end)+end,String(bin.count),formatStatistic(bin.relative),String(bin.cumulative),formatStatistic(bin.relative*100)+"%"].forEach(value=>{const td=document.createElement("td");td.textContent=value;row.appendChild(td);});tbody.appendChild(row);});
+    table.append(thead,tbody); target.replaceChildren(table);
   }
-
-  function renderHistogram(analysis) {
-    const target = document.getElementById("dataHistogram");
-    if (!target) return;
-    const bins = makeFrequencyBins(analysis);
-    const maxFrequency = Math.max(1, ...bins.map(bin => bin.count));
-    const chart = document.createElement("div");
-    chart.className = "learning-histogram";
-    bins.forEach((bin, index) => {
-      const item = document.createElement("div");
-      item.className = "histogram-bin";
-      const count = document.createElement("strong");
-      count.textContent = String(bin.count);
-      const track = document.createElement("div");
-      track.className = "histogram-track";
-      const bar = document.createElement("span");
-      bar.style.width = (bin.count / maxFrequency * 100) + "%";
-      track.appendChild(bar);
-      const label = document.createElement("small");
-      label.textContent = formatStatistic(bin.start) + (index === bins.length - 1 ? "–" + formatStatistic(bin.end) : "");
-      item.append(count, track, label);
-      chart.appendChild(item);
-    });
-    target.replaceChildren(chart);
+  function renderHistogram(analysis,bins) {
+    const target=document.getElementById("dataHistogram"); if(!target)return;
+    const max=Math.max(1,...bins.map(b=>b.count)),svg=makeSvg(620,220,"Histograma de frecuencias"),left=42,base=175,plotW=550,barW=plotW/bins.length;
+    svgNode(svg,"line",{x1:left,y1:base,x2:600,y2:base,class:"chart-axis"});
+    bins.forEach((bin,i)=>{const h=bin.count/max*135,x=left+i*barW+1;svgNode(svg,"rect",{x,y:base-h,width:Math.max(1,barW-2),height:h,rx:2,class:"chart-bar"});svgNode(svg,"text",{x:x+barW/2,y:base+17,"text-anchor":"middle",class:"chart-label"},formatStatistic(bin.start));svgNode(svg,"text",{x:x+barW/2,y:base-h-5,"text-anchor":"middle",class:"chart-value"},String(bin.count));});
+    target.replaceChildren(svg);
   }
-
+  function renderFrequencyBars(analysis,bins) {
+    const target=document.getElementById("frequencyBars");if(!target)return;
+    const max=Math.max(1,...bins.map(b=>b.count)),svg=makeSvg(620,220,"Gráfica de barras de frecuencias");
+    bins.forEach((bin,i)=>{const y=12+i* Math.min(35,195/bins.length),w=bin.count/max*450;svgNode(svg,"text",{x:5,y:y+14,class:"chart-label"},formatStatistic(bin.start));svgNode(svg,"rect",{x:105,y,width:w,height:22,rx:3,class:"chart-bar"});svgNode(svg,"text",{x:112+w,y:y+15,class:"chart-value"},String(bin.count));});
+    target.replaceChildren(svg);
+  }
+  function renderFrequencyPolygon(analysis,bins) {
+    const target=document.getElementById("frequencyPolygon");if(!target)return;
+    const max=Math.max(1,...bins.map(b=>b.count)),svg=makeSvg(620,220,"Polígono de frecuencias"),points=bins.map((bin,i)=>({x:45+(i+.5)*530/bins.length,y:178-bin.count/max*140}));
+    svgNode(svg,"line",{x1:40,y1:180,x2:590,y2:180,class:"chart-axis"});
+    svgNode(svg,"polyline",{points:points.map(p=>p.x+","+p.y).join(" "),class:"chart-line",fill:"none"});
+    points.forEach((p,i)=>{svgNode(svg,"circle",{cx:p.x,cy:p.y,r:4,class:"chart-dot"});svgNode(svg,"text",{x:p.x,y:198,"text-anchor":"middle",class:"chart-label"},formatStatistic((bins[i].start+bins[i].end)/2));});
+    target.replaceChildren(svg);
+  }
+  function renderBoxPlot(analysis) {
+    const target=document.getElementById("boxPlot");if(!target)return;
+    const out=findOutliers(analysis.values),min=analysis.min,max=analysis.max,span=max-min||1,scale=v=>35+(v-min)/span*540,svg=makeSvg(620,150,"Diagrama de caja y bigotes");
+    const y=72;svgNode(svg,"line",{x1:scale(min),y1:y,x2:scale(max),y2:y,class:"chart-line"});
+    [min,max].forEach(v=>svgNode(svg,"line",{x1:scale(v),x2:scale(v),y1:y-12,y2:y+12,class:"chart-axis"}));
+    if(out.q1!==null){svgNode(svg,"rect",{x:scale(out.q1),y:y-24,width:Math.max(2,scale(out.q3)-scale(out.q1)),height:48,rx:3,class:"chart-box"});svgNode(svg,"line",{x1:scale(analysis.median),x2:scale(analysis.median),y1:y-24,y2:y+24,class:"chart-median"});}
+    [min,out.q1,analysis.median,out.q3,max].filter(Number.isFinite).forEach(v=>svgNode(svg,"text",{x:scale(v),y:115,"text-anchor":"middle",class:"chart-label"},formatStatistic(v)));
+    out.values.forEach(v=>svgNode(svg,"circle",{cx:scale(v),cy:y,r:5,class:"chart-outlier"}));
+    target.replaceChildren(svg);
+  }
   function renderOutliers(analysis) {
-    const target = document.getElementById("outlierResults");
-    if (!target) return;
-    if (analysis.q1 === null || analysis.q3 === null) {
-      target.textContent = "Se necesitan al menos dos datos para calcular los cuartiles.";
-      return;
-    }
-    const iqr = analysis.q3 - analysis.q1;
-    const lower = analysis.q1 - 1.5 * iqr;
-    const upper = analysis.q3 + 1.5 * iqr;
-    const outliers = analysis.sorted.filter(value => value < lower || value > upper);
-    const summary = document.createElement("p");
-    summary.textContent = "Límites de referencia: " + formatStatistic(lower) + " a " + formatStatistic(upper) + ". Rango intercuartílico: " + formatStatistic(iqr) + ".";
-    const result = document.createElement("strong");
-    result.className = "outlier-count";
-    result.textContent = outliers.length + (outliers.length === 1 ? " posible valor atípico" : " posibles valores atípicos");
-    const values = document.createElement("p");
-    values.textContent = outliers.length ? "Valores para revisar: " + outliers.map(formatStatistic).join(", ") : "No se detectaron valores fuera de los límites con este criterio.";
-    const note = document.createElement("small");
-    note.textContent = "La detección es una alerta para investigar; no significa que debas borrar esos registros.";
-    target.replaceChildren(summary, result, values, note);
+    const target=document.getElementById("outlierResults");if(!target)return;
+    const info=findOutliers(analysis.originalValues);
+    const p=document.createElement("p");p.textContent=info.iqr===null?"Se necesitan al menos dos datos para calcular los cuartiles.":"Límites: "+formatStatistic(info.lower)+" a "+formatStatistic(info.upper)+". RIC: "+formatStatistic(info.iqr)+".";
+    const strong=document.createElement("strong");strong.className="outlier-count";strong.textContent=info.values.length+(info.values.length===1?" posible valor atípico":" posibles valores atípicos");
+    const vals=document.createElement("p");vals.textContent=info.values.length?"Valores a revisar: "+info.values.map(formatStatistic).join(", "):"No se detectaron valores fuera de los límites.";
+    const note=document.createElement("small");note.textContent="Se muestran todas las apariciones. Investiga cada caso antes de excluirlo; un atípico puede ser válido.";
+    target.replaceChildren(p,strong,vals,note);
   }
-
   function renderUnlockedFeatures() {
-    const frequency = document.querySelector('[data-feature-output="frequency"]');
-    const histogram = document.querySelector('[data-feature-output="histogram"]');
-    const outliers = document.querySelector('[data-feature-output="outliers"]');
-    if (frequency) frequency.hidden = calculatorLevel < 2;
-    if (histogram) histogram.hidden = calculatorLevel < 3;
-    if (outliers) outliers.hidden = calculatorLevel < 4;
-    if (!lastAnalysis) return;
-    if (calculatorLevel >= 2) renderFrequencyTable(lastAnalysis);
-    if (calculatorLevel >= 3) renderHistogram(lastAnalysis);
-    if (calculatorLevel >= 4) renderOutliers(lastAnalysis);
+    const cards=[...document.querySelectorAll("[data-stage-card]")];
+    cards.forEach(card=>{card.hidden=Number(card.dataset.stageCard)>calculatorLevel;});
+    if(!lastAnalysis)return;
+    if(calculatorLevel>=2)renderFrequencyTable(lastAnalysis);
+    if(calculatorLevel>=3){const bins=makeFrequencyBins(lastAnalysis);renderHistogram(lastAnalysis,bins);renderFrequencyBars(lastAnalysis,bins);renderFrequencyPolygon(lastAnalysis,bins);renderBoxPlot(lastAnalysis);}
+    if(calculatorLevel>=4)renderOutliers(lastAnalysis);
   }
-
   function renderCalculatorProgress() {
-    const titles = ["Estadística descriptiva", "Distribución y frecuencias", "Visualización de datos", "Detección de valores atípicos"];
-    const level = document.getElementById("calculatorLevel");
-    const label = document.getElementById("calculatorLevelText");
-    const fill = document.getElementById("calculatorLearningFill");
-    const cards = [...document.querySelectorAll("[data-stage-card]")];
-    const buttons = [...document.querySelectorAll("[data-complete-stage]")];
-    if (level) level.textContent = "Nivel " + calculatorLevel + " de 4";
-    if (label) label.textContent = calculatorRouteDone ? "Ruta completada" : titles[calculatorLevel - 1];
-    if (fill) fill.style.width = ((calculatorLevel - 1) / 3 * 100) + "%";
-    cards.forEach(card => { card.hidden = Number(card.dataset.stageCard) > calculatorLevel; });
-    buttons.forEach(button => {
-      const stage = Number(button.dataset.completeStage);
-      button.hidden = stage !== calculatorLevel;
-      button.disabled = stage === 4 && calculatorRouteDone;
-      if (stage === 4 && calculatorRouteDone) button.textContent = "Ruta completada ✓";
+    const titles=["Estadística descriptiva","Tabla de frecuencias","Gráficas automáticas","Valores atípicos","Limpieza de datos","Análisis de dos variables","Modo aprendizaje"];
+    const level=document.getElementById("calculatorLevel"),label=document.getElementById("calculatorLevelText"),fill=document.getElementById("calculatorLearningFill");
+    if(level)level.textContent="Nivel "+calculatorLevel+" de 7";
+    if(label)label.textContent=calculatorRouteDone?"Laboratorio completado":titles[calculatorLevel-1];
+    if(fill)fill.style.width=(calculatorRouteDone?100:(calculatorLevel-1)/6*100)+"%";
+    document.querySelectorAll("[data-stage-card]").forEach(card=>{card.hidden=Number(card.dataset.stageCard)>calculatorLevel;});
+    document.querySelectorAll("[data-complete-stage]").forEach(button=>{
+      const stage=Number(button.dataset.completeStage);button.hidden=stage!==calculatorLevel;button.disabled=stage===7&&calculatorRouteDone;
+      if(stage===7&&calculatorRouteDone)button.textContent="Laboratorio completado ✓";
     });
     renderUnlockedFeatures();
   }
+  document.querySelectorAll("[data-complete-stage]").forEach(button=>button.addEventListener("click",()=>{
+    if(Number(button.dataset.completeStage)!==calculatorLevel)return;
+    if(calculatorLevel<7)calculatorLevel++;else calculatorRouteDone=true;
+    try{localStorage.setItem(CALCULATOR_LEVEL_KEY,String(calculatorLevel));if(calculatorRouteDone)localStorage.setItem("datos-desde-cero-calculator-done-v1","true");}catch(error){console.warn("No fue posible guardar el progreso.",error);}
+    renderCalculatorProgress();const next=document.querySelector('[data-stage-card="'+calculatorLevel+'"]');if(next)next.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }));
+  renderCalculatorProgress();
 
-  document.querySelectorAll("[data-complete-stage]").forEach(button => {
-    button.addEventListener("click", () => {
-      const stage = Number(button.dataset.completeStage);
-      if (stage !== calculatorLevel) return;
-      if (calculatorLevel < 4) calculatorLevel++;
-      else calculatorRouteDone = true;
-      try {
-        localStorage.setItem(CALCULATOR_LEVEL_KEY, String(calculatorLevel));
-        if (calculatorRouteDone) localStorage.setItem("datos-desde-cero-calculator-done-v1", "true");
+  const updateFrequencyButton=document.getElementById("updateFrequencyBins");
+  if(updateFrequencyButton)updateFrequencyButton.addEventListener("click",()=>{if(lastAnalysis)renderFrequencyTable(lastAnalysis);});
+  const applyOutlierButton=document.getElementById("applyOutlierChoice");
+  if(applyOutlierButton)applyOutlierButton.addEventListener("click",()=>{excludeOutliersActive=!!document.getElementById("excludeOutliers")?.checked;calculateData();});
+  const qualityButton=document.getElementById("inspectDataQuality"),qualityTarget=document.getElementById("dataQualityReport");
+  function inspectQuality() {
+    if(!qualityTarget||!dataValuesInput)return;
+    const raw=dataValuesInput.value,parts=raw.split(/[,;\\n\\r]+/).map(v=>v.trim()),nonempty=parts.filter(Boolean),blank=parts.filter(v=>!v).length;
+    const numeric=nonempty.filter(v=>Number.isFinite(Number(v))),invalid=nonempty.filter(v=>!Number.isFinite(Number(v)));
+    const counts=new Map();numeric.forEach(v=>counts.set(v,(counts.get(v)||0)+1));
+    const duplicates=[...counts].filter(([,n])=>n>1).reduce((sum,[,n])=>sum+n-1,0);
+    const report=document.createElement("div");report.className="quality-metrics";
+    [["Registros no vacíos",nonempty.length],["Campos vacíos detectados",blank],["Entradas no numéricas",invalid.length],["Registros duplicados",duplicates]].forEach(([label,value])=>{const item=document.createElement("p");item.textContent=label+": "+value;report.appendChild(item);});
+    if(invalid.length){const detail=document.createElement("p");detail.textContent="Entradas a revisar: "+invalid.slice(0,12).join(", ")+(invalid.length>12?"…":"");report.appendChild(detail);}
+    if(importedRows!==null){const note=document.createElement("p");note.textContent="Archivo importado: "+importedRows+" filas de datos leídas de la primera columna numérica.";report.appendChild(note);}
+    qualityTarget.replaceChildren(report);
+  }
+  if(qualityButton)qualityButton.addEventListener("click",inspectQuality);
+  const removeDuplicatesButton=document.getElementById("removeDuplicates");
+  if(removeDuplicatesButton)removeDuplicatesButton.addEventListener("click",()=>{
+    if(!dataValuesInput)return;const tokens=dataValuesInput.value.trim().split(/[\\s,;]+/).filter(Boolean),seen=new Set(),unique=[];
+    tokens.forEach(token=>{const number=Number(token);const key=Number.isFinite(number)?String(number):"invalid:"+token;if(!seen.has(key)){seen.add(key);unique.push(token);}});
+    const removed=tokens.length-unique.length;dataValuesInput.value=unique.join(", ");inspectQuality();if(removed&&calculatorError){calculatorError.textContent="Se eliminaron "+removed+" registros duplicados. Revisa y vuelve a calcular.";calculatorError.hidden=false;}calculateData();
+  });
+  const dataFileInput=document.getElementById("dataFile");
+  if(dataFileInput)dataFileInput.addEventListener("change",async()=>{
+    const file=dataFileInput.files&&dataFileInput.files[0];if(!file)return;
+    try{
+      let rows=[];
+      if(/\\.xlsx?$/i.test(file.name)){
+        if(!window.XLSX)throw new Error("No se pudo cargar el lector Excel. Guarda el archivo como CSV e inténtalo de nuevo.");
+        const buffer=await file.arrayBuffer(),workbook=XLSX.read(buffer,{type:"array"}),sheet=workbook.Sheets[workbook.SheetNames[0]];
+        rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:""});
+      }else{
+        const text=await file.text();rows=text.replace(/^\\uFEFF/,"").split(/\\r?\\n/).filter(Boolean).map(line=>line.split(","));
       }
-      catch (error) { console.warn("No fue posible guardar el nivel de la calculadora.", error); }
-      renderCalculatorProgress();
-      const next = document.querySelector('[data-stage-card="' + calculatorLevel + '"]');
-      if (next) next.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
+      importedRows=Math.max(0,rows.length-1);
+      const candidates=rows.slice(1).map(row=>row.find(cell=>String(cell??"").trim()!=="")).filter(v=>v!==undefined);
+      const numeric=candidates.map(v=>Number(String(v).trim())).filter(Number.isFinite);
+      if(!numeric.length)throw new Error("No encontré una columna numérica en la primera hoja. Usa un archivo con encabezado y una columna numérica.");
+      dataValuesInput.value=numeric.join(", ");excludeOutliersActive=false;calculateData();inspectQuality();
+      if(calculatorError){calculatorError.textContent="Se importaron "+numeric.length+" valores numéricos de "+file.name+". Para archivos con varias variables, selecciona la columna que quieras analizar en una hoja separada.";calculatorError.hidden=false;}
+    }catch(error){if(calculatorError){calculatorError.textContent=error.message||"No fue posible leer el archivo.";calculatorError.hidden=false;}}
   });
 
-  renderCalculatorProgress();
+  function analyzePairs() {
+    const xInput=document.getElementById("variableX"),yInput=document.getElementById("variableY"),target=document.getElementById("bivariateResults"),plot=document.getElementById("scatterPlot");
+    if(!xInput||!yInput||!target||!plot)return;
+    const x=parseNumericInput(xInput.value),y=parseNumericInput(yInput.value);
+    if(!x.length||x.length!==y.length||x.some(v=>!Number.isFinite(v))||y.some(v=>!Number.isFinite(v))){target.textContent="Ingresa dos listas numéricas válidas con exactamente la misma cantidad de valores y en el mismo orden.";return;}
+    if(x.length<2){target.textContent="Se requieren al menos dos pares de observaciones.";return;}
+    const mx=x.reduce((a,b)=>a+b,0)/x.length,my=y.reduce((a,b)=>a+b,0)/y.length;
+    const ssx=x.reduce((s,v)=>s+(v-mx)**2,0),ssy=y.reduce((s,v)=>s+(v-my)**2,0),cross=x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0);
+    const covariance=cross/(x.length-1),pearson=ssx&&ssy?cross/Math.sqrt(ssx*ssy):null,slope=ssx?cross/ssx:null,intercept=slope===null?null:my-slope*mx,r2=pearson===null?null:pearson**2;
+    const cards=[["Pares",x.length],["Covarianza muestral",formatStatistic(covariance)],["Correlación de Pearson (r)",pearson===null?"No definida":formatStatistic(pearson)],["Pendiente (b)",slope===null?"No definida":formatStatistic(slope)],["Intercepto (a)",intercept===null?"No definida":formatStatistic(intercept)],["Coeficiente R²",r2===null?"No definido":formatStatistic(r2)]];
+    const wrapper=document.createElement("div");wrapper.className="pair-results";
+    cards.forEach(([label,value])=>{const p=document.createElement("p");p.textContent=label+": "+value;wrapper.appendChild(p);});
+    const interpretation=document.createElement("p");interpretation.textContent=pearson===null?"La correlación no se define si alguna variable no tiene variación.":Math.abs(pearson)<.3?"Relación lineal débil en esta muestra.":Math.abs(pearson)<.7?"Relación lineal moderada en esta muestra.":"Relación lineal fuerte en esta muestra.";wrapper.appendChild(interpretation);
+    const equation=document.createElement("p");equation.textContent=slope===null?"No se puede ajustar una recta.":"Modelo: ŷ = "+formatStatistic(intercept)+" + ("+formatStatistic(slope)+")X";wrapper.appendChild(equation);target.replaceChildren(wrapper);
+    const svg=makeSvg(620,300,"Diagrama de dispersión de X y Y"),xmin=Math.min(...x),xmax=Math.max(...x),ymin=Math.min(...y),ymax=Math.max(...y),sx=v=>45+(v-xmin)/(xmax-xmin||1)*535,sy=v=>255-(v-ymin)/(ymax-ymin||1)*220;
+    svgNode(svg,"line",{x1:45,y1:255,x2:590,y2:255,class:"chart-axis"});svgNode(svg,"line",{x1:45,y1:20,x2:45,y2:255,class:"chart-axis"});
+    x.forEach((v,i)=>svgNode(svg,"circle",{cx:sx(v),cy:sy(y[i]),r:5,class:"chart-dot"}));
+    if(slope!==null){const y1=intercept+slope*xmin,y2=intercept+slope*xmax;svgNode(svg,"line",{x1:sx(xmin),y1:sy(y1),x2:sx(xmax),y2:sy(y2),class:"chart-regression"});}
+    plot.replaceChildren(svg);
+  }
+  const pairButton=document.getElementById("analyzePairs");if(pairButton)pairButton.addEventListener("click",analyzePairs);
 
   if (exportExcelButton) exportExcelButton.addEventListener("click", () => {
     if (!dataValuesInput || !calculatorResults || !calculatorError) return;
