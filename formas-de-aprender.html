@@ -1,45 +1,108 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Métodos activos para aprender Ciencia de Datos con misiones, laboratorios, proyectos, retos y portafolio, alineados al plan de estudios UNAM 2019.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Guía paso a paso para aprender Ciencia de Datos desde cero con explicaciones sencillas, práctica, proyectos y evidencias.">
 <meta name="theme-color" content="#101827">
-<title>Laboratorio de aprendizaje | Data Quest</title>
+<title>Aprende paso a paso | Data Quest</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-.learn-hero,.learn-wrap{max-width:1160px;margin:auto}.learn-hero{padding:58px 0 28px}.learn-hero h1{font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-2px;margin:12px 0}.learn-hero h1 span{color:var(--cyan)}.learn-hero p{max-width:850px;color:var(--muted);line-height:1.8}.learn-wrap{padding:10px 0 75px}.learn-section{margin:18px 0 26px;padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.learn-section h2{font-size:23px;margin:0 0 10px}.learn-section>p{font-size:13px;color:var(--muted);line-height:1.8}.method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.method-card{background:linear-gradient(145deg,#172741,#101a2b);border:1px solid #344968;border-radius:10px;padding:19px}.method-card .num{font:12px 'DM Mono',monospace;color:var(--cyan)}.method-card h3{font-size:16px;margin:8px 0}.method-card p,.method-card li{font-size:12px;color:#b9c8dc;line-height:1.75}.method-card ul{padding-left:18px;margin-bottom:0}.method-card .deliver{display:block;margin-top:12px;padding-top:10px;border-top:1px solid #344968;color:var(--green);font:10px 'DM Mono',monospace}.sequence{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;counter-reset:step}.sequence article{padding:15px;background:#0d1828;border:1px solid #2a3b52;border-radius:9px}.sequence article b{display:block;color:var(--cyan);font:11px 'DM Mono',monospace;margin-bottom:7px}.sequence article p{font-size:11px;color:var(--muted);margin:0;line-height:1.65}.challenge{background:#0d1828;border:1px solid #2a3b52;border-radius:10px;padding:18px;margin-top:12px}.challenge h3{margin:0 0 7px;font-size:15px}.challenge p,.challenge li{font-size:12px;color:#bdcbe0;line-height:1.8}.challenge ul{padding-left:18px}.rubric{width:100%;border-collapse:collapse;font-size:12px}.rubric th,.rubric td{text-align:left;padding:10px;border-bottom:1px solid #2b3d5a}.rubric th{color:var(--cyan);font-family:'DM Mono',monospace;font-size:10px}.rubric td{color:#c4d1e3}.note{border-left:3px solid var(--cyan);padding:13px 16px;background:#15283a;color:#c9d7e7;font-size:12px;line-height:1.8;margin-top:18px}
-@media(max-width:1200px){.learn-hero,.learn-wrap{margin-left:5.5%;margin-right:5.5%}}@media(max-width:760px){.method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sequence{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.method-grid,.sequence{grid-template-columns:1fr}.learn-section{padding:17px}}
-</style></head>
+:root{scroll-behavior:smooth}.guide-hero,.guide-main{width:min(1080px,89%);margin:auto}.guide-hero{padding:54px 0 30px}.guide-hero h1{font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;letter-spacing:-.045em;margin:14px 0}.guide-hero h1 em{font-style:normal;color:var(--cyan)}.guide-hero>p{max-width:760px;color:var(--muted);font-size:1rem;line-height:1.85}.guide-kicker,.step-tag{font: .72rem 'DM Mono',monospace;letter-spacing:.09em;color:var(--cyan)}.guide-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.guide-main{padding:8px 0 76px}.guide-block{padding:clamp(18px,3vw,30px);margin:18px 0;background:var(--panel);border:1px solid var(--line);border-radius:15px}.guide-block h2{font-size:clamp(1.35rem,2.6vw,1.8rem);margin:7px 0 10px;letter-spacing:-.02em}.guide-block>p,.guide-block li{color:var(--muted);line-height:1.8;font-size:.94rem}.lead{max-width:780px}.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:20px}.path-card{padding:18px;border:1px solid var(--line);border-radius:12px;background:#101c2d}.path-card .n{font: .72rem 'DM Mono',monospace;color:var(--cyan)}.path-card h3{font-size:1.05rem;margin:10px 0 7px}.path-card p{font-size:.85rem;line-height:1.7;color:var(--muted);margin:0}.path-card a{display:inline-block;margin-top:13px;color:var(--cyan);font-size:.83rem}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:18px}.step{padding:14px;border:1px solid var(--line);border-radius:10px;background:#101c2d}.step b{display:block;color:var(--cyan);font: .72rem 'DM Mono',monospace;margin-bottom:7px}.step p{font-size:.8rem;line-height:1.65;color:var(--muted);margin:0}.method-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.method{padding:17px;border:1px solid var(--line);border-radius:11px;background:#101c2d}.method h3{margin:0 0 6px;font-size:1rem}.method p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.7}.method small{display:block;color:var(--cyan);font: .7rem 'DM Mono',monospace;margin-top:10px}.example{margin-top:15px;padding:18px;border-radius:11px;background:#0d1928;border:1px solid #2b405a}.example h3{margin:0 0 7px;font-size:1rem}.example p,.example li{font-size:.88rem;line-height:1.75;color:#c1cee0}.example ol,.example ul{padding-left:20px}.checklist{list-style:none;padding:0!important;margin:14px 0 0}.checklist li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}.checklist li:last-child{border:0}.checklist input{margin-top:5px;accent-color:#55c5d9;flex:none}.callout{margin-top:16px;padding:14px 16px;border-left:3px solid var(--cyan);background:#14283a;border-radius:0 9px 9px 0;color:#d0deec;font-size:.87rem;line-height:1.75}.terms{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.term{padding:13px;border:1px solid var(--line);border-radius:9px}.term b{color:var(--cyan);font-size:.9rem}.term p{margin:5px 0 0;color:var(--muted);font-size:.82rem;line-height:1.6}.final-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.final-links a{color:var(--cyan)}.guide-foot{color:var(--muted);font-size:.78rem;margin-top:20px;line-height:1.7}
+@media(max-width:760px){.path-grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.method-list,.terms{grid-template-columns:1fr}}@media(max-width:420px){.steps{grid-template-columns:1fr}.guide-hero{padding-top:35px}}
+</style>
+</head>
 <body>
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><nav class="nav" style="display:flex"><a href="index.html">Inicio</a><a href="plan-estudios.html">Plan UNAM</a><a href="#metodos">Métodos</a><a href="#proyecto">Proyecto</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<header class="topbar">
+<a class="brand" href="index.html"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+<nav class="nav" id="mainNav"><a href="index.html">Inicio</a><a href="plan-estudios.html">Plan UNAM</a><a href="#ruta">Ruta de aprendizaje</a><a href="#metodos">Cómo estudiar</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">GitHub ↗</a></nav>
+</header>
 <main>
-<section class="learn-hero"><span class="eyebrow">CENTRO DE ENTRENAMIENTO · APRENDIZAJE ACTIVO</span><h1>Aprende haciendo.<br><span>Piensa como científico de datos.</span></h1><p>Esta guía transforma los contenidos del plan de estudios en experiencias prácticas. Cada método combina comprensión, práctica deliberada, retroalimentación y una evidencia concreta de aprendizaje. Los métodos son complementarios: no sustituyen las asignaturas ni sus programas oficiales.</p><div class="action-row"><a class="button button-primary" href="#metodos">Explorar métodos →</a><a class="button button-quiet" href="plan-estudios.html">Consultar plan académico</a></div></section>
-<div class="learn-wrap">
-<section class="learn-section" id="metodos"><div class="meta-line">SEIS FORMAS DE APRENDER</div><h2>Elige una experiencia, no solo un tema</h2><div class="method-grid">
-<article class="method-card"><span class="num">MÉTODO 01 · INVESTIGACIÓN</span><h3>Misiones por problemas</h3><p>Comienza con una pregunta concreta y aprende la teoría necesaria para resolverla. El problema guía el orden del estudio.</p><ul><li>Formula una pregunta medible.</li><li>Identifica qué datos y conceptos necesitas.</li><li>Propón, prueba y justifica una solución.</li></ul><span class="deliver">EVIDENCIA: informe de solución</span></article>
-<article class="method-card"><span class="num">MÉTODO 02 · EXPERIMENTACIÓN</span><h3>Laboratorios de datos</h3><p>Trabaja con datos reales o didácticos en un entorno reproducible y observa cómo cambian los resultados al modificar el proceso.</p><ul><li>Inspecciona y documenta los datos.</li><li>Limpia valores faltantes y duplicados.</li><li>Analiza, visualiza y comunica hallazgos.</li></ul><span class="deliver">EVIDENCIA: notebook reproducible</span></article>
-<article class="method-card"><span class="num">MÉTODO 03 · INTEGRACIÓN</span><h3>Proyectos por etapas</h3><p>Une conocimientos de varias materias para crear un producto completo, desde la pregunta inicial hasta la presentación de resultados.</p><ul><li>Divide el trabajo en entregas pequeñas.</li><li>Registra decisiones y versiones.</li><li>Valida resultados antes de presentar.</li></ul><span class="deliver">EVIDENCIA: proyecto funcional</span></article>
-<article class="method-card"><span class="num">MÉTODO 04 · PRÁCTICA</span><h3>Retos de programación</h3><p>Resuelve problemas breves con dificultad gradual. Primero predice qué hará el código; después ejecútalo, depúralo y explica el resultado.</p><ul><li>Reto guiado con ejemplo.</li><li>Reto independiente sin copiar.</li><li>Pruebas con casos normales y extremos.</li></ul><span class="deliver">EVIDENCIA: código y pruebas</span></article>
-<article class="method-card"><span class="num">MÉTODO 05 · RECUPERACIÓN</span><h3>Aprender enseñando</h3><p>Explica una idea sin consultar apuntes, crea un ejemplo propio y diseña una pregunta para que otra persona compruebe si entendió.</p><ul><li>Explica con tus propias palabras.</li><li>Incluye un ejemplo y un contraejemplo.</li><li>Corrige vacíos al revisar la explicación.</li></ul><span class="deliver">EVIDENCIA: mini lección o glosario</span></article>
-<article class="method-card"><span class="num">MÉTODO 06 · REFLEXIÓN</span><h3>Portafolio de evidencias</h3><p>Conserva los resultados y registra qué sabes hacer, qué errores corregiste y qué concepto necesitas reforzar.</p><ul><li>Guarda versiones del código.</li><li>Incluye gráficas y conclusiones.</li><li>Escribe una reflexión breve por entrega.</li></ul><span class="deliver">EVIDENCIA: historial de proyectos</span></article>
-</div></section>
-<section class="learn-section"><div class="meta-line">CICLO DE ESTUDIO REUTILIZABLE</div><h2>Una sesión de aprendizaje en cinco movimientos</h2><div class="sequence">
-<article><b>01 · PREGUNTA</b><p>Escribe qué quieres averiguar o qué problema resolverás.</p></article>
-<article><b>02 · COMPRENDE</b><p>Estudia el concepto y explica la idea con tus palabras.</p></article>
-<article><b>03 · PRACTICA</b><p>Resuelve un ejercicio sin copiar la solución.</p></article>
-<article><b>04 · VERIFICA</b><p>Prueba, compara resultados y corrige errores.</p></article>
-<article><b>05 · ENSEÑA</b><p>Entrega una evidencia y explica qué aprendiste.</p></article>
-</div><div class="note"><strong>Regla de dominio:</strong> una lección no se considera terminada solo por haberla leído. Debe existir una explicación propia, una práctica ejecutada y una evidencia verificable.</div></section>
-<section class="learn-section" id="proyecto"><div class="meta-line">PROYECTO INTEGRADOR · DATOS DE LA VIDA COTIDIANA</div><h2>De una pregunta a una conclusión sustentada</h2><p>Proyecto de práctica que conecta programación, bases de datos, probabilidad, estadística, preprocesamiento, visualización y ética. El tema puede cambiarse; el proceso se mantiene.</p>
-<div class="challenge"><h3>Reto: analizar información de mercados y tianguis</h3><p><strong>Pregunta guía:</strong> ¿Cómo se distribuyen los mercados y tianguis por alcaldía y qué patrones se observan en los registros disponibles?</p><ul><li><strong>Fase 1 — Preparar:</strong> define variables, fuente, fecha de consulta y alcance. No inventes registros faltantes.</li><li><strong>Fase 2 — Programar:</strong> carga el archivo con Python, identifica columnas y tipos de datos.</li><li><strong>Fase 3 — Calidad:</strong> detecta duplicados, normaliza nombres de alcaldías y documenta cada corrección.</li><li><strong>Fase 4 — Estadística:</strong> calcula conteos por alcaldía, proporciones y valores faltantes.</li><li><strong>Fase 5 — Visualizar:</strong> crea una gráfica legible y explica qué muestra y qué no permite concluir.</li><li><strong>Fase 6 — Comunicar:</strong> presenta hallazgos, limitaciones, código y recomendaciones basadas únicamente en evidencia.</li></ul><p><strong>Entregables:</strong> archivo limpio, diccionario de datos, código reproducible, tabla estadística, gráfica y reporte de una página.</p></div>
+<section class="guide-hero">
+<span class="guide-kicker">GUÍA PARA PRINCIPIANTES · APRENDE A TU RITMO</span>
+<h1>Aprender Ciencia de Datos<br><em>paso a paso y sin perderte.</em></h1>
+<p>No necesitas saber programar para comenzar. Esta guía te acompaña desde las primeras ideas hasta proyectos donde podrás usar datos para responder preguntas. Avanza en orden, practica cada concepto y conserva lo que construyas.</p>
+<div class="guide-actions"><a class="button button-primary" href="#ruta">Comenzar la guía →</a><a class="button button-quiet" href="plan-estudios.html">Consultar plan académico</a></div>
 </section>
-<section class="learn-section"><div class="meta-line">VINCULACIÓN CON EL PLAN ACADÉMICO</div><h2>Los métodos acompañan las etapas</h2><div class="method-grid">
-<article class="method-card"><h3>Etapa básica · 1.º–4.º</h3><p>Construye fundamentos con retos cortos, ejercicios explicados y bitácoras de conceptos. Refuerza las materias de la carrera de origen correspondiente.</p><span class="deliver">PRÁCTICA: ejercicios y mini programas</span></article>
-<article class="method-card"><h3>Etapa intermedia · 5.º–7.º</h3><p>Integra programación, matemáticas, bases de datos, probabilidad, estadística y aprendizaje de máquinas mediante laboratorios y proyectos por equipos o individuales.</p><span class="deliver">PRÁCTICA: análisis reproducibles</span></article>
-<article class="method-card"><h3>Profundización · 8.º</h3><p>Combina optativas, visualización, estadística computacional y ética en un proyecto aplicado con documentación y comunicación pública.</p><span class="deliver">PRÁCTICA: portafolio especializado</span></article>
-</div><div class="note">La vinculación es una propuesta didáctica de este repositorio. No modifica el orden, los créditos ni el carácter oficial de las asignaturas descritas en el plan.</div></section>
-<section class="learn-section"><div class="meta-line">CRITERIOS PARA EVALUAR EL APRENDIZAJE</div><h2>Cómo saber si una actividad quedó bien</h2><table class="rubric"><thead><tr><th>CRITERIO</th><th>EVIDENCIA ESPERADA</th></tr></thead><tbody><tr><td>Comprensión</td><td>Explica el concepto con sus palabras y reconoce cuándo aplica.</td></tr><tr><td>Procedimiento</td><td>El código o cálculo puede repetirse y está documentado.</td></tr><tr><td>Verificación</td><td>Prueba casos, revisa errores y valida los resultados.</td></tr><tr><td>Interpretación</td><td>Distingue los resultados observados de las suposiciones.</td></tr><tr><td>Ética</td><td>Reconoce sesgos, privacidad, límites y posibles impactos.</td></tr><tr><td>Comunicación</td><td>Presenta tablas, gráficas y conclusiones comprensibles.</td></tr></tbody></table></section>
-<section class="learn-section"><div class="meta-line">RECURSOS DEL PROYECTO</div><h2>Continúa tu recorrido</h2><div class="action-row"><a class="button button-primary" href="index.html#python">Practicar Python →</a><a class="button button-quiet" href="plan-estudios.html">Ver materias del plan</a><a class="button button-quiet" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Código fuente en GitHub ↗</a></div></section>
+<div class="guide-main">
+<section class="guide-block" id="ruta">
+<span class="step-tag">01 · EL CAMINO</span><h2>Primero entiende el recorrido</h2>
+<p class="lead">Estudia por niveles. No pases al siguiente solo por terminar una lectura: avanza cuando puedas explicar la idea y resolver un ejercicio sencillo.</p>
+<div class="path-grid">
+<article class="path-card"><span class="n">NIVEL 1 · FUNDAMENTOS</span><h3>Aprende las bases</h3><p>Familiarízate con problemas, datos, lógica, matemáticas y programación. Empieza con ejemplos pequeños y vocabulario claro.</p><a href="index.html#python">Ir a los ejercicios de Python →</a></article>
+<article class="path-card"><span class="n">NIVEL 2 · HERRAMIENTAS</span><h3>Analiza información</h3><p>Practica organización de datos, bases de datos, probabilidad, estadística, limpieza y visualización.</p><a href="plan-estudios.html">Ver materias relacionadas →</a></article>
+<article class="path-card"><span class="n">NIVEL 3 · APLICACIÓN</span><h3>Construye proyectos</h3><p>Integra conocimientos, compara métodos, interpreta resultados y comunica conclusiones con responsabilidad.</p><a href="#proyecto">Ver proyecto guiado →</a></article>
+</div>
+<div class="callout"><strong>Importante:</strong> este recorrido es una propuesta didáctica para aprender. El orden oficial de materias, créditos y requisitos se consulta en el <a href="plan-estudios.html">plan académico</a>. La etapa básica depende de la carrera de origen indicada en el documento de la UNAM.</div>
+</section>
+<section class="guide-block" id="como-usar">
+<span class="step-tag">02 · CÓMO USAR ESTA PLATAFORMA</span><h2>Tu primera sesión, en cinco pasos</h2>
+<p>Usa esta secuencia cada vez que estudies una materia, desde Python hasta estadística.</p>
+<div class="steps">
+<div class="step"><b>1. PREGUNTA</b><p>¿Qué quiero entender o resolver? Escríbelo en una frase.</p></div>
+<div class="step"><b>2. APRENDE</b><p>Lee la explicación y anota tres ideas importantes.</p></div>
+<div class="step"><b>3. PRACTICA</b><p>Haz el ejercicio por tu cuenta antes de mirar la solución.</p></div>
+<div class="step"><b>4. COMPRUEBA</b><p>Ejecuta, revisa el resultado y corrige los errores.</p></div>
+<div class="step"><b>5. EXPLICA</b><p>Resume qué hiciste y guarda tu evidencia.</p></div>
+</div>
+<ul class="checklist">
+<li><input type="checkbox" disabled><span>Entiendo qué pregunta intenta responder el tema.</span></li>
+<li><input type="checkbox" disabled><span>Puedo explicar el concepto con mis propias palabras.</span></li>
+<li><input type="checkbox" disabled><span>Resolví un ejercicio sin copiarlo.</span></li>
+<li><input type="checkbox" disabled><span>Revisé el resultado y guardé mi trabajo.</span></li>
+</ul>
+<p class="guide-foot">La lista es una referencia para revisar tu aprendizaje; las casillas son una guía visual y no guardan progreso.</p>
+</section>
+<section class="guide-block" id="metodos">
+<span class="step-tag">03 · DIFERENTES FORMAS DE APRENDER</span><h2>Combina métodos para comprender mejor</h2>
+<p>No todas las personas aprenden igual. Alterna estas actividades; cada una desarrolla una habilidad distinta.</p>
+<div class="method-list">
+<article class="method"><h3>Resolver una misión</h3><p>Parte de una pregunta real. Busca qué información necesitas, plantea una solución y justifica tus decisiones.</p><small>ENTRENAS: pensamiento crítico</small></article>
+<article class="method"><h3>Explorar un laboratorio</h3><p>Abre un conjunto de datos, observa sus columnas, encuentra errores y crea una tabla o gráfica.</p><small>ENTRENAS: análisis y experimentación</small></article>
+<article class="method"><h3>Practicar con retos cortos</h3><p>Resuelve ejercicios de dificultad gradual. Cambia un dato, prueba otro caso y observa cómo cambia el resultado.</p><small>ENTRENAS: programación y precisión</small></article>
+<article class="method"><h3>Enseñar lo aprendido</h3><p>Explica el tema a una persona imaginaria o real, usando un ejemplo cotidiano y palabras sencillas.</p><small>ENTRENAS: comprensión y comunicación</small></article>
+<article class="method"><h3>Crear un proyecto</h3><p>Une varias herramientas para responder una pregunta completa. Divide el trabajo en entregas pequeñas.</p><small>ENTRENAS: integración de conocimientos</small></article>
+<article class="method"><h3>Construir tu portafolio</h3><p>Guarda ejercicios, código, gráficas, decisiones, errores corregidos y conclusiones.</p><small>ENTRENAS: autonomía y seguimiento</small></article>
+</div>
+</section>
+<section class="guide-block" id="proyecto">
+<span class="step-tag">04 · PRÁCTICA GUIADA</span><h2>Proyecto: conocer los mercados y tianguis</h2>
+<p>Un ejemplo cercano para practicar Ciencia de Datos. La pregunta es: <strong>¿cómo se distribuyen los mercados y tianguis registrados por alcaldía?</strong></p>
+<div class="example"><h3>Realiza el proyecto en seis etapas</h3><ol>
+<li><strong>Define:</strong> escribe la pregunta y delimita qué registros vas a estudiar.</li>
+<li><strong>Consigue:</strong> utiliza una fuente de datos identificable y anota su procedencia y fecha.</li>
+<li><strong>Revisa:</strong> identifica columnas, tipos de datos, valores vacíos y registros repetidos.</li>
+<li><strong>Limpia:</strong> corrige formatos y duplicados con reglas documentadas; conserva el original.</li>
+<li><strong>Analiza:</strong> cuenta registros por alcaldía y calcula proporciones.</li>
+<li><strong>Comunica:</strong> crea una gráfica y explica los resultados y las limitaciones de los datos.</li>
+</ol><p><strong>Al terminar tendrás:</strong> datos limpios, código, tabla de resultados, gráfica y una explicación breve.</p></div>
+<div class="callout">No confundas cantidad de registros con cantidad real de establecimientos: las conclusiones solo pueden describir la información y la cobertura de la fuente utilizada.</div>
+</section>
+<section class="guide-block" id="vocabulario">
+<span class="step-tag">05 · VOCABULARIO BÁSICO</span><h2>Palabras que encontrarás constantemente</h2>
+<div class="terms">
+<div class="term"><b>Dato</b><p>Un valor registrado, como un nombre, una fecha o una cantidad.</p></div>
+<div class="term"><b>Conjunto de datos</b><p>Una colección organizada de datos, normalmente en filas y columnas.</p></div>
+<div class="term"><b>Variable</b><p>Una característica que se observa o mide, por ejemplo, alcaldía o precio.</p></div>
+<div class="term"><b>Programa</b><p>Instrucciones que una computadora ejecuta para realizar una tarea.</p></div>
+<div class="term"><b>Algoritmo</b><p>Una secuencia ordenada de pasos para resolver un problema.</p></div>
+<div class="term"><b>Estadística</b><p>Herramientas para resumir, analizar e interpretar datos.</p></div>
+<div class="term"><b>Visualización</b><p>Representación de datos mediante gráficas, mapas o diagramas.</p></div>
+<div class="term"><b>Modelo</b><p>Un método que identifica patrones o produce estimaciones a partir de datos.</p></div>
+</div>
+</section>
+<section class="guide-block" id="evaluacion">
+<span class="step-tag">06 · REVISA TU AVANCE</span><h2>¿Cuándo puedes decir “ya lo aprendí”?</h2>
+<p>Antes de cerrar un tema, comprueba que puedes:</p>
+<ul><li>Explicar la idea sin leer una definición.</li><li>Resolver un ejercicio nuevo, no solo repetir el ejemplo.</li><li>Detectar al menos un error posible y corregirlo.</li><li>Interpretar el resultado sin afirmar más de lo que muestran los datos.</li><li>Mostrar tu trabajo para que otra persona pueda revisarlo.</li></ul>
+<div class="callout"><strong>Si algo no sale:</strong> vuelve al ejemplo más pequeño, cambia una sola cosa y prueba de nuevo. Un error es información útil para encontrar qué parte necesitas comprender mejor.</div>
+</section>
+<section class="guide-block">
+<span class="step-tag">07 · SIGUIENTE PASO</span><h2>Continúa tu aprendizaje</h2>
+<div class="final-links"><a href="index.html">← Página principal</a><a href="index.html#python">Practicar Python →</a><a href="plan-estudios.html">Consultar el plan de estudios →</a><a href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener">Ver código y materiales en GitHub ↗</a></div>
+<p class="guide-foot">Material didáctico independiente para acompañar el estudio. No sustituye el plan oficial, la asesoría docente ni los programas de cada asignatura.</p>
+</section>
 </div></main>
-<footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><p>Métodos didácticos complementarios al plan académico.</p><a href="plan-estudios.html">Plan de estudios ↗</a></footer>
+<footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">DQ</span><span>DATA <strong>QUEST</strong></span></a><p>Aprende a tu ritmo. Practica. Comprueba. Comparte.</p><a href="plan-estudios.html">Plan de estudios ↗</a></footer>
+<script src="script.js" defer></script>
 </body></html>
