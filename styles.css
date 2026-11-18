@@ -797,188 +797,32 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline-color:#ffcf5a}
 @media(max-width:760px){.nav{background:#090d1f}}
 
 
-/* Segunda paleta: tonos eléctricos y contrastes más intensos */
-:root{--electric-purple:#a855f7;--hot-pink:#ff4ecd;--sun-yellow:#ffe45e;--electric-blue:#4cc9ff;--neon-green:#b7ff4a}
-body{background:radial-gradient(ellipse at 82% 8%,rgba(168,85,247,.13),transparent 32%),radial-gradient(ellipse at 12% 38%,rgba(0,245,212,.08),transparent 30%),var(--bg)}
-.topbar.sidebar{background:rgba(10,10,35,.98);border-color:#49418c}
-.topbar.sidebar .brand-mark{background:linear-gradient(135deg,var(--electric-purple),var(--hot-pink));color:white}
-.brand strong,.hero h1 span,.work-hero h1 span{background:linear-gradient(90deg,var(--accent),var(--electric-blue),var(--hot-pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,.journey-step small{color:var(--sun-yellow)}
-.button-primary{background:linear-gradient(105deg,#00d9c2,#00aaff);border-color:transparent;color:#071326;box-shadow:0 6px 22px rgba(0,217,194,.2)}
-.button-primary:hover{background:linear-gradient(105deg,#00f5d4,#4cc9ff)}
-.button-quiet:hover{border-color:var(--hot-pink);background:rgba(255,78,205,.13)}
-.road-icon,.journey-number{background:linear-gradient(135deg,rgba(168,85,247,.28),rgba(0,245,212,.18));color:var(--electric-blue)}
-.road-card:nth-child(4n+1) .road-icon{color:var(--accent)}
-.road-card:nth-child(4n+2) .road-icon{color:var(--hot-pink);background:rgba(255,78,205,.15)}
-.road-card:nth-child(4n+3) .road-icon{color:var(--sun-yellow);background:rgba(255,228,94,.13)}
-.road-card:nth-child(4n) .road-icon{color:var(--electric-blue);background:rgba(76,201,255,.14)}
-.stats-strip strong{color:var(--hot-pink)}
-.live-dot{background:var(--neon-green);box-shadow:0 0 12px rgba(183,255,74,.7)}
-.lesson-check input:checked + span{background:var(--accent);border-color:var(--accent)}
-.progress-fill{background:linear-gradient(90deg,var(--electric-purple),var(--hot-pink),var(--sun-yellow))}
-.progress-track{background:#343064}
-.tip-box,.notice,.journey-finish{background:linear-gradient(110deg,rgba(0,245,212,.13),rgba(168,85,247,.16));border-color:var(--electric-purple);color:#f5eaff}
-.tip-box p,.tip-box strong,.journey-outcome{color:#f5eaff}
-.data-card{border-color:#6555a9;box-shadow:0 22px 70px rgba(76,40,160,.2)}
-.floating-chip{border-color:#6555a9}
-.nav a:hover,.footer a:hover,.tool-card small,.source-links a{color:var(--hot-pink)}
-.road-card:hover,.lesson:hover,.tool-card:hover{border-color:var(--electric-blue);box-shadow:0 8px 28px rgba(76,201,255,.1)}
-.curriculum-card:nth-child(3n+1),.skill-card:nth-child(4n+1){border-top:2px solid var(--accent)}
-.curriculum-card:nth-child(3n+2),.skill-card:nth-child(4n+2){border-top:2px solid var(--electric-purple)}
-.curriculum-card:nth-child(3n),.skill-card:nth-child(4n+3){border-top:2px solid var(--hot-pink)}
-.skill-card:nth-child(4n){border-top:2px solid var(--sun-yellow)}
-.section-heading h2{color:#fff}
-input,select,textarea{accent-color:var(--accent)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline-color:var(--sun-yellow)}
-::selection{background:var(--hot-pink);color:#160824}
-@media(max-width:760px){.topbar.sidebar .nav{background:#0a0a23}}
 
-
-/* PALETA VIBRANTE GLOBAL — sobrescribe estilos claros heredados en TODAS las secciones */
-:root{
- --bg:#09051f;--surface:#171044;--surface-soft:#292064;--text:#fffaff;
- --muted:#d0c7f5;--line:#5945a5;--accent:#00f5d4;--accent-dark:#00c8ff;
- --accent-soft:#34206f;--shadow:0 18px 48px rgba(0,0,0,.48);
-}
-html,body{background-color:var(--bg)!important;color:var(--text)!important}
-body{
- background-image:radial-gradient(ellipse at 8% 5%,rgba(0,245,212,.16),transparent 32%),
- radial-gradient(ellipse at 92% 18%,rgba(255,46,196,.16),transparent 30%),
- radial-gradient(ellipse at 55% 90%,rgba(124,58,237,.17),transparent 38%)!important;
-}
-.topbar,.nav,.footer,.nav.open{background:rgba(13,8,42,.96)!important;color:var(--text)!important}
-.brand-mark,.button-primary{background:linear-gradient(110deg,#00f5d4,#00a8ff 55%,#a855f7)!important;color:#08051b!important;border:0!important}
-.hero h1 span,.work-hero h1 span,.eyebrow,.stats-strip strong,.road-status,.road-card>a,
-.curriculum-number,.skill-card>span,.skill-card small,.lesson-number,.lesson-link,
-.progress-copy>a,.tip-index,.tip-card small,.journey-step small,.journey-step>a,
-.section-heading .eyebrow,.source-links a,.project-steps li b{color:#00f5d4!important}
-.orbit{border-color:rgba(0,245,212,.38)!important}
-.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,
-.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,
-.stats-strip,.lesson,.search-box,.today-panel,.tool-card,.data-calculator-section,
-.calculator-panel,.calculator-card,.planner-card,.resource-card,.resource-item,
-.notice,.tip-box,.journey-intro,.journey-finish{
- background:linear-gradient(145deg,rgba(35,24,91,.97),rgba(17,12,54,.98))!important;
- color:var(--text)!important;border-color:rgba(125,91,255,.55)!important;
-}
-.road-card:nth-child(4n+1),.curriculum-card:nth-child(3n+1),.tip-card:nth-child(3n+1){border-top:3px solid #00f5d4!important}
-.road-card:nth-child(4n+2),.curriculum-card:nth-child(3n+2),.tip-card:nth-child(3n+2){border-top:3px solid #ff4ecd!important}
-.road-card:nth-child(4n+3),.curriculum-card:nth-child(3n+3),.tip-card:nth-child(3n+3){border-top:3px solid #ffe45e!important}
-.road-card:nth-child(4n),.tip-card:nth-child(3n){border-top:3px solid #4cc9ff!important}
-.active-road,.lesson.completed{background:linear-gradient(145deg,#24306a,#18204b)!important}
-.tip-box,.notice,.journey-finish{color:#f5efff!important;border-left:3px solid #ff4ecd!important}
-.tip-box p,.tip-box strong,.notice,.journey-outcome{color:#e7ddff!important}
-.code-line{color:#e9e4ff!important}.code-purple{color:#d69cff!important}.code-blue{color:#63d5ff!important}
-.code-green{color:#70ffc9!important}.code-yellow{color:#ffe45e!important}.code-muted{color:#b9addd!important}
-.terminal{background:#08051c!important;color:#d9d1ff!important}.terminal>span,.terminal strong{color:#00f5d4!important}
-.floating-chip{background:#24145c!important;color:#fff!important;border-color:#a855f7!important}
-.progress-panel{background:linear-gradient(135deg,#21145c,#10183f)!important}
-.progress-track{background:#393064!important}.progress-fill{background:linear-gradient(90deg,#00f5d4,#4cc9ff,#a855f7,#ff4ecd)!important}
-.tags span,.road-icon,.journey-number{background:#3a247d!important;color:#fff!important}
-.button-quiet{background:#24145c!important;color:#fff!important;border-color:#7657d5!important}
-a:hover{color:#ff4ecd}
-input,textarea,select{background:#100b35!important;color:#fff!important;border-color:#6550ad!important}
-input::placeholder,textarea::placeholder{color:#b9addd!important}
-@media(max-width:760px){.nav{background:#100a35!important}}
-
-
-/* REDISENO CROMATICO INTENSO — nueva identidad visual */
-:root{
- --bg:#080018!important;--surface:#1b0638!important;--surface-soft:#32105b!important;
- --text:#fff!important;--muted:#eadcfb!important;--line:#8b2cff!important;
- --accent:#d7ff00!important;--accent-dark:#a8d900!important;--accent-soft:#4a126d!important;
-}
-html,body{background:#080018!important;color:#fff!important}
-body{
- background-image:
- radial-gradient(ellipse at 10% 8%,rgba(255,0,153,.34),transparent 33%),
- radial-gradient(ellipse at 88% 15%,rgba(0,234,255,.28),transparent 32%),
- radial-gradient(ellipse at 60% 95%,rgba(128,0,255,.38),transparent 42%)!important;
-}
-.topbar.sidebar,.topbar,.nav,.nav.open,.footer{
- background:#120027!important;border-color:#8b2cff!important;color:#fff!important;
-}
-.topbar.sidebar .brand-mark,.brand-mark{
- background:linear-gradient(135deg,#ff00a8,#7b2cff 55%,#00eaff)!important;color:#fff!important;
-}
-.brand strong,.hero h1 span,.work-hero h1 span{
- background:linear-gradient(90deg,#d7ff00,#00eaff,#ff00a8)!important;
- -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
-}
-h1,h2,h3,h4,.section-heading h2{color:#fff!important}
-.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,
-.journey-step small,.stats-strip strong,.road-status,.progress-copy>a{
- color:#d7ff00!important;
-}
-a,.source-links a,.dashboard-shortcuts a{color:#00eaff!important}
-a:hover,.nav a:hover{color:#ff4dcc!important}
-.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,
-.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,
-.stats-strip,.lesson,.search-box,.data-calculator-section,.calculator-panel,
-.calculator-card,.planner-card,.resource-card,.resource-item,.lab-card,.math-card,
-.mexico-source,.goal-panel,.data-workbench-tools,.data-workbench-results,
-.semester-card,.plan-section,.guide-block,.origin-card,.chart-panel,.metric-tile,
-.student-stats article,.tip-box,.notice,.journey-intro,.journey-finish{
- background:linear-gradient(145deg,#2a0750 0%,#19002f 58%,#100022 100%)!important;
- color:#fff!important;border:1px solid #8b2cff!important;
- box-shadow:0 10px 34px rgba(255,0,168,.10),inset 0 1px rgba(255,255,255,.06)!important;
-}
-.road-card:nth-child(4n+1),.curriculum-card:nth-child(3n+1),.tip-card:nth-child(3n+1){border-top:4px solid #d7ff00!important}
-.road-card:nth-child(4n+2),.curriculum-card:nth-child(3n+2),.tip-card:nth-child(3n+2){border-top:4px solid #ff00a8!important}
-.road-card:nth-child(4n+3),.curriculum-card:nth-child(3n),.tip-card:nth-child(3n){border-top:4px solid #00eaff!important}
-.road-card:nth-child(4n),.skill-card:nth-child(4n){border-top:4px solid #ff6b00!important}
-.road-icon,.journey-number,.tags span{
- background:#541080!important;color:#d7ff00!important;border:1px solid #b34dff!important;
-}
-.button-primary,.brand-mark{
- background:linear-gradient(100deg,#d7ff00,#00eaff 52%,#ff00a8)!important;
- color:#100022!important;border:0!important;font-weight:800!important;
- box-shadow:0 7px 24px rgba(0,234,255,.24)!important;
-}
-.button-quiet,.menu-toggle{
- background:#3a075f!important;color:#fff!important;border:1px solid #ff00a8!important;
-}
-.button-quiet:hover,.button-primary:hover{filter:brightness(1.2) saturate(1.3)!important}
-.progress-track{background:#3b1b5c!important}
-.progress-fill{background:linear-gradient(90deg,#d7ff00,#00eaff,#7b2cff,#ff00a8)!important}
-.tip-box,.notice,.journey-finish{border-left:5px solid #ff00a8!important}
-.tip-box p,.tip-box strong,.journey-outcome,.notice{color:#fff!important}
-.terminal,.lab-output,.code-editor{background:#080014!important;color:#d7ffb8!important;border-color:#00eaff!important}
-.code-line{color:#fff!important}.code-purple{color:#e6a0ff!important}.code-blue{color:#00eaff!important}
-.code-green{color:#d7ff00!important}.code-yellow{color:#ffe66d!important}
-input,textarea,select,.resource-filter{
- background:#16002c!important;color:#fff!important;border:1px solid #a34dff!important;
-}
-input::placeholder,textarea::placeholder{color:#cbb1e8!important}
-::selection{background:#ff00a8!important;color:#fff!important}
-@media(max-width:760px){.topbar.sidebar .nav{background:#120027!important}}
-
-
-/* PALETA NEUTRA MODERNA: grafito, pizarra y acentos suaves */
-:root{--bg:#111418!important;--surface:#1b2026!important;--surface-soft:#252c34!important;--text:#edf1f4!important;--muted:#aab4be!important;--line:#39434d!important;--accent:#9bb8ad!important;--accent-dark:#789b8d!important;--accent-soft:#293b37!important;--shadow:0 18px 48px rgba(0,0,0,.28)!important}
+/* Tema definitivo: neutros modernos */
+:root{color-scheme:dark;--bg:#111418;--surface:#1b2026;--surface-soft:#252c34;--text:#edf1f4;--muted:#aab4be;--line:#39434d;--accent:#9bb8ad;--accent-dark:#789b8d;--accent-soft:#293b37;--shadow:0 18px 48px rgba(0,0,0,.28)}
 html,body{background:#111418!important;color:#edf1f4!important}
-body{background-image:radial-gradient(ellipse at 12% 0%,rgba(115,145,132,.10),transparent 35%),radial-gradient(ellipse at 90% 12%,rgba(104,133,158,.09),transparent 34%)!important}
-.topbar.sidebar,.topbar,.nav,.nav.open,.footer{background:rgba(20,25,30,.97)!important;border-color:#39434d!important;color:#edf1f4!important}
-.topbar.sidebar .brand-mark,.brand-mark{background:#344b45!important;color:#eaf1ed!important}
+body{background-image:radial-gradient(ellipse at 12% 0%,rgba(115,145,132,.10),transparent 35%),radial-gradient(ellipse at 90% 12%,rgba(104,133,158,.08),transparent 34%)!important}
+.topbar,.topbar.sidebar,.nav,.nav.open,.footer{background:rgba(20,25,30,.97)!important;border-color:#39434d!important;color:#edf1f4!important}
+.brand-mark{background:#344b45!important;color:#eaf1ed!important}
 .brand strong,.hero h1 span,.work-hero h1 span{background:none!important;-webkit-text-fill-color:#c2d2cb!important;color:#c2d2cb!important}
 h1,h2,h3,h4,.section-heading h2{color:#edf1f4!important}
 .eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,.journey-step small,.stats-strip strong,.road-status,.progress-copy>a{color:#a9c2b7!important}
 a,.source-links a,.dashboard-shortcuts a{color:#a9c2b7!important}
-a:hover,.nav a:hover{color:#d2ded8!important}
-.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,.stats-strip,.lesson,.search-box,.data-calculator-section,.calculator-panel,.calculator-card,.planner-card,.resource-card,.resource-item,.lab-card,.math-card,.mexico-source,.goal-panel,.data-workbench-tools,.data-workbench-results,.semester-card,.plan-section,.guide-block,.origin-card,.chart-panel,.metric-tile,.student-stats article,.tip-box,.notice,.journey-intro,.journey-finish{background:#1b2026!important;color:#edf1f4!important;border:1px solid #343e47!important;box-shadow:0 8px 24px rgba(0,0,0,.18)!important}
-.road-card:nth-child(n),.curriculum-card:nth-child(n),.tip-card:nth-child(n),.skill-card:nth-child(n){border-top:1px solid #39434d!important}
-.road-icon,.journey-number,.tags span{background:#293b37!important;color:#c5d7ce!important;border:1px solid #50675d!important}
-.button-primary{background:#9bb8ad!important;color:#14201b!important;border:1px solid #9bb8ad!important;box-shadow:none!important}
-.button-primary:hover{background:#b1c9bf!important;filter:none!important}
-.button-quiet,.menu-toggle{background:#252c34!important;color:#edf1f4!important;border:1px solid #46515c!important}
+a:hover,.nav a:hover,.footer a:hover{color:#d2ded8!important}
+.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,.stats-strip,.lesson,.search-box,.data-calculator-section,.calculator-panel,.calculator-card,.planner-card,.resource-card,.resource-item,.lab-card,.math-card,.mexico-source,.goal-panel,.data-workbench-tools,.data-workbench-results,.semester-card,.plan-section,.guide-block,.origin-card,.chart-panel,.metric-tile,.student-stats article,.tip-box,.notice,.journey-intro,.journey-finish{background:#1b2026!important;color:#edf1f4!important;border-color:#343e47!important;box-shadow:0 8px 24px rgba(0,0,0,.18)!important}
+.active-road,.lesson.completed{background:#222b30!important}
+.road-icon,.journey-number,.tags span{background:#293b37!important;color:#c5d7ce!important;border-color:#50675d!important}
+.button-primary{background:#9bb8ad!important;color:#14201b!important;border-color:#9bb8ad!important;box-shadow:none!important}
+.button-primary:hover{background:#b1c9bf!important}
+.button-quiet,.menu-toggle{background:#252c34!important;color:#edf1f4!important;border-color:#46515c!important}
 .button-quiet:hover{background:#303943!important;border-color:#789b8d!important}
 .progress-track{background:#303841!important}.progress-fill{background:#91afa2!important}
 .tip-box,.notice,.journey-finish{background:#202b29!important;border-left:3px solid #789b8d!important}
 .tip-box p,.tip-box strong,.journey-outcome,.notice{color:#dce6e1!important}
 .terminal,.lab-output,.code-editor{background:#101519!important;color:#d8e1dc!important;border-color:#46534d!important}
 .code-line{color:#e1e8e4!important}.code-purple{color:#c1b5d7!important}.code-blue{color:#a9c6d6!important}.code-green{color:#b8d1c3!important}.code-yellow{color:#d8cba5!important}
-input,textarea,select,.resource-filter{background:#151a1f!important;color:#edf1f4!important;border:1px solid #46515c!important;accent-color:#9bb8ad!important}
+input,textarea,select,.resource-filter{background:#151a1f!important;color:#edf1f4!important;border-color:#46515c!important;accent-color:#9bb8ad!important}
 input::placeholder,textarea::placeholder{color:#89949e!important}
 ::selection{background:#536e63!important;color:#fff!important}
-:focus-visible{outline-color:#a9c2b7!important}
-@media(max-width:760px){.topbar.sidebar .nav{background:#171d22!important}}
+a:focus-visible,button:focus-visible,input:focus-visible{outline-color:#a9c2b7!important}
+@media(max-width:760px){.topbar.sidebar .nav,.nav{background:#171d22!important}}
