@@ -2,10 +2,17 @@
 
 :root {
   color-scheme: dark;
-  --bg: #090d1f; --surface: #131a35; --surface-soft: #1d2850;
-  --text: #f4f5ff; --muted: #b8c2e8; --line: #354477;
-  --accent: #38e0c1; --accent-dark: #16b99d; --accent-soft: #203e59;
-  --shadow: 0 14px 38px rgba(0,0,0,.38); --content: 1120px;
+  --bg: #080b1c;
+  --surface: #151638;
+  --surface-soft: #24245a;
+  --text: #fbf8ff;
+  --muted: #c2bde8;
+  --line: #49418c;
+  --accent: #00f5d4;
+  --accent-dark: #00c9b2;
+  --accent-soft: #183e5b;
+  --shadow: 0 16px 42px rgba(0,0,0,.45);
+  --content: 1120px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
@@ -788,3 +795,40 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline-color:#ffcf5a}
 .button-primary:hover{background:#16b99d}
 ::selection{background:#38e0c1;color:#071522}
 @media(max-width:760px){.nav{background:#090d1f}}
+
+
+/* Segunda paleta: tonos eléctricos y contrastes más intensos */
+:root{--electric-purple:#a855f7;--hot-pink:#ff4ecd;--sun-yellow:#ffe45e;--electric-blue:#4cc9ff;--neon-green:#b7ff4a}
+body{background:radial-gradient(ellipse at 82% 8%,rgba(168,85,247,.13),transparent 32%),radial-gradient(ellipse at 12% 38%,rgba(0,245,212,.08),transparent 30%),var(--bg)}
+.topbar.sidebar{background:rgba(10,10,35,.98);border-color:#49418c}
+.topbar.sidebar .brand-mark{background:linear-gradient(135deg,var(--electric-purple),var(--hot-pink));color:white}
+.brand strong,.hero h1 span,.work-hero h1 span{background:linear-gradient(90deg,var(--accent),var(--electric-blue),var(--hot-pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,.journey-step small{color:var(--sun-yellow)}
+.button-primary{background:linear-gradient(105deg,#00d9c2,#00aaff);border-color:transparent;color:#071326;box-shadow:0 6px 22px rgba(0,217,194,.2)}
+.button-primary:hover{background:linear-gradient(105deg,#00f5d4,#4cc9ff)}
+.button-quiet:hover{border-color:var(--hot-pink);background:rgba(255,78,205,.13)}
+.road-icon,.journey-number{background:linear-gradient(135deg,rgba(168,85,247,.28),rgba(0,245,212,.18));color:var(--electric-blue)}
+.road-card:nth-child(4n+1) .road-icon{color:var(--accent)}
+.road-card:nth-child(4n+2) .road-icon{color:var(--hot-pink);background:rgba(255,78,205,.15)}
+.road-card:nth-child(4n+3) .road-icon{color:var(--sun-yellow);background:rgba(255,228,94,.13)}
+.road-card:nth-child(4n) .road-icon{color:var(--electric-blue);background:rgba(76,201,255,.14)}
+.stats-strip strong{color:var(--hot-pink)}
+.live-dot{background:var(--neon-green);box-shadow:0 0 12px rgba(183,255,74,.7)}
+.lesson-check input:checked + span{background:var(--accent);border-color:var(--accent)}
+.progress-fill{background:linear-gradient(90deg,var(--electric-purple),var(--hot-pink),var(--sun-yellow))}
+.progress-track{background:#343064}
+.tip-box,.notice,.journey-finish{background:linear-gradient(110deg,rgba(0,245,212,.13),rgba(168,85,247,.16));border-color:var(--electric-purple);color:#f5eaff}
+.tip-box p,.tip-box strong,.journey-outcome{color:#f5eaff}
+.data-card{border-color:#6555a9;box-shadow:0 22px 70px rgba(76,40,160,.2)}
+.floating-chip{border-color:#6555a9}
+.nav a:hover,.footer a:hover,.tool-card small,.source-links a{color:var(--hot-pink)}
+.road-card:hover,.lesson:hover,.tool-card:hover{border-color:var(--electric-blue);box-shadow:0 8px 28px rgba(76,201,255,.1)}
+.curriculum-card:nth-child(3n+1),.skill-card:nth-child(4n+1){border-top:2px solid var(--accent)}
+.curriculum-card:nth-child(3n+2),.skill-card:nth-child(4n+2){border-top:2px solid var(--electric-purple)}
+.curriculum-card:nth-child(3n),.skill-card:nth-child(4n+3){border-top:2px solid var(--hot-pink)}
+.skill-card:nth-child(4n){border-top:2px solid var(--sun-yellow)}
+.section-heading h2{color:#fff}
+input,select,textarea{accent-color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline-color:var(--sun-yellow)}
+::selection{background:var(--hot-pink);color:#160824}
+@media(max-width:760px){.topbar.sidebar .nav{background:#0a0a23}}
