@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#101713">
 <meta name="description" content="Centro de estudio de Ciencia de Datos: ruta académica UNAM, prácticas de Python, estadística, SQL, análisis de datos y proyectos con información pública mexicana.">
 <title>Ciencia de Datos desde Cero | Aprende, practica y crea proyectos</title>
-<link rel="stylesheet" href="styles.css?v=dark-global-20261118"><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script><script src="script.js?v=didactica-20261118" defer></script>
+<link rel="stylesheet" href="styles.css?v=plataforma-integral-20261118"><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script><script src="script.js?v=plataforma-integral-20261118" defer></script>
 </head>
 <body>
 <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -26,7 +26,7 @@
 <a class="brand" href="#inicio" aria-label="Ciencia de Datos desde Cero, inicio"><span class="brand-mark">CD</span><span>DATOS DESDE <strong>CERO</strong></span></a>
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <nav class="nav" id="mainNav" aria-label="Navegación principal">
-<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#organizador"><svg class="ui-icon"><use href="#i-chart"/></svg>Organiza tu tiempo</a><a href="#calculadora"><svg class="ui-icon"><use href="#i-database"/></svg>Calculadora</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#proyectos"><svg class="ui-icon"><use href="#i-code"/></svg>Proyectos</a><a href="#biblioteca"><svg class="ui-icon"><use href="#i-book"/></svg>Recursos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
+<a href="#camino"><svg class="ui-icon"><use href="#i-compass"/></svg>Mi camino</a><a href="#organizador"><svg class="ui-icon"><use href="#i-chart"/></svg>Organiza tu tiempo</a><a href="#calculadora"><svg class="ui-icon"><use href="#i-database"/></svg>Calculadora</a><a href="#ruta"><svg class="ui-icon"><use href="#i-graduation"/></svg>Plan académico</a><a href="#vida-academica"><svg class="ui-icon"><use href="#i-book"/></svg>Vida académica</a><a href="#tips"><svg class="ui-icon"><use href="#i-lightbulb"/></svg>Consejos</a><a href="#proyectos"><svg class="ui-icon"><use href="#i-code"/></svg>Proyectos</a><a href="#biblioteca"><svg class="ui-icon"><use href="#i-book"/></svg>Recursos</a><a href="#avance"><svg class="ui-icon"><use href="#i-chart"/></svg>Mi avance</a><a href="#laboratorio"><svg class="ui-icon"><use href="#i-code"/></svg>Laboratorio</a><a href="#datos-mexico"><svg class="ui-icon"><use href="#i-pin"/></svg>Datos de México</a><a class="nav-github" href="https://github.com/RealRata/mi-camino-en-ciencia-de-datos" target="_blank" rel="noopener"><svg class="ui-icon"><use href="#i-github"/></svg>GitHub</a>
 </nav>
 </header>
 <main id="inicio">
@@ -376,6 +376,70 @@
     <fieldset class="quiz-question"><legend>5. Si dos variables están correlacionadas, ¿qué podemos concluir?</legend><label><input type="radio" name="q5" value="a"> Que una causa necesariamente la otra</label><label><input type="radio" name="q5" value="b"> Que existe asociación, pero no necesariamente causalidad</label><label><input type="radio" name="q5" value="c"> Que ambas tienen la misma distribución</label><p class="quiz-feedback" id="feedback5" aria-live="polite"></p></fieldset>
     <div class="quiz-actions"><button class="button button-primary" type="submit">Calificar mis respuestas</button><button class="button button-quiet" type="reset" id="resetQuiz">Repetir reto</button><strong id="quizScore" aria-live="polite">Aún no has enviado tus respuestas.</strong></div>
   </form>
+</section>
+
+
+<section class="section learning-hub" id="laboratorio">
+ <div class="section-heading"><div><span class="eyebrow">AULA PRÁCTICA · APRENDE HACIENDO</span><h2>Laboratorio de programación</h2></div><p>Ejecuta Python y SQL directamente en esta página. El código y los datos se procesan en tu navegador; la primera carga requiere conexión para descargar el motor.</p></div>
+ <div class="lab-grid">
+  <article class="lab-card" id="python-lab"><div class="lab-title"><span class="lab-tag">PYTHON · PRINCIPIANTE</span><span class="lab-status" id="pythonStatus">Listo para iniciar</span></div><h3>Tu primer programa</h3><p>Modifica el ejemplo, ejecútalo y observa la salida. Puedes experimentar con variables, listas y operaciones.</p>
+   <textarea id="pythonCode" class="code-editor" spellcheck="false" aria-label="Editor de código Python">calificaciones = [8, 9, 7, 10, 6]
+promedio = sum(calificaciones) / len(calificaciones)
+print("Calificaciones:", calificaciones)
+print("Promedio:", round(promedio, 2))</textarea>
+   <div class="lab-actions"><button class="button button-primary" id="runPython" type="button">▶ Ejecutar Python</button><button class="button button-quiet" id="resetPython" type="button">Restaurar ejemplo</button></div><pre class="lab-output" id="pythonOutput" aria-live="polite">La salida aparecerá aquí.</pre><p class="lab-note">Motor Python WebAssembly (Pyodide). No se envía tu código a un servidor de esta página.</p>
+  </article>
+  <article class="lab-card" id="sql-lab"><div class="lab-title"><span class="lab-tag">SQL · BASES DE DATOS</span><span class="lab-status" id="sqlStatus">Listo para iniciar</span></div><h3>Consulta una tabla de ventas</h3><p>La base de ejemplo incluye ciudad, producto e importe. Prueba SELECT, WHERE, GROUP BY y ORDER BY.</p>
+   <textarea id="sqlCode" class="code-editor" spellcheck="false" aria-label="Editor SQL">SELECT ciudad, COUNT(*) AS operaciones, ROUND(AVG(importe), 2) AS promedio
+FROM ventas
+GROUP BY ciudad
+ORDER BY promedio DESC;</textarea>
+   <div class="lab-actions"><button class="button button-primary" id="runSQL" type="button">▶ Ejecutar SQL</button><button class="button button-quiet" id="resetSQL" type="button">Restaurar consulta</button></div><div class="lab-output table-output" id="sqlOutput" aria-live="polite">La tabla de resultados aparecerá aquí.</div><p class="lab-note">Base SQLite temporal en tu navegador. Reinicia la página para restaurar los datos de ejemplo.</p>
+  </article>
+ </div>
+</section>
+
+<section class="section data-lab-section" id="analisis-datos">
+ <div class="section-heading"><div><span class="eyebrow">ANÁLISIS EXPLORATORIO</span><h2>Analiza tu propio archivo</h2></div><p>Importa un CSV o Excel para revisar columnas, detectar vacíos y duplicados, obtener estadísticas y visualizar una variable numérica. El archivo no se carga a un servidor.</p></div>
+ <div class="data-workbench">
+  <div class="data-workbench-tools"><label class="file-drop" for="workbenchFile"><span>＋</span><strong>Selecciona un archivo CSV o Excel</strong><small>Formatos .csv, .xlsx y .xls</small><input id="workbenchFile" type="file" accept=".csv,.xlsx,.xls"></label>
+   <label for="workbenchColumn">Variable numérica</label><select id="workbenchColumn" disabled><option>Importa un archivo primero</option></select><div class="lab-actions"><button class="button button-primary" id="analyzeFile" type="button" disabled>Analizar columna</button><button class="button button-quiet" id="downloadCleanCSV" type="button" disabled>Descargar CSV limpio</button></div>
+   <div class="quality-summary" id="fileQuality" aria-live="polite">Tu informe de calidad aparecerá aquí.</div>
+  </div>
+  <div class="data-workbench-results"><div class="metric-grid" id="fileMetrics"><div class="metric-tile"><span>Registros</span><strong>—</strong></div><div class="metric-tile"><span>Columnas</span><strong>—</strong></div><div class="metric-tile"><span>Vacíos</span><strong>—</strong></div><div class="metric-tile"><span>Duplicados</span><strong>—</strong></div></div><div class="chart-panel"><h3>Distribución de la variable</h3><canvas id="fileChart" width="720" height="260" role="img" aria-label="Histograma de la variable seleccionada"></canvas><p id="fileInterpretation" class="lab-note">Selecciona una variable numérica para ver su distribución.</p></div><div class="table-scroll" id="filePreview">La vista previa del archivo aparecerá aquí.</div></div>
+ </div>
+</section>
+
+<section class="section math-lab-section" id="matematicas">
+ <div class="section-heading"><div><span class="eyebrow">MATEMÁTICAS APLICADAS</span><h2>Entiende las matemáticas con ejemplos</h2></div><p>Explora cómo las ideas matemáticas aparecen en problemas de datos. Cambia los valores y observa cómo cambia la representación.</p></div>
+ <div class="math-grid">
+  <article class="math-card"><span class="lab-tag">ÁLGEBRA LINEAL</span><h3>Vectores y producto punto</h3><p>Un vector puede representar características de una observación. El producto punto combina valores y pesos.</p><div class="math-inputs"><label>Vector A <input id="vectorA" value="2, 3, 1"></label><label>Vector B <input id="vectorB" value="4, 1, 5"></label></div><button class="button button-quiet" id="calculateVector" type="button">Calcular producto punto</button><p class="math-result" id="vectorResult" aria-live="polite">2×4 + 3×1 + 1×5 = 16</p></article>
+  <article class="math-card"><span class="lab-tag">CÁLCULO</span><h3>La pendiente de una función</h3><p>La derivada indica la tasa de cambio instantánea. En f(x)=x², la derivada es f'(x)=2x.</p><label for="derivativeX">Elige x: <output id="derivativeValue">2</output></label><input id="derivativeX" type="range" min="-5" max="5" step=".5" value="2"><div class="math-result" id="derivativeResult">En x = 2, la pendiente es 4.</div><canvas id="derivativeChart" width="500" height="210" role="img" aria-label="Gráfica de la función cuadrática y su recta tangente"></canvas></article>
+  <article class="math-card"><span class="lab-tag">PROBABILIDAD</span><h3>Simula lanzamientos</h3><p>La frecuencia relativa de un evento suele acercarse a su probabilidad teórica al aumentar el número de ensayos.</p><label for="coinTrials">Número de lanzamientos: <output id="coinTrialsValue">500</output></label><input id="coinTrials" type="range" min="10" max="5000" step="10" value="500"><button class="button button-quiet" id="runCoin" type="button">Simular nuevamente</button><p class="math-result" id="coinResult">Ejecuta la simulación para comparar resultados.</p><canvas id="coinChart" width="500" height="150" role="img" aria-label="Comparación de frecuencia relativa con probabilidad teórica"></canvas></article>
+ </div>
+</section>
+
+<section class="section student-dashboard" id="seguimiento">
+ <div class="section-heading"><div><span class="eyebrow">TU PANEL PERSONAL</span><h2>Seguimiento académico</h2></div><p>Reúne tus prácticas, proyectos y sesiones de estudio. La información se conserva en el almacenamiento local de este navegador.</p></div>
+ <div class="student-stats"><article><span>Prácticas completadas</span><strong id="dashLessons">0</strong><small>De la ruta de aprendizaje</small></article><article><span>Entregables de proyectos</span><strong id="dashProjects">0%</strong><small>Avance de portafolio</small></article><article><span>Minutos registrados</span><strong id="dashMinutes">0</strong><small>Tiempo planificado</small></article><article><span>Meta semanal</span><strong id="dashGoal">0%</strong><small id="dashGoalText">Define tu objetivo</small></article></div>
+ <div class="goal-panel"><div><span class="lab-tag">OBJETIVO SEMANAL</span><h3>Establece una meta alcanzable</h3><p>Define cuántos minutos quieres dedicar al estudio esta semana. El progreso se calcula con las sesiones que marques como completadas en el organizador.</p></div><label for="weeklyGoal">Minutos por semana<input id="weeklyGoal" type="number" min="30" max="3000" step="30" value="300"></label><button class="button button-primary" id="saveWeeklyGoal" type="button">Guardar meta</button></div>
+ <div class="dashboard-shortcuts"><a href="#organizador">Planificar una sesión →</a><a href="#proyectos">Continuar mis proyectos →</a><a href="#camino">Volver a la ruta →</a></div>
+</section>
+
+<section class="section mexico-data-section" id="datos-mexico">
+ <div class="section-heading"><div><span class="eyebrow">PROYECTOS CON CONTEXTO REAL</span><h2>Explora datos de México</h2></div><p>Usa fuentes públicas para formular preguntas, limpiar información, analizar patrones y comunicar resultados. Verifica siempre cobertura, fecha y metodología de cada conjunto.</p></div>
+ <div class="mexico-source-grid">
+  <article class="mexico-source"><span class="lab-tag">ESTADÍSTICA NACIONAL</span><h3>INEGI</h3><p>Población, economía, empleo, educación, territorio y censos. Busca conjuntos descargables y documenta la fecha de referencia.</p><a href="https://www.inegi.org.mx/datos/" target="_blank" rel="noopener">Explorar datos de INEGI ↗</a></article>
+  <article class="mexico-source"><span class="lab-tag">DATOS ABIERTOS</span><h3>Portal nacional</h3><p>Catálogos de datos públicos de instituciones federales. Revisa licencias, responsables y frecuencia de actualización.</p><a href="https://datos.gob.mx/" target="_blank" rel="noopener">Explorar datos.gob.mx ↗</a></article>
+  <article class="mexico-source"><span class="lab-tag">CIUDAD DE MÉXICO</span><h3>Datos abiertos CDMX</h3><p>Información local útil para investigar movilidad, servicios, espacios públicos y actividad económica.</p><a href="https://datos.cdmx.gob.mx/" target="_blank" rel="noopener">Explorar datos CDMX ↗</a></article>
+ </div>
+ <div class="mexico-projects">
+  <article><span>PROYECTO 01</span><h3>¿Cómo se distribuye la población?</h3><p>Compara población por entidad, calcula proporciones y crea una gráfica ordenada. Evita comparar cifras de años distintos.</p><small>Habilidades: limpieza · agregación · visualización</small></article>
+  <article><span>PROYECTO 02</span><h3>Mercados y tianguis por alcaldía</h3><p>Investiga registros públicos, normaliza nombres de alcaldías, elimina duplicados documentados y analiza la distribución geográfica.</p><small>Habilidades: datos abiertos · calidad · análisis territorial</small></article>
+  <article><span>PROYECTO 03</span><h3>Movilidad y transporte</h3><p>Explora viajes, estaciones o afluencia si la fuente lo permite. Compara periodos equivalentes y explica limitaciones de cobertura.</p><small>Habilidades: series temporales · estadística · comunicación</small></article>
+  <article><span>PROYECTO 04</span><h3>Indicadores educativos</h3><p>Compara indicadores con definiciones y años compatibles. Separa asociación de causalidad y evita conclusiones individuales a partir de promedios.</p><small>Habilidades: inferencia · ética · visualización</small></article>
+ </div>
+ <p class="lab-note">Los portales enlazados son fuentes para descargar datos; esta plataforma no afirma que los ejemplos sean cifras oficiales precargadas. Importa el archivo descargado en el laboratorio de análisis para trabajarlo.</p>
 </section>
 
 <section class="progress-section" id="avance">
