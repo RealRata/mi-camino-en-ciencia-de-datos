@@ -2,10 +2,10 @@
 
 :root {
   color-scheme: dark;
-  --bg: #0b1110; --surface: #121c19; --surface-soft: #182521;
-  --text: #e7f0eb; --muted: #a5b6ad; --line: #293b34;
-  --accent: #62c5a2; --accent-dark: #3aa985; --accent-soft: #1b382e;
-  --shadow: 0 14px 38px rgba(0,0,0,.28); --content: 1120px;
+  --bg: #090d1f; --surface: #131a35; --surface-soft: #1d2850;
+  --text: #f4f5ff; --muted: #b8c2e8; --line: #354477;
+  --accent: #38e0c1; --accent-dark: #16b99d; --accent-soft: #203e59;
+  --shadow: 0 14px 38px rgba(0,0,0,.38); --content: 1120px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
@@ -757,3 +757,34 @@ body:has(.topbar.sidebar) .footer{padding-left:5%;padding-right:5%}
 /* Icono de calculadora alineado explícitamente a la derecha del título */
 .data-calculator-section .section-heading h2{display:flex;align-items:center;gap:11px}
 .data-calculator-section .section-heading h2 .calculator-heading-icon{order:2;flex:0 0 25px;margin-left:2px}
+
+
+/* Paleta vibrante: contraste alto y acentos vivos en toda la plataforma */
+body,.nav{color:var(--text)}
+.topbar,.nav{background:rgba(9,13,31,.94);border-color:var(--line)}
+.brand-mark,.button-primary,.lesson-check input:checked + span{background:var(--accent);border-color:var(--accent);color:#071522}
+.hero-art .orbit{border-color:#43538f}
+.data-card,.progress-panel,.terminal,.tip-box,.active-road,.lesson.completed{background:var(--surface)}
+.data-card,.floating-chip{border-color:var(--line);color:var(--text)}
+.code-line{color:#d9e3ff}.code-purple{color:#d5a6ff}.code-blue{color:#77c7ff}.code-green{color:#62e6ad}.code-yellow{color:#ffd166}
+.terminal{color:var(--muted)}.code-line i,.window-dots{color:#8fa0d4}
+.floating-chip{background:var(--surface);color:var(--text)}
+.orbit{border-color:#354477}
+.road-card:hover,.lesson:hover,.tool-card:hover{border-color:#38e0c1}
+.road-icon,.journey-number{background:var(--accent-soft);color:var(--accent)}
+.tip-box,.notice,.journey-finish{border-color:var(--accent);background:var(--accent-soft);color:#d7fff6}
+.tip-box p,.tip-box strong,.journey-outcome{color:#d7fff6}
+.tags span{background:var(--surface-soft);color:#cbd5ff}
+.progress-track{background:#303b67}
+.progress-panel{border-color:var(--line)}
+.nav .nav-github{color:var(--text)}
+.menu-toggle{background:var(--surface);color:var(--text)}
+.search-box,.lesson,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.student-routine,.journey-intro,.journey-step,.project-panel{background:var(--surface)}
+.button-quiet:hover{border-color:var(--accent);background:var(--accent-soft)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline-color:#ffcf5a}
+.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,.journey-step small{color:#ffcf5a}
+.live-dot{background:#38e0c1}
+.stats-strip strong{color:#ffcf5a}
+.button-primary:hover{background:#16b99d}
+::selection{background:#38e0c1;color:#071522}
+@media(max-width:760px){.nav{background:#090d1f}}
