@@ -1,0 +1,7 @@
+{
+  "user_agent": "WebDataLab/1.0 (educational data collection; contact: add-your-email)",
+  "timeout_seconds": 20,
+  "delay_seconds": 2,
+  "max_pages": 5,
+  "respect_robots_txt": true
+}
