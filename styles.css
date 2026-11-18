@@ -677,3 +677,57 @@ button:disabled{opacity:.55}
 footer,.footer{background:#080e0c!important;color:var(--muted)!important;border-color:var(--line)!important}
 ::selection{background:#285d49;color:#fff}
 @media(prefers-color-scheme:light){:root{color-scheme:dark}}
+
+
+/* Plataforma integral: laboratorios, análisis, matemáticas y seguimiento */
+.learning-hub,.data-lab-section,.math-lab-section,.student-dashboard,.mexico-data-section{scroll-margin-top:90px}
+.lab-grid,.math-grid,.mexico-source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lab-card,.math-card,.mexico-source,.mexico-projects article,.goal-panel{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:22px;min-width:0}
+.lab-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.lab-tag{font: .68rem 'DM Mono',monospace;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.lab-status{font-size:.72rem;color:var(--muted)}
+.lab-card h3,.math-card h3,.mexico-source h3{margin:12px 0 8px;font-size:1.2rem}
+.lab-card>p,.math-card>p,.mexico-source p,.mexico-projects p,.goal-panel p{color:var(--muted);font-size:.88rem;line-height:1.75}
+.code-editor{display:block;width:100%;min-height:180px;resize:vertical;margin:14px 0;padding:15px;border:1px solid var(--line);border-radius:10px;background:#080e0c!important;color:#dcebe3!important;font: .82rem/1.65 'DM Mono',monospace;tab-size:4}
+.lab-actions{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+.lab-output{min-height:66px;max-height:280px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;border:1px solid var(--line);border-radius:10px;background:#080e0c;color:#cfe5d8;font: .82rem/1.65 'DM Mono',monospace}
+.lab-note{font-size:.76rem!important;color:var(--muted)!important;line-height:1.6}
+.table-output{font-family:inherit;color:var(--text)}
+.table-scroll{overflow:auto;max-width:100%;margin-top:12px}
+.table-scroll table{border-collapse:collapse;width:100%;font-size:.82rem}
+.table-scroll th,.table-scroll td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.table-scroll th{color:var(--accent);font-weight:650}
+.data-workbench{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.6fr);gap:16px}
+.data-workbench-tools,.data-workbench-results{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;min-width:0}
+.file-drop{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:20px;border:1px dashed #47735f;border-radius:12px;margin-bottom:18px;cursor:pointer}
+.file-drop>span{font-size:1.7rem;color:var(--accent)}.file-drop strong{font-size:.9rem}.file-drop small{color:var(--muted)}
+.file-drop input{max-width:100%;margin-top:8px}
+.data-workbench-tools>label:not(.file-drop),.math-card label{display:block;color:var(--muted);font-size:.82rem;margin:12px 0 7px}
+.data-workbench-tools select,.math-card input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px}
+.quality-summary{font-size:.83rem;line-height:1.7;color:var(--muted);margin-top:15px}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.metric-tile,.student-stats article{padding:14px;background:#0d1713;border:1px solid var(--line);border-radius:10px;min-width:0}
+.metric-tile span,.student-stats article span{display:block;font-size:.72rem;color:var(--muted)}
+.metric-tile strong,.student-stats article strong{display:block;font-size:1.35rem;margin-top:8px;overflow-wrap:anywhere}
+.chart-panel{padding:15px;border:1px solid var(--line);border-radius:10px;margin:14px 0}
+.chart-panel h3{font-size:.95rem;margin:0 0 8px}.chart-panel canvas,.math-card canvas{display:block;width:100%;height:auto;max-height:260px}
+.math-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.math-card{padding:20px}.math-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.math-card input[type=range]{accent-color:var(--accent);padding:0}
+.math-result{padding:12px;border-radius:9px;background:#0d1713;color:#bdebd3;font-size:.87rem;line-height:1.65;min-height:44px}
+.student-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.student-stats article small{display:block;color:var(--muted);font-size:.72rem;margin-top:5px}
+.goal-panel{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:14px}
+.goal-panel>div{max-width:650px}.goal-panel h3{margin:8px 0}
+.goal-panel label{min-width:150px;font-size:.8rem;color:var(--muted)}.goal-panel input{display:block;width:100%;margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:8px}
+.dashboard-shortcuts{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}.dashboard-shortcuts a,.mexico-source a{color:var(--accent);font-size:.85rem}
+.mexico-source-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mexico-projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
+.mexico-projects article{padding:19px}.mexico-projects article>span{font:.68rem 'DM Mono',monospace;color:var(--accent)}
+.mexico-projects h3{font-size:1rem;margin:9px 0}
+.mexico-projects small{font-size:.74rem;color:var(--muted);line-height:1.5}
+button:disabled{cursor:not-allowed;opacity:.55}
+@media(max-width:900px){.math-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.student-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.data-workbench{grid-template-columns:1fr}}
+@media(max-width:650px){.lab-grid,.math-grid,.mexico-source-grid,.mexico-projects{grid-template-columns:1fr}.goal-panel{align-items:stretch;flex-direction:column}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.code-editor{font-size:.75rem}}
+/* Mantener el tema oscuro en los nuevos módulos */
+.lab-card,.math-card,.mexico-source,.mexico-projects article,.goal-panel,.data-workbench-tools,.data-workbench-results,.metric-tile,.student-stats article,.chart-panel{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
