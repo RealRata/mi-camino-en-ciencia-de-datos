@@ -55,7 +55,7 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "gpt-5.5",
+          model: "gpt-6-luna",
           instructions: INSTRUCTIONS,
           input: messages,
           max_output_tokens: 900
