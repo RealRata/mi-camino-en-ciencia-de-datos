@@ -880,3 +880,75 @@ a:hover{color:#ff4ecd}
 input,textarea,select{background:#100b35!important;color:#fff!important;border-color:#6550ad!important}
 input::placeholder,textarea::placeholder{color:#b9addd!important}
 @media(max-width:760px){.nav{background:#100a35!important}}
+
+
+/* REDISENO CROMATICO INTENSO — nueva identidad visual */
+:root{
+ --bg:#080018!important;--surface:#1b0638!important;--surface-soft:#32105b!important;
+ --text:#fff!important;--muted:#eadcfb!important;--line:#8b2cff!important;
+ --accent:#d7ff00!important;--accent-dark:#a8d900!important;--accent-soft:#4a126d!important;
+}
+html,body{background:#080018!important;color:#fff!important}
+body{
+ background-image:
+ radial-gradient(ellipse at 10% 8%,rgba(255,0,153,.34),transparent 33%),
+ radial-gradient(ellipse at 88% 15%,rgba(0,234,255,.28),transparent 32%),
+ radial-gradient(ellipse at 60% 95%,rgba(128,0,255,.38),transparent 42%)!important;
+}
+.topbar.sidebar,.topbar,.nav,.nav.open,.footer{
+ background:#120027!important;border-color:#8b2cff!important;color:#fff!important;
+}
+.topbar.sidebar .brand-mark,.brand-mark{
+ background:linear-gradient(135deg,#ff00a8,#7b2cff 55%,#00eaff)!important;color:#fff!important;
+}
+.brand strong,.hero h1 span,.work-hero h1 span{
+ background:linear-gradient(90deg,#d7ff00,#00eaff,#ff00a8)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
+}
+h1,h2,h3,h4,.section-heading h2{color:#fff!important}
+.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,
+.journey-step small,.stats-strip strong,.road-status,.progress-copy>a{
+ color:#d7ff00!important;
+}
+a,.source-links a,.dashboard-shortcuts a{color:#00eaff!important}
+a:hover,.nav a:hover{color:#ff4dcc!important}
+.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,
+.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,
+.stats-strip,.lesson,.search-box,.data-calculator-section,.calculator-panel,
+.calculator-card,.planner-card,.resource-card,.resource-item,.lab-card,.math-card,
+.mexico-source,.goal-panel,.data-workbench-tools,.data-workbench-results,
+.semester-card,.plan-section,.guide-block,.origin-card,.chart-panel,.metric-tile,
+.student-stats article,.tip-box,.notice,.journey-intro,.journey-finish{
+ background:linear-gradient(145deg,#2a0750 0%,#19002f 58%,#100022 100%)!important;
+ color:#fff!important;border:1px solid #8b2cff!important;
+ box-shadow:0 10px 34px rgba(255,0,168,.10),inset 0 1px rgba(255,255,255,.06)!important;
+}
+.road-card:nth-child(4n+1),.curriculum-card:nth-child(3n+1),.tip-card:nth-child(3n+1){border-top:4px solid #d7ff00!important}
+.road-card:nth-child(4n+2),.curriculum-card:nth-child(3n+2),.tip-card:nth-child(3n+2){border-top:4px solid #ff00a8!important}
+.road-card:nth-child(4n+3),.curriculum-card:nth-child(3n),.tip-card:nth-child(3n){border-top:4px solid #00eaff!important}
+.road-card:nth-child(4n),.skill-card:nth-child(4n){border-top:4px solid #ff6b00!important}
+.road-icon,.journey-number,.tags span{
+ background:#541080!important;color:#d7ff00!important;border:1px solid #b34dff!important;
+}
+.button-primary,.brand-mark{
+ background:linear-gradient(100deg,#d7ff00,#00eaff 52%,#ff00a8)!important;
+ color:#100022!important;border:0!important;font-weight:800!important;
+ box-shadow:0 7px 24px rgba(0,234,255,.24)!important;
+}
+.button-quiet,.menu-toggle{
+ background:#3a075f!important;color:#fff!important;border:1px solid #ff00a8!important;
+}
+.button-quiet:hover,.button-primary:hover{filter:brightness(1.2) saturate(1.3)!important}
+.progress-track{background:#3b1b5c!important}
+.progress-fill{background:linear-gradient(90deg,#d7ff00,#00eaff,#7b2cff,#ff00a8)!important}
+.tip-box,.notice,.journey-finish{border-left:5px solid #ff00a8!important}
+.tip-box p,.tip-box strong,.journey-outcome,.notice{color:#fff!important}
+.terminal,.lab-output,.code-editor{background:#080014!important;color:#d7ffb8!important;border-color:#00eaff!important}
+.code-line{color:#fff!important}.code-purple{color:#e6a0ff!important}.code-blue{color:#00eaff!important}
+.code-green{color:#d7ff00!important}.code-yellow{color:#ffe66d!important}
+input,textarea,select,.resource-filter{
+ background:#16002c!important;color:#fff!important;border:1px solid #a34dff!important;
+}
+input::placeholder,textarea::placeholder{color:#cbb1e8!important}
+::selection{background:#ff00a8!important;color:#fff!important}
+@media(max-width:760px){.topbar.sidebar .nav{background:#120027!important}}
