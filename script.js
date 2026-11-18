@@ -905,12 +905,12 @@
   const goalInput=document.getElementById("weeklyGoal"),GOAL_KEY="datos-cero-weekly-goal-v1";try{goalInput.value=localStorage.getItem(GOAL_KEY)||"300";}catch(e){}
   function renderStudentDashboard(){
     const lessons=document.querySelectorAll("[data-lesson]:checked").length,lessonTotal=document.querySelectorAll("[data-lesson]").length,projects=document.querySelectorAll("[data-project-task]:checked").length,projectTotal=document.querySelectorAll("[data-project-task]").length;
-    let sessions=[];try{sessions=JSON.parse(localStorage.getItem("datos-desde-cero-study-plan-v1")||"[]");}catch(e){}if(!Array.isArray(sessions))sessions=[];
+    let sessions=[];try{sessions=JSON.parse(localStorage.getItem("ciencia-datos-plan-semanal-v1")||"[]");}catch(e){}if(!Array.isArray(sessions))sessions=[];
     const minutes=sessions.filter(s=>s&&s.done).reduce((sum,s)=>sum+(Number(s.minutes)||0),0),goal=Number(goalInput?.value)||300,percent=Math.min(100,Math.round(minutes/goal*100));
     document.getElementById("dashLessons").textContent=lessons+" / "+lessonTotal;document.getElementById("dashProjects").textContent=(projectTotal?Math.round(projects/projectTotal*100):0)+"%";document.getElementById("dashMinutes").textContent=minutes;document.getElementById("dashGoal").textContent=percent+"%";document.getElementById("dashGoalText").textContent=minutes+" de "+goal+" minutos completados";
   }
   document.getElementById("saveWeeklyGoal")?.addEventListener("click",()=>{const value=Math.max(30,Math.min(3000,Number(goalInput.value)||300));goalInput.value=value;try{localStorage.setItem(GOAL_KEY,String(value));}catch(e){}renderStudentDashboard();});
   renderStudentDashboard();document.querySelectorAll("[data-lesson],[data-project-task]").forEach(el=>el.addEventListener("change",renderStudentDashboard));
-  document.getElementById("studySessions")?.addEventListener("change",renderStudentDashboard);
+  document.getElementById("studyPlannerForm")?.addEventListener("submit",()=>setTimeout(renderStudentDashboard,0));document.getElementById("plannerList")?.addEventListener("change",renderStudentDashboard);document.getElementById("plannerList")?.addEventListener("click",()=>setTimeout(renderStudentDashboard,0));
 
 })();
