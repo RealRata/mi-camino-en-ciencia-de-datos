@@ -61,18 +61,6 @@ El documento de 2019 es la fuente de referencia de esta guía. La información d
 
 ## Asistente de IA
 
-El chat usa un backend seguro en Cloudflare Workers. La clave de OpenAI se guarda como secreto del Worker y nunca se publica en GitHub ni en el navegador.
+El asistente de la página utiliza ChatGPT en una pestaña nueva. Al enviar una pregunta, el sitio abre ChatGPT con instrucciones de contexto para orientar la conversación sobre Ciencia de Datos, el plan UNAM, matemáticas, programación y proyectos.
 
-### Activación inicial (una sola vez)
-
-1. En GitHub abre **Settings → Secrets and variables → Actions**.
-2. Crea estos tres **Repository secrets**:
-   - `CLOUDFLARE_API_TOKEN`: token de Cloudflare con permisos para desplegar Workers Scripts en la cuenta.
-   - `CLOUDFLARE_ACCOUNT_ID`: identificador de tu cuenta de Cloudflare.
-   - `OPENAI_API_KEY`: clave de API de OpenAI con facturación y acceso a la API habilitados.
-3. En el repositorio abre **Actions → Deploy Data Quest AI → Run workflow**.
-4. Cuando termine correctamente, el flujo despliega el Worker, guarda la clave como secreto y configura automáticamente la URL del backend en `script.js`. GitHub Pages publicará el cambio.
-
-Para actualizaciones posteriores del backend, vuelve a ejecutar **Deploy Data Quest AI**. No escribas la clave API en archivos, mensajes, capturas ni commits.
-
-El Worker utiliza la API de Responses de OpenAI con el modelo `gpt-6-luna`. Consulta [la referencia de modelos de OpenAI](https://developers.openai.com/api/reference/resources/responses/methods/create) y [la documentación de Workers](https://developers.cloudflare.com/workers/).
+No requiere claves API, backend propio ni configuración de Cloudflare. La conversación se desarrolla en ChatGPT y está sujeta a que la persona tenga acceso al servicio.
