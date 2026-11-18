@@ -668,41 +668,12 @@
       event.preventDefault();
       const question = chatInput.value.trim();
       if (!question || chatSend.disabled) return;
-      addChatMessage("user", question);
+      const context = "Actúa como mi tutor de Ciencia de Datos en español. Ayúdame con la Licenciatura en Ciencia de Datos de la UNAM, el plan de estudios, matemáticas, probabilidad, estadística, Python, SQL, bases de datos, análisis, aprendizaje automático, proyectos y organización del estudio. Explica paso a paso, con ejemplos y ejercicios adecuados para principiantes. No inventes información oficial de la UNAM; señala qué debo verificar en fuentes oficiales. Mi pregunta es: ";
+      const chatUrl = "https://chatgpt.com/?q=" + encodeURIComponent(context + question);
+      const opened = window.open(chatUrl, "_blank", "noopener,noreferrer");
+      addChatMessage("assistant", opened ? "Abrí ChatGPT en una pestaña nueva con tu pregunta y el contexto de Ciencia de Datos. Continúa la conversación allí; no necesitas configurar claves API." : "Tu navegador bloqueó la nueva pestaña. Permite las ventanas emergentes para este sitio y vuelve a enviar tu pregunta.");
+      chatStatus.textContent = opened ? "Tu consulta continúa en ChatGPT · Se abre en otra pestaña." : "Ventana emergente bloqueada por el navegador.";
       chatInput.value = "";
-      if (!CHAT_API_URL) {
-        addChatMessage("assistant", "El panel ya está instalado, pero la conexión con la IA todavía no está activada. Falta desplegar el backend seguro y configurar su dirección. La clave API nunca debe escribirse aquí ni guardarse en GitHub.");
-        chatStatus.textContent = "Conexión pendiente: consulta README.md, apartado «Activar el asistente IA».";
-        return;
-      }
-
-      chatSend.disabled = true;
-      chatInput.disabled = true;
-      chatStatus.textContent = "Preparando respuesta…";
-      const pending = addChatMessage("assistant", "Estoy revisando tu pregunta…");
-      const messages = [...chatHistory, { role: "user", content: question }].slice(-10);
-      try {
-        const response = await fetch(CHAT_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages })
-        });
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(payload.error || "No fue posible obtener una respuesta.");
-        const answer = typeof payload.answer === "string" ? payload.answer : "";
-        if (!answer) throw new Error("La IA devolvió una respuesta vacía.");
-        pending.querySelector("p").textContent = answer;
-        chatHistory.push({ role: "user", content: question }, { role: "assistant", content: answer });
-        while (chatHistory.length > 10) chatHistory.shift();
-        chatStatus.textContent = "Asistente conectado · Verifica datos académicos en fuentes oficiales.";
-      } catch (error) {
-        pending.querySelector("p").textContent = "No pude conectar con el asistente. " + error.message + " Inténtalo de nuevo más tarde.";
-        chatStatus.textContent = "No se pudo completar la consulta.";
-      } finally {
-        chatSend.disabled = false;
-        chatInput.disabled = false;
-        chatInput.focus();
-      }
     });
     chatInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
