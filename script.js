@@ -622,4 +622,98 @@
   }
 
 
+  // Portafolio: registra entregables localmente sin enviar datos a servidores.
+  const PROJECT_KEY = "datos-desde-cero-projects-v1";
+  const projectChecks = [...document.querySelectorAll("[data-project-task]")];
+  const projectDone = document.getElementById("projectTasksDone");
+  const projectText = document.getElementById("projectTasksText");
+  const projectFill = document.getElementById("projectTasksFill");
+  function renderProjectProgress() {
+    const done = projectChecks.filter(input => input.checked).length;
+    const total = projectChecks.length;
+    if (projectDone) projectDone.textContent = done + " de " + total + " entregables";
+    if (projectText) projectText.textContent = done === total && total ? "¡Portafolio inicial completado!" : done ? "Sigue con el siguiente entregable; guarda evidencia en tu repositorio." : "Comienza con el primer proyecto.";
+    if (projectFill) projectFill.style.width = (total ? done / total * 100 : 0) + "%";
+  }
+  try {
+    const savedProjects = JSON.parse(localStorage.getItem(PROJECT_KEY) || "{}");
+    projectChecks.forEach(input => { input.checked = savedProjects[input.dataset.projectTask] === true; });
+  } catch (error) { console.warn("No fue posible recuperar el avance de proyectos.", error); }
+  projectChecks.forEach(input => input.addEventListener("change", () => {
+    const state = {};
+    projectChecks.forEach(item => { state[item.dataset.projectTask] = item.checked; });
+    try { localStorage.setItem(PROJECT_KEY, JSON.stringify(state)); } catch (error) { console.warn("No fue posible guardar el avance de proyectos.", error); }
+    renderProjectProgress();
+  }));
+  renderProjectProgress();
+
+  // Biblioteca: combina búsqueda de texto y filtro por área.
+  const resourceSearch = document.getElementById("resourceSearch");
+  const resourceCards = [...document.querySelectorAll(".resource-card")];
+  const resourceCount = document.getElementById("resourceCount");
+  const resourceEmpty = document.getElementById("resourceEmpty");
+  let resourceCategory = "todos";
+  function filterResources() {
+    const query = resourceSearch ? resourceSearch.value.trim().toLocaleLowerCase("es") : "";
+    let visible = 0;
+    resourceCards.forEach(card => {
+      const haystack = (card.dataset.resourceSearch || "") + " " + card.textContent;
+      const matchesText = haystack.toLocaleLowerCase("es").includes(query);
+      const matchesCategory = resourceCategory === "todos" || card.dataset.resourceCategory === resourceCategory;
+      card.hidden = !(matchesText && matchesCategory);
+      if (!card.hidden) visible++;
+    });
+    if (resourceCount) resourceCount.textContent = visible + (visible === 1 ? " recurso" : " recursos");
+    if (resourceEmpty) resourceEmpty.hidden = visible !== 0;
+  }
+  if (resourceSearch) resourceSearch.addEventListener("input", filterResources);
+  document.querySelectorAll("[data-resource-filter]").forEach(button => button.addEventListener("click", () => {
+    resourceCategory = button.dataset.resourceFilter;
+    document.querySelectorAll("[data-resource-filter]").forEach(item => {
+      const active = item === button;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+    filterResources();
+  }));
+  filterResources();
+
+  // Reto de conocimientos con retroalimentación por pregunta.
+  const quiz = document.getElementById("knowledgeQuiz");
+  if (quiz) {
+    const answers = {
+      q1: ["b", "Correcto: while repite el bloque mientras la condición sea verdadera."],
+      q2: ["b", "Correcto: la mediana depende de la posición central y resiste mejor valores extremos."],
+      q3: ["c", "Correcto: GROUP BY agrupa registros para calcular resúmenes por categoría."],
+      q4: ["a", "Correcto: el conjunto de prueba permite estimar el desempeño en datos no usados para ajustar el modelo."],
+      q5: ["b", "Correcto: correlación describe asociación; por sí sola no demuestra causalidad."]
+    };
+    const score = document.getElementById("quizScore");
+    quiz.addEventListener("submit", event => {
+      event.preventDefault();
+      let points = 0, answered = 0;
+      Object.entries(answers).forEach(([name, data]) => {
+        const selected = quiz.querySelector('input[name="' + name + '"]:checked');
+        const feedback = document.getElementById("feedback" + name.slice(1));
+        if (!feedback) return;
+        feedback.classList.remove("correct", "incorrect");
+        if (!selected) {
+          feedback.textContent = "Sin responder. " + data[1].replace("Correcto: ", "");
+          feedback.classList.add("incorrect");
+          return;
+        }
+        answered++;
+        if (selected.value === data[0]) { points++; feedback.textContent = data[1]; feedback.classList.add("correct"); }
+        else { feedback.textContent = "No es la opción correcta. " + data[1].replace("Correcto: ", "La respuesta correcta es: "); feedback.classList.add("incorrect"); }
+      });
+      if (score) score.textContent = points + " de 5 correctas · " + (answered === 5 ? (points >= 4 ? "¡Buen dominio!" : "Repasa los temas y vuelve a intentarlo.") : "Responde todas para completar el reto.");
+    });
+    quiz.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        document.querySelectorAll(".quiz-feedback").forEach(node => { node.textContent = ""; node.classList.remove("correct", "incorrect"); });
+        if (score) score.textContent = "Aún no has enviado tus respuestas.";
+      }, 0);
+    });
+  }
+
 })();
