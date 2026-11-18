@@ -716,4 +716,80 @@
     });
   }
 
+
+  // Mini-lecciones guiadas: concepto, ejemplo trabajado, reto y solución comentada.
+  const miniLessons = {
+    "python-variables": {
+      concept: "Una variable es un nombre asociado a un valor. El tipo indica qué clase de dato guardas: entero (int), decimal (float), texto (str) o verdadero/falso (bool).",
+      example: 'edad = 20\nnombre = "Ana"\naltura = 1.65\nes_estudiante = True\nprint(nombre, edad)',
+      explain: "Python asocia cada nombre con un valor. Puedes consultar su tipo con type(edad).",
+      challenge: "Crea producto = \"Cuaderno\", precio = 35 y cantidad = 3. Calcula el total y muestra una frase con el resultado.",
+      solution: 'producto = "Cuaderno"\nprecio = 35\ncantidad = 3\ntotal = precio * cantidad\nprint(f"{producto}: {total} pesos")'
+    },
+    "python-condicionales": {
+      concept: "Una condición permite que el programa elija qué instrucciones ejecutar. if evalúa la primera condición; elif prueba alternativas y else cubre los demás casos.",
+      example: 'calificacion = 8\nif calificacion >= 9:\n    print("Excelente")\nelif calificacion >= 6:\n    print("Aprobado")\nelse:\n    print("Necesita apoyo")',
+      explain: "Las condiciones se evalúan de arriba hacia abajo. En cuanto una resulta verdadera, se ejecuta ese bloque y se omiten los siguientes.",
+      challenge: "Escribe una condición que indique si una persona puede votar cuando tiene 18 años o más. Prueba con edades 16 y 21.",
+      solution: 'edad = 21\nif edad >= 18:\n    print("Puede votar")\nelse:\n    print("Aún no cumple la edad")'
+    },
+    "python-ciclos": {
+      concept: "Un ciclo repite instrucciones. for recorre elementos de una colección o secuencia; while repite mientras una condición siga siendo verdadera.",
+      example: 'calificaciones = [8, 9, 7]\nfor nota in calificaciones:\n    print(nota)\n\nfor numero in range(1, 4):\n    print(numero)',
+      explain: "range(1, 4) produce 1, 2 y 3: el límite final no se incluye. Cada vuelta asigna el siguiente valor a la variable.",
+      challenge: "Usa un ciclo para sumar los números del 1 al 5 y mostrar el total.",
+      solution: 'total = 0\nfor numero in range(1, 6):\n    total += numero\nprint(total)  # 15'
+    },
+    "python-funciones": {
+      concept: "Una función agrupa instrucciones con un nombre para reutilizarlas. Los parámetros reciben datos y return devuelve un resultado al lugar donde se llamó.",
+      example: 'def calcular_promedio(a, b):\n    return (a + b) / 2\n\nresultado = calcular_promedio(8, 10)\nprint(resultado)  # 9.0',
+      explain: "La función no se ejecuta al definirla, sino cuando la llamas. return entrega el resultado; print solo lo muestra.",
+      challenge: "Crea una función llamada area_rectangulo que reciba base y altura, y devuelva su producto.",
+      solution: 'def area_rectangulo(base, altura):\n    return base * altura\n\nprint(area_rectangulo(4, 3))  # 12'
+    },
+    "numpy": {
+      concept: "NumPy trabaja con arreglos numéricos. Sus operaciones se aplican elemento a elemento y permiten procesar muchos valores sin escribir ciclos manuales.",
+      example: 'import numpy as np\nventas = np.array([10, 12, 8])\nventas_con_iva = ventas * 1.16\nprint(ventas.mean())  # 10.0',
+      explain: "El arreglo guarda valores en una estructura homogénea. mean() calcula el promedio y la multiplicación escala cada elemento.",
+      challenge: "Crea un arreglo con [5, 10, 15] y calcula su suma y su promedio.",
+      solution: 'import numpy as np\ndatos = np.array([5, 10, 15])\nprint(datos.sum())   # 30\nprint(datos.mean())  # 10.0'
+    },
+    "pandas": {
+      concept: "Pandas organiza datos tabulares en un DataFrame: filas para observaciones y columnas para variables. Puedes inspeccionar, filtrar y resumir una tabla.",
+      example: 'import pandas as pd\ndf = pd.DataFrame({"producto": ["A", "B"], "ventas": [10, 15]})\nprint(df.head())\nprint(df["ventas"].mean())',
+      explain: "head() muestra las primeras filas. Seleccionar df[\"ventas\"] devuelve una serie; mean() calcula su promedio.",
+      challenge: "Con un DataFrame que tenga una columna precio, muestra solo las filas cuyo precio sea mayor que 100.",
+      solution: 'caros = df[df["precio"] > 100]\nprint(caros)'
+    },
+    "sql": {
+      concept: "SQL consulta tablas. SELECT elige columnas, FROM indica la tabla, WHERE filtra filas y GROUP BY agrupa registros para calcular resúmenes.",
+      example: "SELECT categoria, COUNT(*) AS productos\nFROM inventario\nWHERE existencia > 0\nGROUP BY categoria\nORDER BY productos DESC;",
+      explain: "Primero se filtran los registros disponibles, después se agrupan por categoría y se cuenta cuántos productos hay en cada grupo.",
+      challenge: "Imagina una tabla ventas con columna ciudad. Escribe una consulta que cuente cuántas ventas hay por ciudad.",
+      solution: "SELECT ciudad, COUNT(*) AS total_ventas\nFROM ventas\nGROUP BY ciudad\nORDER BY total_ventas DESC;"
+    },
+    "ml": {
+      concept: "Un modelo aprende patrones a partir de ejemplos. Se entrena con una parte de los datos y se evalúa con datos separados que no vio durante el ajuste.",
+      example: "from sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)",
+      explain: "X contiene variables de entrada y y la respuesta que quieres predecir. El 20% queda reservado para evaluar; random_state hace reproducible la partición.",
+      challenge: "Explica por qué evaluar el modelo con los mismos datos usados para entrenarlo puede dar una impresión demasiado optimista.",
+      solution: "Porque el modelo ya utilizó esos ejemplos para ajustar sus parámetros. Evaluar con datos no vistos ayuda a estimar cómo generaliza a casos nuevos."
+    }
+  };
+  document.querySelectorAll(".lesson").forEach(card => {
+    const check = card.querySelector("[data-lesson]");
+    const lesson = check && miniLessons[check.dataset.lesson];
+    if (!lesson || card.querySelector(".mini-lesson")) return;
+    const panel = document.createElement("details");
+    panel.className = "mini-lesson";
+    panel.innerHTML = '<summary>Ver mini-lección: concepto, ejemplo y reto</summary><div class="mini-lesson-content"><section><span class="mini-label">01 · COMPRENDE</span><p></p></section><section><span class="mini-label">02 · EJEMPLO EXPLICADO</span><pre><code></code></pre><p></p></section><section><span class="mini-label">03 · TU TURNO</span><p></p></section><details class="mini-answer"><summary>Ver una posible solución</summary><pre><code></code></pre><p>Intenta resolverlo primero sin mirar. Puede haber más de una solución correcta.</p></details></div>';
+    const blocks = panel.querySelectorAll(".mini-lesson-content section");
+    blocks[0].querySelector("p").textContent = lesson.concept;
+    panel.querySelectorAll("pre code")[0].textContent = lesson.example;
+    blocks[1].querySelector("p").textContent = lesson.explain;
+    blocks[2].querySelector("p").textContent = lesson.challenge;
+    panel.querySelectorAll("pre code")[1].textContent = lesson.solution;
+    card.appendChild(panel);
+  });
+
 })();
