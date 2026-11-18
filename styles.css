@@ -952,3 +952,33 @@ input,textarea,select,.resource-filter{
 input::placeholder,textarea::placeholder{color:#cbb1e8!important}
 ::selection{background:#ff00a8!important;color:#fff!important}
 @media(max-width:760px){.topbar.sidebar .nav{background:#120027!important}}
+
+
+/* PALETA NEUTRA MODERNA: grafito, pizarra y acentos suaves */
+:root{--bg:#111418!important;--surface:#1b2026!important;--surface-soft:#252c34!important;--text:#edf1f4!important;--muted:#aab4be!important;--line:#39434d!important;--accent:#9bb8ad!important;--accent-dark:#789b8d!important;--accent-soft:#293b37!important;--shadow:0 18px 48px rgba(0,0,0,.28)!important}
+html,body{background:#111418!important;color:#edf1f4!important}
+body{background-image:radial-gradient(ellipse at 12% 0%,rgba(115,145,132,.10),transparent 35%),radial-gradient(ellipse at 90% 12%,rgba(104,133,158,.09),transparent 34%)!important}
+.topbar.sidebar,.topbar,.nav,.nav.open,.footer{background:rgba(20,25,30,.97)!important;border-color:#39434d!important;color:#edf1f4!important}
+.topbar.sidebar .brand-mark,.brand-mark{background:#344b45!important;color:#eaf1ed!important}
+.brand strong,.hero h1 span,.work-hero h1 span{background:none!important;-webkit-text-fill-color:#c2d2cb!important;color:#c2d2cb!important}
+h1,h2,h3,h4,.section-heading h2{color:#edf1f4!important}
+.eyebrow,.lesson-number,.curriculum-number,.skill-card>span,.tip-index,.journey-step small,.stats-strip strong,.road-status,.progress-copy>a{color:#a9c2b7!important}
+a,.source-links a,.dashboard-shortcuts a{color:#a9c2b7!important}
+a:hover,.nav a:hover{color:#d2ded8!important}
+.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.student-routine,.journey-step,.project-panel,.progress-section,.progress-panel,.stats-strip,.lesson,.search-box,.data-calculator-section,.calculator-panel,.calculator-card,.planner-card,.resource-card,.resource-item,.lab-card,.math-card,.mexico-source,.goal-panel,.data-workbench-tools,.data-workbench-results,.semester-card,.plan-section,.guide-block,.origin-card,.chart-panel,.metric-tile,.student-stats article,.tip-box,.notice,.journey-intro,.journey-finish{background:#1b2026!important;color:#edf1f4!important;border:1px solid #343e47!important;box-shadow:0 8px 24px rgba(0,0,0,.18)!important}
+.road-card:nth-child(n),.curriculum-card:nth-child(n),.tip-card:nth-child(n),.skill-card:nth-child(n){border-top:1px solid #39434d!important}
+.road-icon,.journey-number,.tags span{background:#293b37!important;color:#c5d7ce!important;border:1px solid #50675d!important}
+.button-primary{background:#9bb8ad!important;color:#14201b!important;border:1px solid #9bb8ad!important;box-shadow:none!important}
+.button-primary:hover{background:#b1c9bf!important;filter:none!important}
+.button-quiet,.menu-toggle{background:#252c34!important;color:#edf1f4!important;border:1px solid #46515c!important}
+.button-quiet:hover{background:#303943!important;border-color:#789b8d!important}
+.progress-track{background:#303841!important}.progress-fill{background:#91afa2!important}
+.tip-box,.notice,.journey-finish{background:#202b29!important;border-left:3px solid #789b8d!important}
+.tip-box p,.tip-box strong,.journey-outcome,.notice{color:#dce6e1!important}
+.terminal,.lab-output,.code-editor{background:#101519!important;color:#d8e1dc!important;border-color:#46534d!important}
+.code-line{color:#e1e8e4!important}.code-purple{color:#c1b5d7!important}.code-blue{color:#a9c6d6!important}.code-green{color:#b8d1c3!important}.code-yellow{color:#d8cba5!important}
+input,textarea,select,.resource-filter{background:#151a1f!important;color:#edf1f4!important;border:1px solid #46515c!important;accent-color:#9bb8ad!important}
+input::placeholder,textarea::placeholder{color:#89949e!important}
+::selection{background:#536e63!important;color:#fff!important}
+:focus-visible{outline-color:#a9c2b7!important}
+@media(max-width:760px){.topbar.sidebar .nav{background:#171d22!important}}
