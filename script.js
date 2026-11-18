@@ -792,4 +792,125 @@
     card.appendChild(panel);
   });
 
+
+  // Laboratorios locales: Python mediante Pyodide y SQL mediante SQLite WebAssembly.
+  const pythonStarter = 'calificaciones = [8, 9, 7, 10, 6]\npromedio = sum(calificaciones) / len(calificaciones)\nprint("Calificaciones:", calificaciones)\nprint("Promedio:", round(promedio, 2))';
+  let pyodideInstance = null;
+  function loadExternalScript(src, marker) {
+    return new Promise((resolve, reject) => {
+      if (window[marker]) return resolve(window[marker]);
+      const existing = document.querySelector('script[data-loader="' + marker + '"]');
+      if (existing) { existing.addEventListener("load", () => resolve(window[marker])); existing.addEventListener("error", reject); return; }
+      const script = document.createElement("script"); script.src = src; script.async = true; script.dataset.loader = marker;
+      script.onload = () => window[marker] ? resolve(window[marker]) : reject(new Error("El motor no quedó disponible."));
+      script.onerror = () => reject(new Error("No se pudo descargar el motor. Revisa tu conexión y vuelve a intentar."));
+      document.head.appendChild(script);
+    });
+  }
+  document.getElementById("runPython")?.addEventListener("click", async () => {
+    const button=document.getElementById("runPython"), output=document.getElementById("pythonOutput"), status=document.getElementById("pythonStatus");
+    button.disabled=true;button.textContent="Cargando / ejecutando…";status.textContent="Preparando Python";
+    try {
+      if(!pyodideInstance){await loadExternalScript("https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js","loadPyodide");pyodideInstance=await window.loadPyodide();}
+      let printed="";pyodideInstance.setStdout({batched:value=>{printed+=value+"\n";}});
+      await pyodideInstance.runPythonAsync(document.getElementById("pythonCode").value);
+      output.textContent=printed.trim()||"El programa terminó sin imprimir resultados.";status.textContent="Python listo";
+    } catch(error){output.textContent="No se pudo ejecutar el programa: "+error.message;status.textContent="Revisa la conexión o el código";}
+    finally{button.disabled=false;button.textContent="▶ Ejecutar Python";}
+  });
+  document.getElementById("resetPython")?.addEventListener("click",()=>{document.getElementById("pythonCode").value=pythonStarter;document.getElementById("pythonOutput").textContent="Ejemplo restaurado.";});
+
+  const sqlStarter='SELECT ciudad, COUNT(*) AS operaciones, ROUND(AVG(importe), 2) AS promedio\nFROM ventas\nGROUP BY ciudad\nORDER BY promedio DESC;';
+  let sqlDb=null;
+  function renderSQLRows(columns,values){
+    const wrap=document.createElement("div"),table=document.createElement("table"),head=document.createElement("tr");
+    columns.forEach(name=>{const th=document.createElement("th");th.textContent=name;head.appendChild(th);});table.appendChild(head);
+    values.forEach(row=>{const tr=document.createElement("tr");row.forEach(value=>{const td=document.createElement("td");td.textContent=value==null?"NULL":String(value);tr.appendChild(td);});table.appendChild(tr);});
+    wrap.className="table-scroll";wrap.appendChild(table);return wrap;
+  }
+  document.getElementById("runSQL")?.addEventListener("click",async()=>{
+    const button=document.getElementById("runSQL"),output=document.getElementById("sqlOutput"),status=document.getElementById("sqlStatus");button.disabled=true;button.textContent="Preparando SQLite…";
+    try{
+      if(!sqlDb){await loadExternalScript("https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js","initSqlJs");const SQL=await window.initSqlJs({locateFile:file=>"https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/"+file});sqlDb=new SQL.Database();sqlDb.run("CREATE TABLE ventas (id INTEGER, ciudad TEXT, producto TEXT, importe REAL); INSERT INTO ventas VALUES (1,'CDMX','Libro',180),(2,'Puebla','Cuaderno',45),(3,'CDMX','Pluma',25),(4,'Oaxaca','Libro',180),(5,'Puebla','Mochila',420),(6,'CDMX','Mochila',420),(7,'Oaxaca','Cuaderno',45),(8,'Puebla','Pluma',25);");}
+      const results=sqlDb.exec(document.getElementById("sqlCode").value);output.replaceChildren();
+      if(!results.length)output.textContent="Consulta ejecutada. No devolvió filas (puede ser una operación de escritura).";else results.forEach(result=>output.appendChild(renderSQLRows(result.columns,result.values)));
+      status.textContent="SQLite listo";
+    }catch(error){output.textContent="Error SQL: "+error.message;status.textContent="Corrige la consulta";}
+    finally{button.disabled=false;button.textContent="▶ Ejecutar SQL";}
+  });
+  document.getElementById("resetSQL")?.addEventListener("click",()=>{document.getElementById("sqlCode").value=sqlStarter;document.getElementById("sqlOutput").textContent="Consulta restaurada.";});
+
+  // Importa CSV/Excel, calcula calidad y genera una visualización local.
+  let wbRows=[],wbHeaders=[],wbName="";
+  const wbFile=document.getElementById("workbenchFile"),wbColumn=document.getElementById("workbenchColumn");
+  function parseCSVText(source){
+    const rows=[];let row=[],cell="",quoted=false;
+    for(let i=0;i<source.length;i++){const ch=source[i],next=source[i+1];if(ch==='"'&&quoted&&next==='"'){cell+='"';i++;}else if(ch==='"')quoted=!quoted;else if(ch===","&&!quoted){row.push(cell);cell="";}else if((ch==="\n"||ch==="\r")&&!quoted){if(ch==="\r"&&next==="\n")i++;row.push(cell);if(row.some(v=>v!==""))rows.push(row);row=[];cell="";}else cell+=ch;}
+    row.push(cell);if(row.some(v=>v!==""))rows.push(row);return rows;
+  }
+  function profileWorkbench(){
+    const total=wbRows.length*wbHeaders.length,missing=wbRows.reduce((n,row)=>n+wbHeaders.filter(h=>row[h]===""||row[h]==null).length,0),seen=new Set();let duplicates=0;
+    wbRows.forEach(row=>{const key=JSON.stringify(wbHeaders.map(h=>row[h]));if(seen.has(key))duplicates++;else seen.add(key);});
+    document.getElementById("fileMetrics").innerHTML=[["Registros",wbRows.length],["Columnas",wbHeaders.length],["Celdas vacías",missing],["Filas duplicadas",duplicates]].map(([label,value])=>'<div class="metric-tile"><span>'+label+'</span><strong>'+value+'</strong></div>').join("");
+    document.getElementById("fileQuality").textContent="Calidad inicial: "+(total?100*(total-missing)/total:0).toFixed(1)+"% de celdas con valor. Se identificaron "+duplicates+" filas duplicadas exactas. Revisa antes de eliminarlas.";
+    const table=document.createElement("table"),head=document.createElement("tr");wbHeaders.forEach(h=>{const th=document.createElement("th");th.textContent=h;head.appendChild(th);});table.appendChild(head);
+    wbRows.slice(0,8).forEach(row=>{const tr=document.createElement("tr");wbHeaders.forEach(h=>{const td=document.createElement("td");td.textContent=String(row[h]??"");tr.appendChild(td);});table.appendChild(tr);});document.getElementById("filePreview").replaceChildren(table);
+    wbColumn.replaceChildren(...wbHeaders.map(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;return o;}));
+    const numeric=wbHeaders.find(h=>wbRows.some(row=>row[h]!==""&&Number.isFinite(Number(row[h]))));if(numeric)wbColumn.value=numeric;
+    wbColumn.disabled=false;document.getElementById("analyzeFile").disabled=!numeric;document.getElementById("downloadCleanCSV").disabled=false;
+  }
+  wbFile?.addEventListener("change",async()=>{
+    const file=wbFile.files?.[0];if(!file)return;
+    try{let matrix;if(/\.xlsx?$|\.xls$/i.test(file.name)){if(!window.XLSX)throw new Error("No se pudo cargar el lector de Excel. Comprueba tu conexión.");const book=XLSX.read(await file.arrayBuffer(),{type:"array"});matrix=XLSX.utils.sheet_to_json(book.Sheets[book.SheetNames[0]],{header:1,defval:""});}else matrix=parseCSVText(await file.text());
+      if(!matrix.length)throw new Error("El archivo no contiene filas.");wbHeaders=matrix[0].map((v,i)=>String(v||"columna_"+(i+1)).trim());wbRows=matrix.slice(1).map(row=>Object.fromEntries(wbHeaders.map((h,i)=>[h,row[i]??""])));wbName=file.name;profileWorkbench();
+    }catch(error){document.getElementById("fileQuality").textContent="No se pudo leer el archivo: "+error.message;}
+  });
+  function drawHistogram(canvas,values){
+    if(!canvas||!values.length)return;const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,bins=Math.min(12,Math.max(4,Math.ceil(Math.sqrt(values.length)))),min=Math.min(...values),max=Math.max(...values),span=max-min||1,counts=Array(bins).fill(0);
+    values.forEach(v=>counts[Math.min(bins-1,Math.floor((v-min)/span*bins))]++);ctx.clearRect(0,0,w,h);ctx.fillStyle="#a5b6ad";ctx.font="13px sans-serif";ctx.fillText("Frecuencia",12,18);
+    const peak=Math.max(...counts,1),gap=5,plotW=w-45,plotH=h-55,barW=plotW/bins-gap;counts.forEach((n,i)=>{const bh=n/peak*plotH;ctx.fillStyle="#62c5a2";ctx.fillRect(32+i*(barW+gap),h-30-bh,barW,bh);ctx.fillStyle="#a5b6ad";ctx.fillText(String(n),32+i*(barW+gap),h-35-bh);});ctx.fillText(String(min),32,h-8);ctx.fillText(String(max),w-45,h-8);
+  }
+  document.getElementById("analyzeFile")?.addEventListener("click",()=>{
+    const key=wbColumn.value,values=wbRows.map(row=>row[key]).filter(v=>v!==""&&v!=null&&Number.isFinite(Number(v))).map(Number);if(!values.length){document.getElementById("fileInterpretation").textContent="No se encontraron valores numéricos válidos.";return;}
+    const sorted=[...values].sort((a,b)=>a-b),mean=values.reduce((a,b)=>a+b,0)/values.length,median=sorted.length%2?sorted[(sorted.length-1)/2]:(sorted[sorted.length/2-1]+sorted[sorted.length/2])/2,sd=Math.sqrt(values.reduce((s,v)=>s+(v-mean)**2,0)/values.length);
+    document.getElementById("fileInterpretation").textContent=key+": "+values.length+" valores válidos · media "+mean.toFixed(2)+" · mediana "+median.toFixed(2)+" · desviación estándar poblacional "+sd.toFixed(2)+". La media puede verse afectada por valores extremos.";drawHistogram(document.getElementById("fileChart"),values);
+  });
+  document.getElementById("downloadCleanCSV")?.addEventListener("click",()=>{
+    const unique=[],seen=new Set();wbRows.forEach(row=>{const key=JSON.stringify(wbHeaders.map(h=>row[h]));if(!seen.has(key)){seen.add(key);unique.push(row);}});
+    const quote=v=>'"'+String(v??"").replace(/"/g,'""')+'"',csv=[wbHeaders.map(quote).join(","),...unique.map(row=>wbHeaders.map(h=>quote(row[h])).join(","))].join("\r\n"),url=URL.createObjectURL(new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"})),a=document.createElement("a");a.href=url;a.download=(wbName.replace(/\.[^.]+$/,"")||"datos")+"_sin_duplicados.csv";a.click();URL.revokeObjectURL(url);
+  });
+
+  // Visualizaciones matemáticas interactivas.
+  document.getElementById("calculateVector")?.addEventListener("click",()=>{
+    const parse=id=>document.getElementById(id).value.split(/[;,\s]+/).filter(Boolean).map(Number),a=parse("vectorA"),b=parse("vectorB"),out=document.getElementById("vectorResult");
+    if(!a.length||a.length!==b.length||[...a,...b].some(v=>!Number.isFinite(v))){out.textContent="Ingresa dos vectores numéricos con la misma cantidad de componentes.";return;}
+    out.textContent="Producto punto = "+a.map((v,i)=>v+"×"+b[i]).join(" + ")+" = "+a.reduce((sum,v,i)=>sum+v*b[i],0);
+  });
+  function drawDerivative(){
+    const x=Number(document.getElementById("derivativeX").value),canvas=document.getElementById("derivativeChart");if(!canvas)return;
+    document.getElementById("derivativeValue").textContent=x;document.getElementById("derivativeResult").textContent="En x = "+x+", f(x) = "+(x*x).toFixed(2)+" y la pendiente f'(x) = "+(2*x).toFixed(2)+".";
+    const c=canvas.getContext("2d"),w=canvas.width,h=canvas.height;c.clearRect(0,0,w,h);c.strokeStyle="#40564b";c.beginPath();c.moveTo(15,h/2);c.lineTo(w-10,h/2);c.moveTo(w/2,8);c.lineTo(w/2,h-12);c.stroke();
+    const X=v=>w/2+v*42,Y=v=>h/2-v*15;c.strokeStyle="#62c5a2";c.lineWidth=2;c.beginPath();for(let i=0;i<=100;i++){const v=-5+i*.1;i?c.lineTo(X(v),Y(v*v)):c.moveTo(X(v),Y(v*v));}c.stroke();
+    c.strokeStyle="#e5bd73";c.beginPath();for(let i=0;i<=100;i++){const v=-5+i*.1,y=x*x+2*x*(v-x);i?c.lineTo(X(v),Y(y)):c.moveTo(X(v),Y(y));}c.stroke();c.fillStyle="#e5bd73";c.beginPath();c.arc(X(x),Y(x*x),5,0,Math.PI*2);c.fill();
+  }
+  document.getElementById("derivativeX")?.addEventListener("input",drawDerivative);drawDerivative();
+  function runCoin(){
+    const n=Number(document.getElementById("coinTrials").value);document.getElementById("coinTrialsValue").textContent=n;let heads=0;for(let i=0;i<n;i++)if(Math.random()<.5)heads++;
+    const p=heads/n;document.getElementById("coinResult").textContent="Caras: "+heads+" de "+n+" · frecuencia relativa: "+(p*100).toFixed(1)+"% · probabilidad teórica: 50%. Cada simulación puede variar.";
+    const canvas=document.getElementById("coinChart"),c=canvas.getContext("2d");c.clearRect(0,0,canvas.width,canvas.height);c.fillStyle="#62c5a2";c.fillRect(30,35,(canvas.width-60)*p,28);c.fillStyle="#e5bd73";c.fillRect(30+(canvas.width-60)*.5,25,2,48);c.fillStyle="#a5b6ad";c.fillText("0%",30,85);c.fillText("100%",canvas.width-65,85);c.fillText("50% teórico",canvas.width/2-28,18);
+  }
+  document.getElementById("coinTrials")?.addEventListener("input",()=>{document.getElementById("coinTrialsValue").textContent=document.getElementById("coinTrials").value;});document.getElementById("runCoin")?.addEventListener("click",runCoin);runCoin();
+
+  // Panel académico agregado desde los registros locales de la plataforma.
+  const goalInput=document.getElementById("weeklyGoal"),GOAL_KEY="datos-cero-weekly-goal-v1";try{goalInput.value=localStorage.getItem(GOAL_KEY)||"300";}catch(e){}
+  function renderStudentDashboard(){
+    const lessons=document.querySelectorAll("[data-lesson]:checked").length,lessonTotal=document.querySelectorAll("[data-lesson]").length,projects=document.querySelectorAll("[data-project-task]:checked").length,projectTotal=document.querySelectorAll("[data-project-task]").length;
+    let sessions=[];try{sessions=JSON.parse(localStorage.getItem("datos-desde-cero-study-plan-v1")||"[]");}catch(e){}if(!Array.isArray(sessions))sessions=[];
+    const minutes=sessions.filter(s=>s&&s.done).reduce((sum,s)=>sum+(Number(s.minutes)||0),0),goal=Number(goalInput?.value)||300,percent=Math.min(100,Math.round(minutes/goal*100));
+    document.getElementById("dashLessons").textContent=lessons+" / "+lessonTotal;document.getElementById("dashProjects").textContent=(projectTotal?Math.round(projects/projectTotal*100):0)+"%";document.getElementById("dashMinutes").textContent=minutes;document.getElementById("dashGoal").textContent=percent+"%";document.getElementById("dashGoalText").textContent=minutes+" de "+goal+" minutos completados";
+  }
+  document.getElementById("saveWeeklyGoal")?.addEventListener("click",()=>{const value=Math.max(30,Math.min(3000,Number(goalInput.value)||300));goalInput.value=value;try{localStorage.setItem(GOAL_KEY,String(value));}catch(e){}renderStudentDashboard();});
+  renderStudentDashboard();document.querySelectorAll("[data-lesson],[data-project-task]").forEach(el=>el.addEventListener("change",renderStudentDashboard));
+  document.getElementById("studySessions")?.addEventListener("change",renderStudentDashboard);
+
 })();
