@@ -1,18 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  color-scheme: light;
-  --bg: #f7f8fa;
-  --surface: #ffffff;
-  --surface-soft: #f1f4f7;
-  --text: #17212b;
-  --muted: #647282;
-  --line: #e1e6eb;
-  --accent: #176b5b;
-  --accent-dark: #105447;
-  --accent-soft: #e8f3ef;
-  --shadow: 0 12px 35px rgba(25, 42, 56, .06);
-  --content: 1120px;
+  color-scheme: dark;
+  --bg: #0b1110; --surface: #121c19; --surface-soft: #182521;
+  --text: #e7f0eb; --muted: #a5b6ad; --line: #293b34;
+  --accent: #62c5a2; --accent-dark: #3aa985; --accent-soft: #1b382e;
+  --shadow: 0 14px 38px rgba(0,0,0,.28); --content: 1120px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
@@ -648,3 +641,39 @@ a { text-decoration-color: var(--accent); }
 .mini-answer>summary{justify-content:flex-start}.mini-answer>summary:before{content:"＋"}.mini-answer[open]>summary:before{content:"−"}
 .mini-answer p{margin:8px 0 0;color:var(--muted);font-size:10px}
 @media(max-width:760px){.teaching-guide{grid-template-columns:1fr}.teaching-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.mini-lesson-content{grid-template-columns:1fr}.mini-lesson-content section:nth-child(3){grid-column:auto}}
+
+
+/* TEMA OSCURO GLOBAL: aplicado a todas las páginas */
+:root{
+ color-scheme:dark;
+ --bg:#0b1110;--surface:#121c19;--surface-soft:#182521;--text:#e7f0eb;--muted:#a5b6ad;--line:#293b34;
+ --accent:#62c5a2;--accent-dark:#3aa985;--accent-soft:#1b382e;--shadow:0 14px 38px rgba(0,0,0,.28);
+}
+html,body{background:var(--bg)!important;color:var(--text)!important}
+.topbar{background:rgba(11,17,16,.94)!important;border-color:var(--line)!important}
+.brand-mark,.button-primary{background:var(--accent-dark);border-color:var(--accent-dark)}
+.brand strong,.hero h1 span,.eyebrow,.road-status,.road-card>a,.resource-card a{color:var(--accent)}
+.button-quiet,.menu-toggle,.search-box,.road-card,.lesson,.data-card,.stats-strip,.portfolio-card,.resource-card,.quiz-panel,.calculator-learning,.learning-output,.calculator-export-panel,.data-calculator,.today-panel,.progress-panel,.tip-box,.teaching-guide,.teaching-steps li,.mini-lesson-content section,.mini-answer{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+.active-road,.tip-box,.teaching-guide{background:#14241e!important;border-color:#315345!important}
+.tip-box p,.tip-box strong{color:var(--muted)!important}
+.teaching-steps li{background:#182722!important}
+.mini-lesson-content section,.mini-answer{background:#17241f!important}
+.mini-lesson pre,.terminal{background:#080e0c!important;color:#d9e9e1!important}
+.code-line{color:#d1e0d8!important}.code-line i,.code-muted{color:#91a69b!important}
+.code-purple{color:#c6a5f0!important}.code-blue{color:#83c7ef!important}.code-green{color:#82d6ad!important}.code-yellow{color:#eac477!important}
+.floating-chip{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+.orbit{border-color:#294239!important}
+.project-skills span,.resource-filter.active,.resource-filter:hover{background:var(--accent-soft)!important;color:var(--accent)!important}
+.resource-filter{background:var(--surface)!important;color:var(--muted)!important;border-color:var(--line)!important}
+.quiz-feedback.correct{color:#7bd6a9}.quiz-feedback.incorrect{color:#ff9d86}
+input,textarea,select{background-color:#101a16!important;color:var(--text)!important;border-color:var(--line)!important}
+input::placeholder,textarea::placeholder{color:#84988d!important}
+button:disabled{opacity:.55}
+.plan-section,.guide-block,.semester-card,.origin-card{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+.semester-card ul,.origin-card ul{color:#c5d8ce!important}
+.origin-card summary{color:var(--text)!important}
+.plan-hero h1 span,.guide-hero h1 em{color:var(--accent)!important}
+.plan-hero p,.guide-hero>p,.guide-block>p,.guide-block li{color:var(--muted)!important}
+footer,.footer{background:#080e0c!important;color:var(--muted)!important;border-color:var(--line)!important}
+::selection{background:#285d49;color:#fff}
+@media(prefers-color-scheme:light){:root{color-scheme:dark}}
