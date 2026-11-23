@@ -1067,3 +1067,50 @@ body:has(.topbar.sidebar) main{
 @media(max-width:760px){
  .work-hero{width:90%!important}
 }
+
+
+/* Corrección definitiva del margen lateral y columnas del encabezado */
+body:has(.topbar.sidebar) main{
+ width:100%!important;
+ max-width:100%!important;
+ min-width:0!important;
+ overflow-x:hidden!important;
+}
+body:has(.topbar.sidebar) .work-hero{
+ box-sizing:border-box!important;
+ width:100%!important;
+ max-width:var(--content)!important;
+ margin:0 auto!important;
+ padding-left:clamp(24px,4vw,52px)!important;
+ padding-right:clamp(24px,4vw,52px)!important;
+ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;
+ gap:clamp(20px,3vw,40px)!important;
+}
+body:has(.topbar.sidebar) .work-hero>div,
+body:has(.topbar.sidebar) .work-hero .today-panel,
+body:has(.topbar.sidebar) .work-hero .today-panel *{
+ min-width:0!important;
+ max-width:100%;
+}
+body:has(.topbar.sidebar) .work-hero h1{
+ max-width:100%!important;
+ overflow-wrap:normal!important;
+}
+body:has(.topbar.sidebar) .work-hero .today-panel p,
+body:has(.topbar.sidebar) .work-hero .today-panel li{
+ overflow-wrap:anywhere!important;
+}
+@media(max-width:900px){
+ body:has(.topbar.sidebar) .work-hero{
+  grid-template-columns:minmax(0,1fr)!important;
+  padding-left:24px!important;
+  padding-right:24px!important;
+ }
+}
+@media(max-width:760px){
+ body:has(.topbar.sidebar) .work-hero{
+  width:100%!important;
+  padding-left:5%!important;
+  padding-right:5%!important;
+ }
+}
