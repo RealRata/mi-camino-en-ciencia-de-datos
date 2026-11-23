@@ -624,6 +624,18 @@
 
   // Portafolio: registra entregables localmente sin enviar datos a servidores.
   const PROJECT_KEY = "datos-desde-cero-projects-v1";
+  const ROUTE_KEY = "datos-desde-cero-route-v1";
+  const routeChecks = [...document.querySelectorAll("[data-route-step]")];
+  function renderRouteProgress(){
+    const done=routeChecks.filter(item=>item.checked).length,total=routeChecks.length,percent=total?Math.round(done/total*100):0;
+    const count=document.getElementById("routeProgressCount"),hint=document.getElementById("routeProgressHint"),fill=document.getElementById("routeProgressFill"),dash=document.getElementById("dashRoute");
+    if(count)count.textContent=done+" de "+total+" etapas dominadas";
+    if(hint)hint.textContent=done===total&&total?"¡Ruta completada! Tu siguiente reto es publicar un proyecto reproducible.":done?"Siguiente objetivo: dominar la etapa "+Math.min(done+1,total)+" con ejercicios y evidencia.":"Completa cada etapa cuando puedas resolver un ejercicio sin ayuda.";
+    if(fill)fill.style.width=percent+"%";if(dash)dash.textContent=done+" / "+total;
+  }
+  try{const savedRoute=JSON.parse(localStorage.getItem(ROUTE_KEY)||"{}");routeChecks.forEach(item=>{item.checked=savedRoute[item.dataset.routeStep]===true;});}catch(error){console.warn("No fue posible recuperar la ruta.",error);}
+  routeChecks.forEach(item=>item.addEventListener("change",()=>{const state={};routeChecks.forEach(check=>state[check.dataset.routeStep]=check.checked);try{localStorage.setItem(ROUTE_KEY,JSON.stringify(state));}catch(error){console.warn("No fue posible guardar la ruta.",error);}renderRouteProgress();renderStudentDashboard();}));
+  renderRouteProgress();
   const projectChecks = [...document.querySelectorAll("[data-project-task]")];
   const projectDone = document.getElementById("projectTasksDone");
   const projectText = document.getElementById("projectTasksText");
@@ -646,6 +658,7 @@
     renderProjectProgress();
   }));
   renderProjectProgress();
+  projectChecks.forEach(input=>input.addEventListener("change",()=>renderStudentDashboard()));
 
   // Biblioteca: combina búsqueda de texto y filtro por área.
   const resourceSearch = document.getElementById("resourceSearch");
@@ -908,6 +921,12 @@
     let sessions=[];try{sessions=JSON.parse(localStorage.getItem("ciencia-datos-plan-semanal-v1")||"[]");}catch(e){}if(!Array.isArray(sessions))sessions=[];
     const minutes=sessions.filter(s=>s&&s.done).reduce((sum,s)=>sum+(Number(s.minutes)||0),0),goal=Number(goalInput?.value)||300,percent=Math.min(100,Math.round(minutes/goal*100));
     document.getElementById("dashLessons").textContent=lessons+" / "+lessonTotal;document.getElementById("dashProjects").textContent=(projectTotal?Math.round(projects/projectTotal*100):0)+"%";document.getElementById("dashMinutes").textContent=minutes;document.getElementById("dashGoal").textContent=percent+"%";document.getElementById("dashGoalText").textContent=minutes+" de "+goal+" minutos completados";
+    const routeDone=routeChecks.filter(item=>item.checked).length;
+    const level=routeDone>=8?"Analista en formación":routeDone>=5?"Explorador avanzado":routeDone>=3?"Aprendiz de análisis":routeDone>=1?"Aprendiz de datos":"Explorador de datos";
+    const levelNode=document.getElementById("studentLevel"),nextNode=document.getElementById("studentNextStep"),badgesNode=document.getElementById("studentBadges"),routeNode=document.getElementById("dashRoute");
+    if(levelNode)levelNode.textContent=level;if(routeNode)routeNode.textContent=routeDone+" / "+routeChecks.length;
+    if(nextNode)nextNode.textContent=routeDone>=8?"Tu siguiente reto es publicar un proyecto reproducible y explicar sus decisiones.":"Tu siguiente meta es dominar la etapa "+(routeDone+1)+" de 8 y guardar evidencia en tu portafolio.";
+    if(badgesNode){const badges=[["Primeros pasos",routeDone>=1],["Manos a los datos",projects>=1],["Constancia",minutes>=120],["Ruta completa",routeDone>=8]];badgesNode.replaceChildren(...badges.map(([label,unlocked])=>{const el=document.createElement("span");el.className="achievement "+(unlocked?"unlocked":"locked");el.textContent=(unlocked?"✓ ":"○ ")+label+(unlocked?" · logrado":" · pendiente");return el;}));}
   }
   document.getElementById("saveWeeklyGoal")?.addEventListener("click",()=>{const value=Math.max(30,Math.min(3000,Number(goalInput.value)||300));goalInput.value=value;try{localStorage.setItem(GOAL_KEY,String(value));}catch(e){}renderStudentDashboard();});
   renderStudentDashboard();document.querySelectorAll("[data-lesson],[data-project-task]").forEach(el=>el.addEventListener("change",renderStudentDashboard));
