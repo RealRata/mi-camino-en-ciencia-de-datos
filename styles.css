@@ -2087,3 +2087,19 @@ html body > header.topbar.sidebar .menu-toggle { display: none !important; }
     font-size: 11px !important;
   }
 }
+
+
+/* FIX DEFINITIVO DE VISIBILIDAD DEL MENÚ LATERAL — 23/11/2026 */
+@media (min-width: 761px) {
+  body:has(header.topbar.sidebar) { padding-left: 270px !important; }
+  header.topbar.sidebar { display:flex !important; position:fixed !important; top:0 !important; left:0 !important; right:auto !important; bottom:0 !important; width:270px !important; height:100vh !important; flex-direction:column !important; align-items:stretch !important; justify-content:flex-start !important; background:#17191c !important; z-index:2147483000 !important; }
+  header.topbar.sidebar #mainNav { display:flex !important; position:static !important; width:100% !important; height:auto !important; max-height:none !important; flex:1 1 auto !important; flex-direction:column !important; align-items:stretch !important; visibility:visible !important; opacity:1 !important; overflow-y:auto !important; background:#17191c !important; }
+  header.topbar.sidebar #mainNav a { display:flex !important; visibility:visible !important; opacity:1 !important; color:#c2cad2 !important; }
+}
+@media (max-width: 760px) {
+  body:has(header.topbar.sidebar) { padding-left: 218px !important; }
+  header.topbar.sidebar { display:flex !important; position:fixed !important; top:0 !important; left:0 !important; bottom:0 !important; right:auto !important; width:218px !important; height:100dvh !important; flex-direction:column !important; align-items:stretch !important; background:#17191c !important; z-index:2147483000 !important; }
+  header.topbar.sidebar #mainNav { display:flex !important; position:static !important; width:100% !important; flex:1 1 auto !important; flex-direction:column !important; visibility:visible !important; opacity:1 !important; overflow-y:auto !important; background:#17191c !important; }
+  header.topbar.sidebar #mainNav a { display:flex !important; visibility:visible !important; opacity:1 !important; color:#c2cad2 !important; font-size:11px !important; }
+  header.topbar.sidebar .menu-toggle { display:none !important; }
+}
