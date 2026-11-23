@@ -1344,3 +1344,164 @@ input,textarea,select,button{
  .today-panel{padding:20px!important}
  .lesson{align-items:start!important}
 }
+
+
+/* Reordenamiento tipográfico final: jerarquía, alineación y ritmo */
+:root{
+ --reading-line:1.7;
+}
+body{
+ font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important;
+ font-size:15px!important;
+ line-height:1.65!important;
+ letter-spacing:normal!important;
+}
+main{
+ text-align:left!important;
+}
+main p{
+ max-width:68ch;
+ margin-top:0;
+ margin-bottom:1rem;
+ line-height:1.75!important;
+ text-wrap:pretty;
+}
+main h1,main h2,main h3,main h4{
+ text-wrap:balance;
+ margin-top:0;
+}
+.work-hero{
+ display:grid!important;
+ grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)!important;
+ align-items:center!important;
+ gap:clamp(28px,4vw,64px)!important;
+ padding-top:clamp(44px,6vw,84px)!important;
+ padding-bottom:clamp(44px,6vw,84px)!important;
+}
+.work-hero>div:first-child{
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:flex-start!important;
+ gap:16px!important;
+}
+.work-hero h1{
+ max-width:15ch!important;
+ margin:0!important;
+ font-size:clamp(36px,4.2vw,60px)!important;
+ line-height:1.12!important;
+ letter-spacing:-.035em!important;
+}
+.work-hero>div:first-child>p{
+ max-width:58ch!important;
+ margin:0!important;
+ font-size:16px!important;
+ line-height:1.8!important;
+}
+.hero-actions{
+ display:flex!important;
+ flex-wrap:wrap!important;
+ align-items:center!important;
+ gap:10px!important;
+ margin-top:8px!important;
+}
+.hero-actions .button{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-height:42px;
+ padding:10px 16px!important;
+}
+.today-panel{
+ align-self:stretch!important;
+ display:flex!important;
+ flex-direction:column!important;
+ justify-content:center!important;
+ padding:clamp(22px,2.5vw,34px)!important;
+}
+.today-panel ol{
+ display:grid!important;
+ gap:0!important;
+ margin:12px 0!important;
+ padding:0!important;
+ list-style:none!important;
+}
+.today-panel li{
+ display:grid!important;
+ grid-template-columns:36px minmax(0,1fr)!important;
+ align-items:center!important;
+ gap:12px!important;
+ padding:14px 0!important;
+ border-bottom:1px solid #454c54!important;
+ line-height:1.55!important;
+}
+.today-panel li:last-child{border-bottom:0!important}
+.today-panel li b{font-variant-numeric:tabular-nums}
+.today-panel>p{
+ max-width:none!important;
+ margin:12px 0 0!important;
+ line-height:1.7!important;
+}
+.section{
+ padding-top:clamp(48px,6vw,76px)!important;
+ padding-bottom:clamp(48px,6vw,76px)!important;
+}
+.section-heading{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(260px,.8fr)!important;
+ align-items:end!important;
+ gap:clamp(20px,3vw,48px)!important;
+ margin-bottom:28px!important;
+}
+.section-heading>div,.section-heading>p{min-width:0!important}
+.section-heading h2{
+ margin:0!important;
+ line-height:1.2!important;
+ font-size:clamp(25px,2.5vw,34px)!important;
+}
+.section-heading>p{
+ margin:0!important;
+ max-width:58ch!important;
+ line-height:1.75!important;
+}
+.data-calculator{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ align-items:start!important;
+ gap:22px!important;
+}
+.data-calculator-input,.data-calculator-results{
+ min-width:0!important;
+}
+.calculator-actions{
+ display:flex!important;
+ flex-wrap:wrap!important;
+ gap:9px!important;
+}
+.calculator-export-panel{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ flex-wrap:wrap!important;
+ gap:16px!important;
+}
+.calculator-export-panel>div{flex:1 1 240px;min-width:0}
+.calculator-export-panel span{display:block;line-height:1.65!important}
+@media(max-width:920px){
+ .work-hero{grid-template-columns:minmax(0,1fr)!important}
+ .work-hero h1{max-width:18ch!important}
+ .section-heading{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ .data-calculator{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(max-width:600px){
+ body{font-size:14px!important}
+ .work-hero{gap:24px!important;padding-top:36px!important;padding-bottom:36px!important}
+ .work-hero h1{font-size:clamp(34px,9vw,44px)!important}
+ .work-hero>div:first-child>p{font-size:14px!important}
+ .hero-actions{width:100%!important}
+ .hero-actions .button{flex:1 1 100%!important}
+ .today-panel{padding:20px!important}
+ .section{padding-top:42px!important;padding-bottom:42px!important}
+ .section-heading h2{font-size:26px!important}
+ .calculator-export-panel{align-items:stretch!important}
+ .calculator-export-panel .button{width:100%!important}
+}
