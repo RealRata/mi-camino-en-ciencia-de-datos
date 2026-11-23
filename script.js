@@ -622,6 +622,91 @@
   }
 
 
+  // Buscador global: localiza secciones, prácticas, recursos y herramientas.
+  const siteSearch = document.getElementById("siteSearch");
+  const siteSearchResults = document.getElementById("siteSearchResults");
+  function runSiteSearch() {
+    if (!siteSearch || !siteSearchResults) return;
+    const query = siteSearch.value.trim().toLocaleLowerCase("es");
+    siteSearchResults.replaceChildren();
+    if (!query) { siteSearchResults.hidden = true; return; }
+    const matches = [...document.querySelectorAll("main section[id]")].map(section => {
+      const heading = section.querySelector("h1,h2,h3");
+      const title = heading ? heading.textContent.trim() : section.id;
+      const haystack = (title + " " + section.textContent).toLocaleLowerCase("es");
+      return haystack.includes(query) ? {section,title} : null;
+    }).filter(Boolean).slice(0,7);
+    siteSearchResults.hidden = false;
+    if (!matches.length) {
+      const empty = document.createElement("p");
+      empty.className = "planner-empty";
+      empty.textContent = "No encontramos coincidencias. Prueba con otro concepto.";
+      siteSearchResults.appendChild(empty);
+      return;
+    }
+    matches.forEach(({section,title}) => {
+      const link = document.createElement("a");
+      link.href = "#" + section.id;
+      const name = document.createElement("span");
+      name.textContent = title;
+      const target = document.createElement("small");
+      target.textContent = "Ir a la sección →";
+      link.append(name,target);
+      link.addEventListener("click", () => { siteSearchResults.hidden = true; });
+      siteSearchResults.appendChild(link);
+    });
+  }
+  siteSearch?.addEventListener("input", runSiteSearch);
+  document.getElementById("siteSearchButton")?.addEventListener("click", runSiteSearch);
+  siteSearch?.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); runSiteSearch(); siteSearchResults?.querySelector("a")?.click(); } });
+
+  // Plantilla descargable para documentar proyectos de portafolio.
+  document.getElementById("downloadPortfolioTemplate")?.addEventListener("click", () => {
+    const template = `# Nombre del proyecto
+
+## Pregunta de investigación
+¿Qué quiero averiguar y por qué importa?
+
+## Fuente de datos
+- Institución / conjunto:
+- URL:
+- Fecha de descarga:
+- Cobertura y periodo:
+- Licencia o condiciones de uso:
+
+## Herramientas
+- Python:
+- Bibliotecas:
+- SQL / otras herramientas:
+
+## Proceso
+1. Exploración inicial:
+2. Limpieza y decisiones:
+3. Análisis:
+4. Visualizaciones:
+
+## Hallazgos
+- Hallazgo 1:
+- Hallazgo 2:
+
+## Limitaciones
+¿Qué no permiten afirmar estos datos?
+
+## Cómo reproducir
+Pasos para instalar dependencias y ejecutar el análisis.
+
+## Estructura del repositorio
+Describe aquí los archivos principales.
+`;
+    const blob = new Blob([template], {type:"text/markdown;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "README-proyecto-ciencia-de-datos.md";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  });
+
   // Portafolio: registra entregables localmente sin enviar datos a servidores.
   const PROJECT_KEY = "datos-desde-cero-projects-v1";
   const ROUTE_KEY = "datos-desde-cero-route-v1";
@@ -635,6 +720,16 @@
   }
   try{const savedRoute=JSON.parse(localStorage.getItem(ROUTE_KEY)||"{}");routeChecks.forEach(item=>{item.checked=savedRoute[item.dataset.routeStep]===true;});}catch(error){console.warn("No fue posible recuperar la ruta.",error);}
   routeChecks.forEach(item=>item.addEventListener("change",()=>{const state={};routeChecks.forEach(check=>state[check.dataset.routeStep]=check.checked);try{localStorage.setItem(ROUTE_KEY,JSON.stringify(state));}catch(error){console.warn("No fue posible guardar la ruta.",error);}renderRouteProgress();renderStudentDashboard();}));
+  function updateRouteLocks() {
+    routeChecks.forEach((check, index) => {
+      const previousDone = index === 0 || routeChecks[index - 1].checked;
+      check.disabled = !previousDone && !check.checked;
+      const step = check.closest(".journey-step");
+      if (step) step.classList.toggle("is-locked", check.disabled);
+    });
+  }
+  routeChecks.forEach(item=>item.addEventListener("change",()=>{updateRouteLocks();}));
+  updateRouteLocks();
   renderRouteProgress();
   const projectChecks = [...document.querySelectorAll("[data-project-task]")];
   const projectDone = document.getElementById("projectTasksDone");
