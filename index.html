@@ -467,6 +467,11 @@ ORDER BY promedio DESC;</textarea>
   <div class="economy-flow-arrow" aria-hidden="true">↔</div>
   <article><span>04</span><h3>Resto del mundo</h3><p>Intercambia bienes, servicios, capital, tecnología y divisas.</p></article>
  </div>
+ <div class="economy-controls" aria-label="Controles interactivos de las gráficas económicas">
+  <div class="economy-control-field"><label for="economyScenario">Escenario económico</label><select id="economyScenario"><option value="base">Escenario base</option><option value="slowdown">Desaceleración y crisis</option><option value="recovery">Recuperación económica</option></select></div>
+  <div class="economy-control-field economy-period-control"><label for="economyPeriodRange">Explora un periodo: <strong id="economyPeriodLabel">P1</strong></label><input id="economyPeriodRange" type="range" min="0" max="6" step="1" value="0"><div class="economy-range-labels"><span>Inicio</span><span>Final</span></div></div>
+  <p class="economy-interactive-readout" id="economyInteractiveReadout" aria-live="polite">Selecciona un escenario o mueve el control de periodo para explorar los indicadores.</p>
+ </div>
  <div class="economy-chart-grid">
   <article class="economy-chart-card"><span class="lab-tag">PRODUCCIÓN</span><h3>PIB y crecimiento económico</h3><p>El producto interno bruto (PIB) mide el valor de los bienes y servicios finales producidos. Su crecimiento indica cómo cambia la actividad económica.</p><canvas id="economyGdpChart" width="620" height="260" role="img" aria-label="Gráfica didáctica simulada de crecimiento del PIB durante siete periodos"></canvas><p class="chart-takeaway" id="economyGdpInsight">Observa cómo cambia el crecimiento entre periodos.</p></article>
   <article class="economy-chart-card"><span class="lab-tag">PRECIOS Y POLÍTICA MONETARIA</span><h3>Inflación y tasa de interés</h3><p>La inflación mide el aumento general de precios. Los bancos centrales pueden modificar tasas de interés para influir en crédito, consumo e inversión.</p><canvas id="economyPricesChart" width="620" height="260" role="img" aria-label="Gráfica didáctica simulada de inflación y tasa de interés"></canvas><p class="chart-takeaway">La tasa de interés no cambia los precios de inmediato: sus efectos suelen tener rezagos y dependen del contexto.</p></article>
