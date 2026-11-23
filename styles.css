@@ -1821,3 +1821,32 @@ body:has(.topbar.sidebar) main .tags span{
     font-size:16px!important;
   }
 }
+
+
+/* Jerarquía editorial: columnas de lectura, alineación y ritmo consistentes */
+body:has(.topbar.sidebar) main{color:var(--text,#eef1f3);text-rendering:optimizeLegibility}
+body:has(.topbar.sidebar) main p{max-width:64ch!important;margin-top:0!important;margin-bottom:1.05em!important;line-height:1.72!important;letter-spacing:.005em!important;text-wrap:pretty}
+body:has(.topbar.sidebar) main li{line-height:1.68!important;margin-bottom:.42em;text-wrap:pretty}
+body:has(.topbar.sidebar) main .section{padding-top:clamp(48px,5.5vw,76px)!important;padding-bottom:clamp(48px,5.5vw,76px)!important}
+body:has(.topbar.sidebar) main .section-heading{width:100%!important;max-width:1080px!important;margin:0 auto 30px!important;padding:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:12px!important}
+body:has(.topbar.sidebar) main .section-heading>div{display:flex!important;flex-direction:column!important;align-items:center!important;gap:9px!important}
+body:has(.topbar.sidebar) main .section-heading>p{max-width:62ch!important;margin:0 auto!important;text-align:center!important;line-height:1.72!important}
+body:has(.topbar.sidebar) main .section-heading .eyebrow{margin-bottom:2px!important;letter-spacing:.13em!important}
+body:has(.topbar.sidebar) main .work-hero>div:first-child>p{max-width:57ch!important;margin:18px auto 24px!important;line-height:1.78!important;text-wrap:pretty}
+body:has(.topbar.sidebar) main .today-panel{padding:clamp(22px,2.4vw,32px)!important}
+body:has(.topbar.sidebar) main .today-panel ol{display:grid!important;gap:14px!important;margin:20px 0!important;padding:0!important}
+body:has(.topbar.sidebar) main .today-panel li{display:grid!important;grid-template-columns:38px minmax(0,1fr)!important;align-items:center!important;gap:12px!important;margin:0!important}
+body:has(.topbar.sidebar) main .today-panel>p{max-width:42ch!important;margin:18px auto 0!important;line-height:1.7!important}
+body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card){display:flex;flex-direction:column;align-items:flex-start;gap:10px!important;padding:clamp(20px,2vw,28px)!important}
+body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card) p{width:100%!important;max-width:60ch!important;margin:0!important;line-height:1.72!important;text-align:left!important}
+body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card) :is(h3,h4){margin:0 0 3px!important;line-height:1.28!important;text-wrap:balance}
+body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card) :is(ul,ol){width:100%!important;margin:4px 0 0!important;padding-left:1.25em!important}
+body:has(.topbar.sidebar) main .hero-actions{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:12px!important}
+body:has(.topbar.sidebar) main :is(.notice,.calculator-footnote,.journey-finish){max-width:66ch!important;margin:18px auto!important;line-height:1.7!important;text-wrap:pretty}
+body:has(.topbar.sidebar) main :is(input,textarea,select,button){line-height:1.45!important}
+@media(max-width:760px){
+ body:has(.topbar.sidebar) main .section{padding-top:42px!important;padding-bottom:42px!important}
+ body:has(.topbar.sidebar) main .section-heading{margin-bottom:22px!important;gap:9px!important}
+ body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card){padding:19px!important}
+ body:has(.topbar.sidebar) main .hero-actions{justify-content:center!important}
+}
