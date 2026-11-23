@@ -1505,3 +1505,137 @@ main h1,main h2,main h3,main h4{
  .calculator-export-panel{align-items:stretch!important}
  .calculator-export-panel .button{width:100%!important}
 }
+
+
+/* Corrección estructural y tipográfica: ancho real y lectura uniforme */
+body:has(.topbar.sidebar){
+  padding-left:258px!important;
+  overflow-x:hidden!important;
+}
+body:has(.topbar.sidebar) main{
+  display:block!important;
+  width:auto!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+body:has(.topbar.sidebar) main>.work-hero,
+body:has(.topbar.sidebar) main>.hero,
+body:has(.topbar.sidebar) main>.stats-strip,
+body:has(.topbar.sidebar) main>.section,
+body:has(.topbar.sidebar) main>.progress-section{
+  box-sizing:border-box!important;
+  width:calc(100% - 64px)!important;
+  max-width:none!important;
+  margin-left:32px!important;
+  margin-right:32px!important;
+}
+body:has(.topbar.sidebar) main>.work-hero{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr)!important;
+  gap:clamp(24px,3vw,44px)!important;
+  padding:clamp(42px,5vw,68px) 0!important;
+}
+body:has(.topbar.sidebar) main>.work-hero>div,
+body:has(.topbar.sidebar) main>.work-hero .today-panel,
+body:has(.topbar.sidebar) main>.section,
+body:has(.topbar.sidebar) main>.section>*{
+  min-width:0!important;
+}
+body:has(.topbar.sidebar) main .section-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(240px,.8fr)!important;
+  align-items:end!important;
+  gap:clamp(16px,2.5vw,32px)!important;
+  text-align:left!important;
+}
+body:has(.topbar.sidebar) main .section-heading>div,
+body:has(.topbar.sidebar) main .section-heading>p{
+  min-width:0!important;
+  max-width:none!important;
+}
+body:has(.topbar.sidebar) main p{
+  max-width:68ch;
+  text-align:left!important;
+  line-height:1.7!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  hyphens:auto;
+}
+body:has(.topbar.sidebar) main .section-heading>p{
+  max-width:58ch!important;
+  margin:0!important;
+}
+body:has(.topbar.sidebar) main h1,
+body:has(.topbar.sidebar) main h2,
+body:has(.topbar.sidebar) main h3,
+body:has(.topbar.sidebar) main h4{
+  text-align:left!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  hyphens:auto;
+}
+body:has(.topbar.sidebar) main .work-hero h1{
+  max-width:16ch!important;
+  line-height:1.12!important;
+  text-wrap:balance;
+}
+body:has(.topbar.sidebar) main .today-panel li{
+  grid-template-columns:34px minmax(0,1fr)!important;
+  align-items:start!important;
+  line-height:1.6!important;
+}
+body:has(.topbar.sidebar) main .today-panel li span{
+  min-width:0!important;
+  overflow-wrap:break-word!important;
+}
+body:has(.topbar.sidebar) main .road-card,
+body:has(.topbar.sidebar) main .curriculum-card,
+body:has(.topbar.sidebar) main .skill-card,
+body:has(.topbar.sidebar) main .tool-card,
+body:has(.topbar.sidebar) main .tip-card,
+body:has(.topbar.sidebar) main .lab-card,
+body:has(.topbar.sidebar) main .math-card,
+body:has(.topbar.sidebar) main .mexico-source{
+  min-width:0!important;
+  text-align:left!important;
+}
+body:has(.topbar.sidebar) main .road-card p,
+body:has(.topbar.sidebar) main .curriculum-card p,
+body:has(.topbar.sidebar) main .skill-card p,
+body:has(.topbar.sidebar) main .tool-card span,
+body:has(.topbar.sidebar) main .tip-card p{
+  max-width:none!important;
+  line-height:1.7!important;
+}
+@media(max-width:920px){
+  body:has(.topbar.sidebar) main>.work-hero{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  body:has(.topbar.sidebar) main .section-heading{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+}
+@media(max-width:760px){
+  body:has(.topbar.sidebar){padding-left:0!important}
+  body:has(.topbar.sidebar) main{width:100%!important}
+  body:has(.topbar.sidebar) main>.work-hero,
+  body:has(.topbar.sidebar) main>.hero,
+  body:has(.topbar.sidebar) main>.stats-strip,
+  body:has(.topbar.sidebar) main>.section,
+  body:has(.topbar.sidebar) main>.progress-section{
+    width:90%!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body:has(.topbar.sidebar) main>.work-hero{
+    grid-template-columns:minmax(0,1fr)!important;
+    padding-top:38px!important;
+    padding-bottom:38px!important;
+  }
+  body:has(.topbar.sidebar) main .section-heading{display:block!important}
+  body:has(.topbar.sidebar) main .section-heading>p{margin-top:10px!important}
+}
