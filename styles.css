@@ -1144,3 +1144,54 @@ body:has(.topbar.sidebar) main>.work-hero{
   width:90%!important;
  }
 }
+
+
+/* ANCHO REAL: ocupar casi todo el espacio disponible a la derecha del menú lateral */
+body:has(.topbar.sidebar){
+ padding-left:258px!important;
+}
+body:has(.topbar.sidebar) main{
+ display:block!important;
+ width:calc(100vw - 258px)!important;
+ max-width:none!important;
+ min-width:0!important;
+ margin:0!important;
+ padding:0!important;
+}
+body:has(.topbar.sidebar) main>.work-hero,
+body:has(.topbar.sidebar) main>.hero,
+body:has(.topbar.sidebar) main>.stats-strip,
+body:has(.topbar.sidebar) main>.section,
+body:has(.topbar.sidebar) main>.progress-section{
+ box-sizing:border-box!important;
+ width:calc(100% - 64px)!important;
+ max-width:none!important;
+ margin-left:32px!important;
+ margin-right:32px!important;
+}
+body:has(.topbar.sidebar) main>.work-hero{
+ padding-left:0!important;
+ padding-right:0!important;
+ grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr)!important;
+ gap:clamp(24px,3vw,52px)!important;
+}
+body:has(.topbar.sidebar) main>.section{
+ padding-left:0!important;
+ padding-right:0!important;
+}
+body:has(.topbar.sidebar) .footer{
+ margin-left:0!important;
+ width:100%!important;
+}
+@media(max-width:760px){
+ body:has(.topbar.sidebar){padding-left:0!important}
+ body:has(.topbar.sidebar) main{width:100%!important}
+ body:has(.topbar.sidebar) main>.work-hero,
+ body:has(.topbar.sidebar) main>.hero,
+ body:has(.topbar.sidebar) main>.stats-strip,
+ body:has(.topbar.sidebar) main>.section,
+ body:has(.topbar.sidebar) main>.progress-section{
+  width:90%!important;margin-left:auto!important;margin-right:auto!important;
+ }
+ body:has(.topbar.sidebar) main>.work-hero{grid-template-columns:minmax(0,1fr)!important}
+}
