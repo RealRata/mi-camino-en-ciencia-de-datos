@@ -1195,3 +1195,152 @@ body:has(.topbar.sidebar) .footer{
  }
  body:has(.topbar.sidebar) main>.work-hero{grid-template-columns:minmax(0,1fr)!important}
 }
+
+
+/* Tipografía uniforme y lectura consistente en toda la página */
+body{
+ font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif!important;
+ font-size:15px!important;
+ line-height:1.65!important;
+ font-weight:400;
+ letter-spacing:0;
+ text-rendering:optimizeLegibility;
+ -webkit-font-smoothing:antialiased;
+}
+main,main section,main article,main aside,
+.work-hero>div,.today-panel,.section-heading,
+.road-card,.lesson-info,.curriculum-card,.skill-card,
+.tool-card,.tip-card,.student-routine,.project-panel,
+.data-calculator,.calculator-learning,.learning-stage,
+.lab-card,.math-card,.mexico-source{
+ min-width:0!important;
+}
+h1,h2,h3,h4,h5,h6{
+ color:#f1f3f5!important;
+ font-family:inherit!important;
+ font-weight:700!important;
+ line-height:1.22!important;
+ letter-spacing:-.025em!important;
+ overflow-wrap:break-word!important;
+ word-break:normal!important;
+ hyphens:auto;
+}
+.work-hero h1{
+ max-width:760px!important;
+ margin:0 0 18px!important;
+ font-size:clamp(38px,4.4vw,58px)!important;
+ line-height:1.12!important;
+ letter-spacing:-.04em!important;
+}
+.work-hero>div:first-child>p{
+ max-width:720px!important;
+ margin:0!important;
+ font-size:16px!important;
+ line-height:1.75!important;
+ text-align:left!important;
+}
+.eyebrow{
+ display:inline-block;
+ margin-bottom:8px;
+ font-size:10px!important;
+ line-height:1.5!important;
+ letter-spacing:.12em!important;
+}
+.today-panel{
+ padding:26px!important;
+}
+.today-panel li{
+ display:grid!important;
+ grid-template-columns:28px minmax(0,1fr)!important;
+ align-items:start!important;
+ gap:12px!important;
+ padding:12px 0!important;
+ font-size:13px!important;
+ line-height:1.55!important;
+}
+.today-panel li span{
+ min-width:0;
+ overflow-wrap:break-word;
+}
+.today-panel>p{
+ max-width:100%!important;
+ margin-top:16px!important;
+ font-size:12px!important;
+ line-height:1.7!important;
+ overflow-wrap:break-word!important;
+}
+.section-heading{
+ align-items:flex-start!important;
+ gap:24px!important;
+}
+.section-heading h2,.progress-copy h2{
+ margin:5px 0 0!important;
+ font-size:clamp(24px,2.4vw,32px)!important;
+ line-height:1.2!important;
+}
+.section-heading>p{
+ max-width:560px!important;
+ font-size:13px!important;
+ line-height:1.7!important;
+}
+p,li,label,small{
+ overflow-wrap:break-word;
+ word-break:normal;
+}
+.road-card h3,.lesson-info h3,.curriculum-card h3,
+.skill-card h3,.tool-card h3,.tip-card h3{
+ font-size:15px!important;
+ line-height:1.35!important;
+}
+.road-card p,.lesson-info p,.curriculum-card p,
+.skill-card p,.tip-card p,.tool-card span,
+.student-routine li span,.journey-step p{
+ font-size:12px!important;
+ line-height:1.7!important;
+}
+.lesson{
+ align-items:start!important;
+}
+.lesson-info{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:3px;
+}
+.lesson-info p{max-width:100%}
+.tags{flex-wrap:wrap}
+.button{
+ font-family:inherit!important;
+ font-size:12px!important;
+ line-height:1.4!important;
+ white-space:normal!important;
+ text-align:center;
+}
+input,textarea,select,button{
+ font:inherit;
+}
+.data-calculator-section .section-heading{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(280px,.85fr)!important;
+ align-items:end!important;
+ gap:28px!important;
+}
+.data-calculator-section .section-heading>p{
+ max-width:100%!important;
+ margin:0!important;
+}
+@media(max-width:900px){
+ .data-calculator-section .section-heading{
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+ }
+}
+@media(max-width:760px){
+ body{font-size:14px!important}
+ .work-hero h1{font-size:clamp(34px,8vw,46px)!important}
+ .work-hero>div:first-child>p{font-size:14px!important}
+ .section-heading{display:block!important}
+ .section-heading>p{margin-top:10px!important}
+ .today-panel{padding:20px!important}
+ .lesson{align-items:start!important}
+}
