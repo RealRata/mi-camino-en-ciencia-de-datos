@@ -1699,3 +1699,57 @@ body:has(.topbar.sidebar) main .data-calculator-section .section-heading{
     text-align:center!important;
   }
 }
+
+
+/* Lectura más cómoda: ampliar texto de contenido sin alterar títulos */
+body:has(.topbar.sidebar){font-size:17px!important;line-height:1.75!important}
+body:has(.topbar.sidebar) main p,
+body:has(.topbar.sidebar) main li,
+body:has(.topbar.sidebar) main label,
+body:has(.topbar.sidebar) main .today-panel li,
+body:has(.topbar.sidebar) main .journey-step p,
+body:has(.topbar.sidebar) main .student-routine li span,
+body:has(.topbar.sidebar) main .project-question p,
+body:has(.topbar.sidebar) main .project-steps li span,
+body:has(.topbar.sidebar) main .calculator-footnote,
+body:has(.topbar.sidebar) main .section-heading>p{
+ font-size:16px!important;
+ line-height:1.75!important;
+}
+body:has(.topbar.sidebar) main .road-card p,
+body:has(.topbar.sidebar) main .lesson-info p,
+body:has(.topbar.sidebar) main .curriculum-card p,
+body:has(.topbar.sidebar) main .skill-card p,
+body:has(.topbar.sidebar) main .tip-card p,
+body:has(.topbar.sidebar) main .tool-card span,
+body:has(.topbar.sidebar) main .journey-intro span,
+body:has(.topbar.sidebar) main .notice,
+body:has(.topbar.sidebar) main .journey-finish{
+ font-size:15px!important;
+ line-height:1.75!important;
+}
+body:has(.topbar.sidebar) main .eyebrow,
+body:has(.topbar.sidebar) main .road-status,
+body:has(.topbar.sidebar) main .curriculum-number,
+body:has(.topbar.sidebar) main .skill-card>span,
+body:has(.topbar.sidebar) main .tip-index,
+body:has(.topbar.sidebar) main .tip-card small,
+body:has(.topbar.sidebar) main .lesson-count,
+body:has(.topbar.sidebar) main .tags span{
+ font-size:11px!important;
+}
+body:has(.topbar.sidebar) main .button,
+body:has(.topbar.sidebar) main button,
+body:has(.topbar.sidebar) main .lesson-link,
+body:has(.topbar.sidebar) main .curriculum-card a,
+body:has(.topbar.sidebar) main .road-card>a,
+body:has(.topbar.sidebar) main .source-links a{
+ font-size:14px!important;
+}
+@media(max-width:760px){
+ body:has(.topbar.sidebar){font-size:16px!important}
+ body:has(.topbar.sidebar) main p,
+ body:has(.topbar.sidebar) main li,
+ body:has(.topbar.sidebar) main label,
+ body:has(.topbar.sidebar) main .section-heading>p{font-size:15px!important}
+}
