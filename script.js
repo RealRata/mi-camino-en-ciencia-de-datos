@@ -988,6 +988,40 @@ Describe aquí los archivos principales.
     const quote=v=>'"'+String(v??"").replace(/"/g,'""')+'"',csv=[wbHeaders.map(quote).join(","),...unique.map(row=>wbHeaders.map(h=>quote(row[h])).join(","))].join("\r\n"),url=URL.createObjectURL(new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"})),a=document.createElement("a");a.href=url;a.download=(wbName.replace(/\.[^.]+$/,"")||"datos")+"_sin_duplicados.csv";a.click();URL.revokeObjectURL(url);
   });
 
+  // Gráficas económicas educativas: series simuladas, no datos oficiales.
+  function drawEconomyLine(canvasId, series, labels, colors, options = {}) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d"), w = canvas.width, h = canvas.height;
+    const pad = {left:48,right:18,top:24,bottom:42}, plotW=w-pad.left-pad.right, plotH=h-pad.top-pad.bottom;
+    const all = series.flatMap(item=>item.values), min=options.min ?? Math.min(0,...all), max=options.max ?? Math.max(...all);
+    const span=max-min || 1;
+    ctx.clearRect(0,0,w,h);ctx.font="12px sans-serif";ctx.lineWidth=1;
+    for(let i=0;i<=4;i++){const y=pad.top+plotH*i/4;ctx.strokeStyle="#34453c";ctx.beginPath();ctx.moveTo(pad.left,y);ctx.lineTo(w-pad.right,y);ctx.stroke();ctx.fillStyle="#a5b6ad";ctx.textAlign="right";ctx.fillText((max-span*i/4).toFixed(1),pad.left-8,y+4);}
+    labels.forEach((label,i)=>{const x=pad.left+(labels.length===1?plotW/2:plotW*i/(labels.length-1));ctx.fillStyle="#a5b6ad";ctx.textAlign="center";ctx.fillText(label,x,h-15);});
+    series.forEach((item,index)=>{ctx.strokeStyle=colors[index];ctx.fillStyle=colors[index];ctx.lineWidth=3;ctx.beginPath();item.values.forEach((v,i)=>{const x=pad.left+(labels.length===1?plotW/2:plotW*i/(labels.length-1)),y=pad.top+plotH-(v-min)/span*plotH;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();item.values.forEach((v,i)=>{const x=pad.left+(labels.length===1?plotW/2:plotW*i/(labels.length-1)),y=pad.top+plotH-(v-min)/span*plotH;ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();});});
+    const legendY=10;let legendX=pad.left;series.forEach((item,index)=>{ctx.fillStyle=colors[index];ctx.fillRect(legendX,legendY,10,10);ctx.fillStyle="#c4cec7";ctx.textAlign="left";ctx.fillText(item.name,legendX+15,legendY+9);legendX+=Math.min(180,ctx.measureText(item.name).width+34);});
+  }
+  function drawEconomyBars(canvasId, labels, first, second) {
+    const canvas=document.getElementById(canvasId);if(!canvas)return;
+    const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,pad={left:48,right:18,top:28,bottom:42},plotW=w-pad.left-pad.right,plotH=h-pad.top-pad.bottom,max=Math.max(...first,...second)*1.18;
+    ctx.clearRect(0,0,w,h);ctx.font="12px sans-serif";
+    for(let i=0;i<=4;i++){const y=pad.top+plotH*i/4;ctx.strokeStyle="#34453c";ctx.beginPath();ctx.moveTo(pad.left,y);ctx.lineTo(w-pad.right,y);ctx.stroke();ctx.fillStyle="#a5b6ad";ctx.textAlign="right";ctx.fillText((max*(1-i/4)).toFixed(0),pad.left-8,y+4);}
+    const groupW=plotW/labels.length,barW=Math.min(28,groupW*.27);
+    labels.forEach((label,i)=>{const center=pad.left+groupW*(i+.5);[[first[i],"#62c5a2",-barW-2],[second[i],"#e5bd73",2]].forEach(([v,color,offset])=>{const bh=v/max*plotH;ctx.fillStyle=color;ctx.fillRect(center+offset,pad.top+plotH-bh,barW,bh);});ctx.fillStyle="#a5b6ad";ctx.textAlign="center";ctx.fillText(label,center,h-15);});
+    ctx.fillStyle="#62c5a2";ctx.fillRect(pad.left,10,10,10);ctx.fillStyle="#c4cec7";ctx.textAlign="left";ctx.fillText("Exportaciones",pad.left+15,19);ctx.fillStyle="#e5bd73";ctx.fillRect(pad.left+115,10,10,10);ctx.fillStyle="#c4cec7";ctx.fillText("Importaciones",pad.left+130,19);
+  }
+  const ecoPeriods=["P1","P2","P3","P4","P5","P6","P7"];
+  const ecoGdp=[2.1,1.4,-2.8,3.6,2.7,1.9,2.5];
+  drawEconomyLine("economyGdpChart",[{name:"Crecimiento del PIB (%)",values:ecoGdp}],ecoPeriods,["#62c5a2"],{min:-4,max:5});
+  const ecoPrices=[3.2,4.1,6.8,5.9,4.4,3.6,3.1],ecoRates=[2.5,2.8,5.2,5.8,4.9,4.1,3.5];
+  drawEconomyLine("economyPricesChart",[{name:"Inflación (%)",values:ecoPrices},{name:"Tasa de interés (%)",values:ecoRates}],ecoPeriods,["#62c5a2","#e5bd73"],{min:0,max:8});
+  const ecoExports=[80,86,74,92,99,104,112],ecoImports=[76,91,79,88,103,98,107];
+  drawEconomyBars("economyTradeChart",ecoPeriods,ecoExports,ecoImports);
+  const gdpInsight=document.getElementById("economyGdpInsight"),tradeInsight=document.getElementById("economyTradeInsight");
+  if(gdpInsight){const low=Math.min(...ecoGdp),lowIndex=ecoGdp.indexOf(low);gdpInsight.textContent="En el periodo "+ecoPeriods[lowIndex]+" aparece la contracción más fuerte ("+low.toFixed(1)+"%). Una caída del PIB real puede asociarse con menor producción, aunque hay que investigar sus causas.";}
+  if(tradeInsight){const balance=ecoExports.reduce((s,v,i)=>s+v-ecoImports[i],0);tradeInsight.textContent="En este ejemplo simulado, el saldo comercial acumulado es "+(balance>=0?"superavitario":"deficitario")+" ("+(balance>=0?"+":"")+balance+" unidades). Revisa también servicios, rentas y transferencias para estudiar la cuenta corriente completa.";}
+
   // Visualizaciones matemáticas interactivas.
   document.getElementById("calculateVector")?.addEventListener("click",()=>{
     const parse=id=>document.getElementById(id).value.split(/[;,\s]+/).filter(Boolean).map(Number),a=parse("vectorA"),b=parse("vectorB"),out=document.getElementById("vectorResult");
