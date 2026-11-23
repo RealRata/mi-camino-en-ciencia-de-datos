@@ -2158,3 +2158,17 @@ body:has(.topbar.sidebar) main .student-stats article{padding:12px!important}
  html body>header.topbar.sidebar>nav#mainNav a,header.topbar.sidebar #mainNav a{font-size:9px!important;gap:5px!important}
  body:has(.topbar.sidebar) main .work-hero h1{font-size:26px!important}
 }
+
+/* MEJORAS DE APRENDIZAJE Y PORTAFOLIO · 23/11/2026 */
+.site-search{margin:18px 0 20px;max-width:680px;padding:14px 16px;border:1px solid var(--line,#39433e);border-radius:12px;background:rgba(255,255,255,.025)}
+.site-search>label{display:block;margin-bottom:7px;font-size:12px;font-weight:700;color:var(--text,#e7ece8)}
+.site-search-row{display:flex;gap:8px;align-items:center}
+.site-search-row input{flex:1;min-width:0}
+.site-search-results{display:grid;gap:6px;margin-top:10px}
+.site-search-results a{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;border-radius:7px;background:rgba(255,255,255,.04);color:inherit;text-decoration:none;font-size:12px}
+.site-search-results a:hover{background:rgba(255,255,255,.09)}
+.site-search-results small{color:var(--muted,#9ba69f);white-space:nowrap}
+#downloadPortfolioTemplate{margin-top:12px}
+.journey-check input:disabled{opacity:.45;cursor:not-allowed}
+.journey-step.is-locked{opacity:.62}
+@media(max-width:520px){.site-search-row{align-items:stretch;flex-direction:column}.site-search-row .button{width:100%}.site-search-results a{align-items:flex-start;flex-direction:column;gap:3px}}
