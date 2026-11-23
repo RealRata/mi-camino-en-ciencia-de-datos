@@ -882,43 +882,79 @@ input::placeholder,textarea::placeholder{color:#b9addd!important}
 @media(max-width:760px){.nav{background:#100a35!important}}
 
 
-/* Paleta 05: Grafito y plata — conserva estructura y funcionalidades */
+
+/* Paleta 05 · GRAFITO Y PLATA — override integral */
 :root{
-  color-scheme:dark;
-  --bg:#17191c;
-  --surface:#22262b;
-  --surface-soft:#30363d;
-  --text:#f1f3f5;
-  --muted:#b2b9c1;
-  --line:#454c54;
-  --accent:#c2cad2;
-  --accent-dark:#e0e5e9;
-  --accent-soft:#343b43;
-  --shadow:0 16px 42px rgba(0,0,0,.32);
+ color-scheme:dark!important;
+ --bg:#17191c!important;
+ --surface:#22262b!important;
+ --surface-soft:#30363d!important;
+ --text:#f1f3f5!important;
+ --muted:#b2b9c1!important;
+ --line:#454c54!important;
+ --accent:#c2cad2!important;
+ --accent-dark:#e0e5e9!important;
+ --accent-soft:#343b43!important;
+ --shadow:0 16px 42px rgba(0,0,0,.34)!important;
 }
-body{background:#17191c!important;color:#f1f3f5!important}
-.topbar,.nav,.nav.open{background:rgba(30,33,37,.96)!important}
-.brand-mark,.button-primary{background:#aeb8c2!important;border-color:#aeb8c2!important;color:#17191c!important}
-.brand strong,.eyebrow,.hero h1 span,.stats-strip strong,.road-status,.road-card>a,
-.lesson-number,.lesson-link,.progress-top strong,.curriculum-number,.skill-card>span,
-.curriculum-card a,.source-links a,.tip-index,.tip-card small,.journey-step small,
-.journey-step>a,.student-routine li b,.tool-card small{color:#d2d8de!important}
-.nav,.nav a,.nav .nav-github,.footer a{color:#c5cbd1!important}
-.nav a:hover,.footer a:hover,a:hover{color:#fff!important}
-.nav .nav-github,.button,.menu-toggle{border-color:#59616a!important}
+html,body{background:#17191c!important;color:#f1f3f5!important}
+body:before,body:after{background:none!important}
+header,.topbar,nav,.nav,.nav.open,footer,.footer,
+main,.main,.page,.page-content,.content,.sidebar,.mobile-menu{
+ background-color:#202429!important;color:#f1f3f5!important;
+}
+section,.section,.stats-strip,.progress-section,.progress-panel,
+.data-card,.today-panel,.road-card,.curriculum-card,.skill-card,.tool-card,
+.tip-card,.student-routine,.journey-intro,.journey-step,.project-panel,
+.lesson,.search-box,.calculator-panel,.calculator-card,.data-calculator-section,
+.planner-card,.resource-card,.resource-item,.notice,.tip-box,.journey-finish,
+.card,.panel,.modal,.dropdown-menu,.tab-content{
+ background:#22262b!important;color:#f1f3f5!important;
+ border-color:#454c54!important;
+ box-shadow:0 10px 28px rgba(0,0,0,.18)!important;
+}
+.active-road,.lesson.completed,.selected,.active,.is-active{
+ background:#30363d!important;color:#f1f3f5!important;
+}
+h1,h2,h3,h4,h5,h6,p,li,label,small,strong,span,div{ text-shadow:none!important }
+body,main,section,article,aside,div,p,li,label,h1,h2,h3,h4,h5,h6{
+ scrollbar-color:#59616a #202429;
+}
+body,.hero,.work-hero,.section,.python-section,.journey-section,
+.progress-copy,.project-question,.project-steps,.lesson-info{
+ color:#f1f3f5!important;
+}
+p,.muted,.hero-copy>p,.hero-note,.section-heading>p,.road-card p,
+.lesson-info p,.progress-copy p,.curriculum-card p,.skill-card p,
+.tip-card p,.journey-step p,.journey-intro span,.student-routine li span,
+.tool-card span,.project-question p,.project-steps li span,
+.footer p,.today-panel>p,.lesson-count{
+ color:#b2b9c1!important;
+}
+a,.road-card>a,.lesson-link,.curriculum-card a,.source-links a,
+.progress-copy>a,.journey-step>a,.nav a,.footer a{
+ color:#cbd2d9!important;
+}
+a:hover,.nav a:hover,.footer a:hover{color:#fff!important}
+.eyebrow,.brand strong,.hero h1 span,.work-hero h1 span,
+.stats-strip strong,.road-status,.lesson-number,.curriculum-number,
+.skill-card>span,.tip-index,.tip-card small,.journey-step small,
+.student-routine li b,.tool-card small,.progress-top strong{
+ color:#d5dbe1!important;
+}
+.brand-mark,.button-primary,.progress-fill{
+ background:#aeb8c2!important;color:#17191c!important;border-color:#aeb8c2!important;
+}
 .button-primary:hover{background:#d0d6dc!important}
-.button-quiet,.menu-toggle{background:#30363d!important;color:#f1f3f5!important}
-.hero-copy>p,.section-heading>p,.road-card p,.lesson-info p,.progress-copy p,
-.curriculum-card p,.skill-card p,.tip-card p,.journey-step p,.journey-intro span,
-.student-routine li span,.tool-card span,.project-question p,.project-steps li span,
-.footer p,.footer> a:last-child,.hero-note,.today-panel>p{color:#b2b9c1!important}
-.stats-strip,.road-card,.lesson,.progress-section,.progress-panel,.today-panel,
-.curriculum-card,.skill-card,.tool-card,.project-panel,.tip-card,.student-routine,
-.journey-intro,.journey-step,.data-card{background:#22262b!important;border-color:#454c54!important}
-.road-icon,.tags span,.journey-number{background:#394149!important;color:#e0e5e9!important}
-.active-road,.lesson.completed{background:#30363d!important}
-.lesson.completed .lesson-info h3{color:#9ba4ad!important}
-.tip-box,.notice,.journey-finish{background:#2a3036!important;color:#e1e5e9!important;border-color:#9da8b2!important}
+.button,.button-quiet,.menu-toggle,.nav .nav-github{
+ background:#30363d!important;color:#f1f3f5!important;border-color:#59616a!important;
+}
+.road-icon,.tags span,.journey-number{
+ background:#394149!important;color:#e0e5e9!important;
+}
+.tip-box,.notice,.journey-finish{
+ background:#2a3036!important;color:#e1e5e9!important;border-color:#8d98a2!important;
+}
 .tip-box p,.tip-box strong,.journey-outcome{color:#d4dae0!important}
 .orbit{border-color:#68727c!important}
 .data-card-top,.data-card{border-color:#59616a!important}
@@ -930,11 +966,14 @@ body{background:#17191c!important;color:#f1f3f5!important}
 .terminal>span,.terminal strong{color:#d2d8de!important}
 .floating-chip{background:#30363d!important;color:#f1f3f5!important;border-color:#59616a!important}
 .progress-track{background:#454c54!important}
-.progress-fill{background:linear-gradient(90deg,#8e9aa6,#d4dae0)!important}
 .lesson-check span{border-color:#929ca6!important}
 .lesson-check input:checked+span{background:#aeb8c2!important;border-color:#aeb8c2!important}
-input,textarea,select,.search-box{background:#1c2024!important;color:#f1f3f5!important;border-color:#59616a!important}
+input,textarea,select,button,.search-box{
+ background-color:#1c2024!important;color:#f1f3f5!important;border-color:#59616a!important;
+}
 input::placeholder,textarea::placeholder{color:#9da7b0!important}
-input:focus,textarea:focus,select:focus{outline-color:#c2cad2!important}
-.footer{background:#202429!important;border-color:#454c54!important}
-@media(max-width:760px){.nav{background:#202429!important}}
+input:focus,textarea:focus,select:focus,button:focus-visible{outline-color:#c2cad2!important}
+hr,.divider{border-color:#454c54!important}
+@media(max-width:760px){
+ .nav,.nav.open,.mobile-menu{background:#202429!important;color:#f1f3f5!important}
+}
