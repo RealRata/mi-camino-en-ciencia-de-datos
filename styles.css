@@ -1026,3 +1026,44 @@ section.data-calculator-section,
 .data-calculator-section .calculator-export-panel strong{
  color:#e0e5e9!important;
 }
+
+
+/* Ajuste de alineación: evitar que el contenido inicial quede recortado */
+html,body{
+ max-width:100%;
+ overflow-x:clip!important;
+}
+body:has(.topbar.sidebar) main{
+ width:100%;
+ max-width:100%;
+ min-width:0;
+}
+.work-hero{
+ width:min(var(--content),calc(100% - 48px))!important;
+ max-width:100%!important;
+ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;
+ gap:clamp(22px,4vw,54px)!important;
+}
+.work-hero>div:first-child,
+.work-hero .today-panel{
+ min-width:0!important;
+ max-width:100%;
+}
+.work-hero h1,
+.work-hero>div:first-child>p,
+.work-hero .today-panel{
+ overflow-wrap:anywhere;
+}
+.work-hero .today-panel ol,
+.work-hero .today-panel li{
+ min-width:0;
+}
+@media(max-width:900px){
+ .work-hero{
+  width:min(var(--content),calc(100% - 36px))!important;
+  grid-template-columns:minmax(0,1fr)!important;
+ }
+}
+@media(max-width:760px){
+ .work-hero{width:90%!important}
+}
