@@ -977,3 +977,52 @@ hr,.divider{border-color:#454c54!important}
 @media(max-width:760px){
  .nav,.nav.open,.mobile-menu{background:#202429!important;color:#f1f3f5!important}
 }
+
+
+/* Quitar bloques azules/violetas de la calculadora: acabado grafito */
+.data-calculator-section,
+section.data-calculator-section,
+.data-calculator-section::before,
+.data-calculator-section::after{
+ background:#17191c!important;
+ background-image:none!important;
+ box-shadow:none!important;
+ border-color:transparent!important;
+}
+.data-calculator-section .section-heading,
+.data-calculator-section .data-calculator{
+ background:transparent!important;
+ background-image:none!important;
+ box-shadow:none!important;
+}
+.data-calculator-section .data-calculator-input,
+.data-calculator-section .data-calculator-results,
+.data-calculator-section .stat-result,
+.data-calculator-section .calculator-learning,
+.data-calculator-section .learning-output,
+.data-calculator-section .calculator-export-panel{
+ background:#22262b!important;
+ background-image:none!important;
+ color:#f1f3f5!important;
+ border-color:#454c54!important;
+ box-shadow:none!important;
+}
+.data-calculator-section textarea,
+.data-calculator-section input,
+.data-calculator-section select{
+ background:#1c2024!important;
+ color:#f1f3f5!important;
+ border-color:#59616a!important;
+}
+.data-calculator-section .stat-result span,
+.data-calculator-section .calculator-help,
+.data-calculator-section .calculator-footnote,
+.data-calculator-section .calculator-learning p,
+.data-calculator-section .calculator-export-panel span{
+ color:#b2b9c1!important;
+}
+.data-calculator-section .stat-result strong,
+.data-calculator-section .calculator-learning h3,
+.data-calculator-section .calculator-export-panel strong{
+ color:#e0e5e9!important;
+}
