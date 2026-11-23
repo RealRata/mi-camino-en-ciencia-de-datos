@@ -1951,3 +1951,37 @@ body:has(.topbar.sidebar) main :is(textarea,input,select){
   body:has(.topbar.sidebar) main :is(.learning-explain,.learning-output,.learning-guide,.teaching-guide,.project-panel,.notice,.calculator-export-panel,.journey-finish){padding:17px!important}
   body:has(.topbar.sidebar) main :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card,.student-option,.portfolio-card){align-items:stretch!important}
 }
+
+
+/* Paleta 05 · Grafito y plata */
+:root{color-scheme:dark;--bg:#17191c;--surface:#22262b;--surface-soft:#2b3036;--text:#f1f3f5;--muted:#c2cad2;--line:#454c54;--accent:#c2cad2;--accent-dark:#e0e5e9;--accent-soft:#343b43;--shadow:0 18px 42px rgba(0,0,0,.28)}
+body:has(.topbar.sidebar){background:var(--bg)!important;color:var(--text)!important}
+body:has(.topbar.sidebar) .topbar.sidebar{background:rgba(23,25,28,.97)!important;border-color:var(--line)!important}
+body:has(.topbar.sidebar) :is(.brand-mark,.button-primary){background:#c2cad2!important;border-color:#c2cad2!important;color:#17191c!important}
+body:has(.topbar.sidebar) :is(.nav a:hover,.nav a:focus-visible,.button-quiet:hover,.calculator-quick-access:hover){background:#343b43!important;color:#f1f3f5!important}
+body:has(.topbar.sidebar) :is(.nav .ui-icon,.heading-icon,.eyebrow,.lab-tag,.option-kicker,.project-level,.learning-stage-number,.mexico-projects article>span){color:#c2cad2!important}
+body:has(.topbar.sidebar) :is(.heading-icon,.nav-github,.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card,.student-option,.portfolio-card,.learning-output,.learning-explain,.planner-form,.planner-overview,.data-calculator-input,.data-calculator-results,.goal-panel,.student-stats article,.student-profile-panel,.achievement,.route-progress-panel){border-color:#454c54!important}
+body:has(.topbar.sidebar) :is(.road-card,.curriculum-card,.skill-card,.tool-card,.tip-card,.lab-card,.math-card,.mexico-source,.lesson-info,.project-card,.resource-card,.student-option,.portfolio-card,.learning-output,.learning-explain,.planner-form,.planner-overview,.data-calculator-input,.data-calculator-results,.goal-panel,.student-stats article,.student-profile-panel,.achievement,.route-progress-panel){background:#22262b!important;color:#f1f3f5!important}
+body:has(.topbar.sidebar) :is(.progress-fill,.planner-progress .progress-fill,.learning-progress>div){background:#c2cad2!important}
+body:has(.topbar.sidebar) :is(.option-note,.math-result,.lab-output,.code-editor,.terminal){background:#2b3036!important;color:#e0e5e9!important}
+body:has(.topbar.sidebar) :is(.nav,.section-heading>p,.student-option p,.student-option li,.lab-card>p,.math-card>p,.mexico-source p){color:#c2cad2!important}
+body:has(.topbar.sidebar) .brand strong{color:#c2cad2!important}
+body:has(.topbar.sidebar) .calculator-quick-access{left:auto!important;right:22px!important;background:#22262b!important;border-color:#454c54!important;color:#f1f3f5!important}
+.journey-check{display:flex;align-items:center;gap:9px;margin-top:12px;color:var(--muted);font-size:13px;cursor:pointer}
+.journey-check input{width:17px;height:17px;accent-color:#c2cad2;flex:none}
+.journey-step:has(.journey-check input:checked){border-color:#c2cad2!important;background:rgba(194,202,210,.07)!important}
+.route-progress-panel,.student-profile-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,.8fr);gap:18px;align-items:center;margin:18px 0;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.route-progress-panel>div:first-child,.student-level{display:flex;flex-direction:column;gap:6px}
+.route-progress-panel strong,.student-level strong{font-size:18px;letter-spacing:-.02em}
+.route-progress-panel span,.student-level p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.route-progress-panel .progress-track{height:8px;overflow:hidden;border-radius:99px;background:var(--surface-soft)}
+.route-progress-panel .progress-fill{height:100%;width:0;background:#c2cad2;transition:width .25s ease}
+.student-stats{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.student-profile-panel{grid-template-columns:minmax(190px,.7fr) minmax(0,1.3fr);margin-top:16px}
+.student-achievements h3{margin:0 0 10px;font-size:15px}
+.achievement-list{display:flex;flex-wrap:wrap;gap:8px}
+.achievement{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface-soft);font-size:12px;color:var(--muted)}
+.achievement.unlocked{border-color:#c2cad2!important;color:#f1f3f5;background:#343b43!important}
+.achievement.locked{opacity:.68}
+@media(max-width:900px){.student-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){.route-progress-panel,.student-profile-panel{grid-template-columns:1fr}.student-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
