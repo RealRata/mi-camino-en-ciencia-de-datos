@@ -2172,3 +2172,26 @@ body:has(.topbar.sidebar) main .student-stats article{padding:12px!important}
 .journey-check input:disabled{opacity:.45;cursor:not-allowed}
 .journey-step.is-locked{opacity:.62}
 @media(max-width:520px){.site-search-row{align-items:stretch;flex-direction:column}.site-search-row .button{width:100%}.site-search-results a{align-items:flex-start;flex-direction:column;gap:3px}}
+
+/* ECONOMÍA MUNDIAL · GRÁFICAS DIDÁCTICAS */
+.economy-section{scroll-margin-top:24px}
+.economy-note{margin:16px 0;padding:13px 16px;border:1px solid var(--line,#39433e);border-radius:10px;background:rgba(255,255,255,.025);font-size:13px;line-height:1.65;color:var(--muted,#aab5ae)}
+.economy-note strong{color:var(--text,#edf1ed)}
+.economy-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:10px;margin:20px 0}
+.economy-flow article,.economy-chart-card,.economy-concepts article{min-width:0;padding:16px;border:1px solid var(--line,#39433e);border-radius:12px;background:rgba(255,255,255,.025)}
+.economy-flow article>span{font-size:10px;letter-spacing:.12em;color:var(--accent,#62c5a2)}
+.economy-flow h3,.economy-chart-card h3,.economy-concepts h3{margin:7px 0;font-size:15px}
+.economy-flow p,.economy-chart-card p,.economy-concepts p{margin:0;color:var(--muted,#aab5ae);font-size:12px;line-height:1.65}
+.economy-flow-arrow{display:grid;place-items:center;color:var(--accent,#62c5a2);font-size:21px}
+.economy-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+.economy-chart-card canvas{display:block;width:100%;height:auto;max-height:260px;margin:12px 0 8px}
+.economy-chart-card .chart-takeaway{padding:10px 11px;border-radius:8px;background:rgba(255,255,255,.035);color:var(--text,#dce5df)}
+.economy-concepts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.economy-data-sources{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:18px 0;padding:18px;border:1px solid var(--line,#39433e);border-radius:12px}
+.economy-data-sources h3{margin:7px 0;font-size:17px}
+.economy-data-sources p,.economy-data-sources li{font-size:12px;line-height:1.7;color:var(--muted,#aab5ae)}
+.economy-data-sources ul{margin:0;padding-left:18px}
+.economy-data-sources a{color:var(--accent,#62c5a2);text-decoration:none}
+.economy-data-sources a:hover{text-decoration:underline}
+@media(max-width:900px){.economy-flow{grid-template-columns:1fr 1fr}.economy-flow-arrow{display:none}.economy-concepts{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.economy-chart-grid,.economy-concepts,.economy-data-sources{grid-template-columns:1fr}.economy-flow{grid-template-columns:1fr 1fr}.economy-flow article{padding:12px}}
