@@ -1985,3 +1985,46 @@ body:has(.topbar.sidebar) .calculator-quick-access{left:auto!important;right:22p
 .achievement.locked{opacity:.68}
 @media(max-width:900px){.student-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:650px){.route-progress-panel,.student-profile-panel{grid-template-columns:1fr}.student-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* FIX 2026-11-23: mantener visible la navegación lateral en cualquier ancho */
+.topbar.sidebar{
+  position:fixed!important;inset:0 auto 0 0!important;
+  width:258px!important;height:100vh!important;min-height:100vh!important;
+  padding:25px 17px!important;display:flex!important;
+  flex-direction:column!important;align-items:stretch!important;
+  justify-content:flex-start!important;gap:24px!important;
+  z-index:1000!important;overflow:visible!important;
+}
+.topbar.sidebar .brand{flex:0 0 auto!important}
+.topbar.sidebar .nav,
+.topbar.sidebar .nav:not(.open){
+  display:flex!important;position:static!important;inset:auto!important;
+  flex:1 1 auto!important;min-height:0!important;max-height:none!important;
+  width:100%!important;flex-direction:column!important;align-items:stretch!important;
+  gap:5px!important;overflow-y:auto!important;visibility:visible!important;
+  opacity:1!important;transform:none!important;pointer-events:auto!important;
+  padding:0 2px 12px!important;background:transparent!important;
+  border:0!important;box-shadow:none!important;
+}
+.topbar.sidebar .nav a{display:flex!important;visibility:visible!important;opacity:1!important}
+.topbar.sidebar .menu-toggle{display:none!important}
+body:has(.topbar.sidebar){padding-left:258px!important}
+@media(max-width:760px){
+  .topbar.sidebar{
+    position:fixed!important;inset:0 auto 0 0!important;
+    width: min(218px, 42vw)!important;height:100vh!important;min-height:100vh!important;
+    padding:18px 10px!important;flex-direction:column!important;
+    align-items:stretch!important;gap:16px!important;
+  }
+  .topbar.sidebar .brand{padding:3px 5px 14px!important;border-bottom:1px solid var(--line)!important}
+  .topbar.sidebar .nav,.topbar.sidebar .nav:not(.open){
+    display:flex!important;position:static!important;flex:1 1 auto!important;
+    width:100%!important;max-height:none!important;overflow-y:auto!important;
+    padding:0 0 10px!important;gap:4px!important;background:transparent!important;
+  }
+  .topbar.sidebar .nav a{padding:9px 7px!important;font-size:11px!important;white-space:normal!important}
+  body:has(.topbar.sidebar){padding-left:min(218px,42vw)!important}
+  body:has(.topbar.sidebar) main{width:auto!important;max-width:none!important}
+  .topbar.sidebar .menu-toggle{display:none!important}
+}
