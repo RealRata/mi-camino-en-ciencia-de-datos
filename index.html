@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#101713">
 <meta name="description" content="Centro de estudio de Ciencia de Datos: ruta académica UNAM, prácticas de Python, estadística, SQL, análisis de datos y proyectos con información pública mexicana.">
 <title>Ciencia de Datos desde Cero | Aprende, practica y crea proyectos</title>
-<link rel="stylesheet" href="styles.css?v=compact-interface-20261123"><style id="forced-sidebar-navigation">
+<link rel="stylesheet" href="styles.css?v=plataforma-mejorada-20261123"><style id="forced-sidebar-navigation">
 html,body{min-height:100%;margin:0!important}
 body:has(>header.topbar.sidebar){padding-left:230px!important}
 body>header.topbar.sidebar{display:flex!important;position:fixed!important;inset:0 auto 0 0!important;width:230px!important;height:100vh!important;min-height:100vh!important;box-sizing:border-box!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:12px!important;padding:18px 12px!important;overflow:hidden!important;background:#17191c!important;color:#f1f3f5!important;border-right:1px solid #454c54!important;z-index:2147483647!important}
@@ -15,7 +15,7 @@ body>header.topbar.sidebar>#mainNav>a{display:flex!important;flex:0 0 auto!impor
 body>header.topbar.sidebar>#mainNav>a:hover{background:#343b43!important;color:#fff!important}
 body>header.topbar.sidebar>.menu-toggle{display:none!important}
 @media(max-width:760px){body:has(>header.topbar.sidebar){padding-left:218px!important}body>header.topbar.sidebar{width:218px!important;padding:18px 10px!important;gap:12px!important}body>header.topbar.sidebar>#mainNav>a{font-size:11px!important;min-height:38px!important;padding:8px 6px!important}}
-</style><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script><script src="script.js?v=progreso-logros-20261123" defer></script>
+</style><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script><script src="script.js?v=plataforma-mejorada-20261123" defer></script>
 </head>
 <body>
 <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -46,6 +46,11 @@ body>header.topbar.sidebar>.menu-toggle{display:none!important}
 <span class="eyebrow">CENTRO DE ESTUDIO · CIENCIA DE DATOS</span>
 <h1>Aprende. Practica.<br><span>Demuestra lo que sabes.</span></h1>
 <p>Sigue una secuencia clara: comienza con las bases, practica cada habilidad y avanza paso a paso hasta desarrollar tu propio proyecto de Ciencia de Datos.</p>
+<div class="site-search" role="search">
+  <label for="siteSearch">Busca en toda la plataforma</label>
+  <div class="site-search-row"><input id="siteSearch" type="search" placeholder="Ej. Python, SQL, probabilidad, proyectos..." autocomplete="off"><button class="button button-primary" id="siteSearchButton" type="button">Buscar</button></div>
+  <div class="site-search-results" id="siteSearchResults" aria-live="polite" hidden></div>
+</div>
 <div class="hero-actions"><a class="button button-primary" href="#camino">Comenzar mi camino ↓</a><a class="button button-quiet" href="#calculadora">Abrir calculadora</a><a class="button button-quiet" href="plan-estudios.html?v=dark-theme-20261111">Consultar plan UNAM</a></div>
 </div>
 <div class="today-panel">
@@ -356,7 +361,7 @@ body>header.topbar.sidebar>.menu-toggle{display:none!important}
     <article class="portfolio-card"><span class="project-level">NIVEL 3 · INTERMEDIO</span><h3>03. Consulta una base con SQL</h3><p>Diseña consultas para filtrar, agrupar y relacionar tablas. Explica cómo obtuviste cada resultado.</p><div class="project-skills"><span>SQL</span><span>JOIN</span><span>GROUP BY</span></div><div class="project-checks"><label><input type="checkbox" data-project-task="sql-tablas"> Reconocí tablas y claves</label><label><input type="checkbox" data-project-task="sql-filtros"> Escribí consultas con WHERE</label><label><input type="checkbox" data-project-task="sql-agrupacion"> Agrupé resultados con GROUP BY</label><label><input type="checkbox" data-project-task="sql-join"> Relacioné dos tablas con JOIN</label></div></article>
     <article class="portfolio-card"><span class="project-level">NIVEL 4 · INTERMEDIO</span><h3>04. Primer modelo predictivo</h3><p>Define una variable objetivo, separa entrenamiento y prueba, compara un modelo base y evalúa errores.</p><div class="project-skills"><span>Python</span><span>Scikit-learn</span><span>Evaluación</span></div><div class="project-checks"><label><input type="checkbox" data-project-task="ml-pregunta"> Definí una pregunta y variable objetivo</label><label><input type="checkbox" data-project-task="ml-split"> Separé entrenamiento y prueba</label><label><input type="checkbox" data-project-task="ml-baseline"> Comparé contra un modelo base</label><label><input type="checkbox" data-project-task="ml-metricas"> Interpreté métricas y limitaciones</label></div></article>
   </div>
-  <div class="portfolio-summary"><div><strong id="projectTasksDone">0 de 16 entregables</strong><span id="projectTasksText">Comienza con el primer proyecto.</span></div><div class="progress-track"><div class="progress-fill" id="projectTasksFill"></div></div></div>
+  <div class="portfolio-summary"><div><strong id="projectTasksDone">0 de 16 entregables</strong><span id="projectTasksText">Comienza con el primer proyecto.</span></div><div class="progress-track"><div class="progress-fill" id="projectTasksFill"></div></div><button class="button button-quiet" id="downloadPortfolioTemplate" type="button">Descargar plantilla README.md</button></div>
 </section>
 <section class="section resource-section" id="biblioteca">
   <div class="section-heading"><div><span class="eyebrow">BIBLIOTECA DE APRENDIZAJE</span><h2><svg class="heading-icon"><use href="#i-book"/></svg>Recursos para cada etapa</h2></div><p>Documentación y materiales de referencia para estudiar con fuentes reconocibles. Filtra por área o busca un tema.</p></div>
