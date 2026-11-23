@@ -12,7 +12,7 @@
   --accent-dark: #00c9b2;
   --accent-soft: #183e5b;
   --shadow: 0 16px 42px rgba(0,0,0,.45);
-  --content: 1120px;
+  --content: 1440px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
@@ -1112,5 +1112,35 @@ body:has(.topbar.sidebar) .work-hero .today-panel li{
   width:100%!important;
   padding-left:5%!important;
   padding-right:5%!important;
+ }
+}
+
+
+/* Ampliar el área útil del contenido principal */
+:root{--content:1440px}
+body:has(.topbar.sidebar) main{
+ width:100%!important;
+ max-width:none!important;
+}
+body:has(.topbar.sidebar) main>.hero,
+body:has(.topbar.sidebar) main>.stats-strip,
+body:has(.topbar.sidebar) main>.section,
+body:has(.topbar.sidebar) main>.progress-section{
+ width:min(var(--content),94%)!important;
+ max-width:var(--content)!important;
+}
+body:has(.topbar.sidebar) main>.work-hero{
+ width:min(var(--content),96%)!important;
+ max-width:var(--content)!important;
+ padding-left:clamp(20px,2.5vw,40px)!important;
+ padding-right:clamp(20px,2.5vw,40px)!important;
+}
+@media(max-width:760px){
+ body:has(.topbar.sidebar) main>.hero,
+ body:has(.topbar.sidebar) main>.stats-strip,
+ body:has(.topbar.sidebar) main>.section,
+ body:has(.topbar.sidebar) main>.progress-section,
+ body:has(.topbar.sidebar) main>.work-hero{
+  width:90%!important;
  }
 }
