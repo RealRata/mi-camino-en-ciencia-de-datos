@@ -880,3 +880,61 @@ a:hover{color:#ff4ecd}
 input,textarea,select{background:#100b35!important;color:#fff!important;border-color:#6550ad!important}
 input::placeholder,textarea::placeholder{color:#b9addd!important}
 @media(max-width:760px){.nav{background:#100a35!important}}
+
+
+/* Paleta 05: Grafito y plata — conserva estructura y funcionalidades */
+:root{
+  color-scheme:dark;
+  --bg:#17191c;
+  --surface:#22262b;
+  --surface-soft:#30363d;
+  --text:#f1f3f5;
+  --muted:#b2b9c1;
+  --line:#454c54;
+  --accent:#c2cad2;
+  --accent-dark:#e0e5e9;
+  --accent-soft:#343b43;
+  --shadow:0 16px 42px rgba(0,0,0,.32);
+}
+body{background:#17191c!important;color:#f1f3f5!important}
+.topbar,.nav,.nav.open{background:rgba(30,33,37,.96)!important}
+.brand-mark,.button-primary{background:#aeb8c2!important;border-color:#aeb8c2!important;color:#17191c!important}
+.brand strong,.eyebrow,.hero h1 span,.stats-strip strong,.road-status,.road-card>a,
+.lesson-number,.lesson-link,.progress-top strong,.curriculum-number,.skill-card>span,
+.curriculum-card a,.source-links a,.tip-index,.tip-card small,.journey-step small,
+.journey-step>a,.student-routine li b,.tool-card small{color:#d2d8de!important}
+.nav,.nav a,.nav .nav-github,.footer a{color:#c5cbd1!important}
+.nav a:hover,.footer a:hover,a:hover{color:#fff!important}
+.nav .nav-github,.button,.menu-toggle{border-color:#59616a!important}
+.button-primary:hover{background:#d0d6dc!important}
+.button-quiet,.menu-toggle{background:#30363d!important;color:#f1f3f5!important}
+.hero-copy>p,.section-heading>p,.road-card p,.lesson-info p,.progress-copy p,
+.curriculum-card p,.skill-card p,.tip-card p,.journey-step p,.journey-intro span,
+.student-routine li span,.tool-card span,.project-question p,.project-steps li span,
+.footer p,.footer> a:last-child,.hero-note,.today-panel>p{color:#b2b9c1!important}
+.stats-strip,.road-card,.lesson,.progress-section,.progress-panel,.today-panel,
+.curriculum-card,.skill-card,.tool-card,.project-panel,.tip-card,.student-routine,
+.journey-intro,.journey-step,.data-card{background:#22262b!important;border-color:#454c54!important}
+.road-icon,.tags span,.journey-number{background:#394149!important;color:#e0e5e9!important}
+.active-road,.lesson.completed{background:#30363d!important}
+.lesson.completed .lesson-info h3{color:#9ba4ad!important}
+.tip-box,.notice,.journey-finish{background:#2a3036!important;color:#e1e5e9!important;border-color:#9da8b2!important}
+.tip-box p,.tip-box strong,.journey-outcome{color:#d4dae0!important}
+.orbit{border-color:#68727c!important}
+.data-card-top,.data-card{border-color:#59616a!important}
+.code-line{color:#d6dce2!important}
+.code-purple{color:#c2b3d0!important}.code-blue{color:#a9c5d8!important}
+.code-green{color:#a9c8b7!important}.code-yellow{color:#d8c7a4!important}
+.code-muted{color:#9da7b0!important}
+.terminal{background:#15181b!important;color:#c2cad2!important}
+.terminal>span,.terminal strong{color:#d2d8de!important}
+.floating-chip{background:#30363d!important;color:#f1f3f5!important;border-color:#59616a!important}
+.progress-track{background:#454c54!important}
+.progress-fill{background:linear-gradient(90deg,#8e9aa6,#d4dae0)!important}
+.lesson-check span{border-color:#929ca6!important}
+.lesson-check input:checked+span{background:#aeb8c2!important;border-color:#aeb8c2!important}
+input,textarea,select,.search-box{background:#1c2024!important;color:#f1f3f5!important;border-color:#59616a!important}
+input::placeholder,textarea::placeholder{color:#9da7b0!important}
+input:focus,textarea:focus,select:focus{outline-color:#c2cad2!important}
+.footer{background:#202429!important;border-color:#454c54!important}
+@media(max-width:760px){.nav{background:#202429!important}}
