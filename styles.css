@@ -2028,3 +2028,62 @@ body:has(.topbar.sidebar){padding-left:258px!important}
   body:has(.topbar.sidebar) main{width:auto!important;max-width:none!important}
   .topbar.sidebar .menu-toggle{display:none!important}
 }
+
+
+/* Navegación lateral persistente: reglas finales de alta prioridad */
+html body { padding-left: 270px !important; }
+html body > header.topbar.sidebar {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important; right: auto !important; bottom: 0 !important;
+  width: 270px !important; height: 100vh !important; min-height: 100vh !important;
+  display: flex !important; flex-direction: column !important;
+  align-items: stretch !important; justify-content: flex-start !important;
+  gap: 22px !important; padding: 26px 16px !important;
+  overflow: hidden !important; z-index: 9999 !important;
+  background: #17191c !important; border-right: 1px solid #454c54 !important;
+  border-bottom: 0 !important; box-shadow: 8px 0 28px rgba(0,0,0,.18) !important;
+}
+html body > header.topbar.sidebar > nav#mainNav,
+html body > header.topbar.sidebar > nav#mainNav:not(.open) {
+  position: static !important; inset: auto !important;
+  display: flex !important; flex: 1 1 auto !important;
+  width: 100% !important; max-height: none !important; min-height: 0 !important;
+  flex-direction: column !important; align-items: stretch !important;
+  justify-content: flex-start !important; gap: 5px !important;
+  padding: 8px 0 18px !important; margin: 0 !important;
+  overflow-x: hidden !important; overflow-y: auto !important;
+  visibility: visible !important; opacity: 1 !important;
+  background: transparent !important; box-shadow: none !important;
+}
+html body > header.topbar.sidebar > nav#mainNav a {
+  display: flex !important; align-items: center !important;
+  width: 100% !important; min-height: 40px !important;
+  padding: 9px 10px !important; border-radius: 7px !important;
+  color: #c2cad2 !important; font-size: 13px !important;
+  line-height: 1.35 !important; white-space: normal !important;
+  visibility: visible !important; opacity: 1 !important;
+}
+html body > header.topbar.sidebar > nav#mainNav a:hover,
+html body > header.topbar.sidebar > nav#mainNav a:focus-visible {
+  color: #f1f3f5 !important; background: #343b43 !important;
+}
+html body > header.topbar.sidebar .brand {
+  display: flex !important; flex: 0 0 auto !important;
+  min-height: 42px !important; color: #f1f3f5 !important;
+}
+html body > header.topbar.sidebar .menu-toggle { display: none !important; }
+@media (max-width: 760px) {
+  html body { padding-left: 218px !important; }
+  html body > header.topbar.sidebar {
+    width: 218px !important; padding: 18px 11px !important; gap: 14px !important;
+  }
+  html body > header.topbar.sidebar > nav#mainNav,
+  html body > header.topbar.sidebar > nav#mainNav:not(.open) {
+    display: flex !important; width: 100% !important;
+    padding: 4px 0 12px !important; gap: 3px !important;
+  }
+  html body > header.topbar.sidebar > nav#mainNav a {
+    min-height: 38px !important; padding: 8px 7px !important;
+    font-size: 11px !important;
+  }
+}
